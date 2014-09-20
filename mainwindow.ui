@@ -263,13 +263,12 @@
     <addaction name="menuNew"/>
     <addaction name="actionDelete_frame"/>
     <addaction name="separator"/>
-    <addaction name="menuGo_to"/>
-    <addaction name="separator"/>
     <addaction name="actionRotate_left"/>
     <addaction name="actionRotate_right"/>
     <addaction name="separator"/>
     <addaction name="actionExport_frame"/>
     <addaction name="separator"/>
+    <addaction name="menuGo_to"/>
     <addaction name="actionPersist_changes"/>
    </widget>
    <widget class="QMenu" name="menuSelection">
