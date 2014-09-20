@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'mainwindow.ui'
 #
-# Created: Fri Sep 19 12:43:08 2014
+# Created: Sat Sep 20 15:10:43 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -521,6 +521,11 @@ class Ui_MainWindow(object):
         icon41.addPixmap(QtGui.QPixmap(":/icons/list-remove.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionDelete_frame.setIcon(icon41)
         self.actionDelete_frame.setObjectName("actionDelete_frame")
+        self.actionGenerate_ticker_font = QtGui.QAction(MainWindow)
+        icon42 = QtGui.QIcon()
+        icon42.addPixmap(QtGui.QPixmap(":/icons/application-x-font-ttf.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionGenerate_ticker_font.setIcon(icon42)
+        self.actionGenerate_ticker_font.setObjectName("actionGenerate_ticker_font")
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionLoad_BLM)
         self.toolBar.addSeparator()
@@ -583,6 +588,7 @@ class Ui_MainWindow(object):
         self.menuPlayer.addAction(self.actionPlayStopDevice)
         self.menuGenerate.addAction(self.actionGenerate_color_gradient)
         self.menuGenerate.addAction(self.actionGenerate_function)
+        self.menuGenerate.addAction(self.actionGenerate_ticker_font)
         self.menuBar.addAction(self.menuFile.menuAction())
         self.menuBar.addAction(self.menuEdit.menuAction())
         self.menuBar.addAction(self.menuFrames.menuAction())
@@ -700,6 +706,7 @@ class Ui_MainWindow(object):
         self.actionExport_frames.setText(QtGui.QApplication.translate("MainWindow", "Export frames", None, QtGui.QApplication.UnicodeUTF8))
         self.actionDelete_frame.setText(QtGui.QApplication.translate("MainWindow", "Remove", None, QtGui.QApplication.UnicodeUTF8))
         self.actionDelete_frame.setShortcut(QtGui.QApplication.translate("MainWindow", "R", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionGenerate_ticker_font.setText(QtGui.QApplication.translate("MainWindow", "Ticker font", None, QtGui.QApplication.UnicodeUTF8))
 
 from gridgraphicsview import GridGraphicsView
 import res_rc

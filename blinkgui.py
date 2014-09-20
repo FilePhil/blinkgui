@@ -355,6 +355,7 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         self._connect_slot(self.actionImport_from_image.triggered, self._import_frame)
         self._connect_slot(self.actionGenerate_color_gradient.triggered, self._generate_color_gradient)
         self._connect_slot(self.actionGenerate_function.triggered, self._generate_function)
+        self._connect_slot(self.actionGenerate_ticker_font.triggered, self._generate_ticker_font)
         self._connect_slot(self.actionGo_to_frame.triggered, self._go_to_frame)
         self._connect_slot(self.actionZoom_in.triggered, lambda: self._zoom(1))
         self._connect_slot(self.actionZoom_out.triggered, lambda: self._zoom(-1))
@@ -405,6 +406,13 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
             if not ok:
                 self._show_error(str(err))
         self.update_frame_controls()
+
+    def _generate_ticker_font(self):
+        from generator_dialogs import TickerTextDialog
+        dialog = TickerTextDialog(self)
+        if dialog.exec_() == QtGui.QDialog.Accepted:
+            self.__grid.generate_ticker_font(dialog.get_values())
+            self.update_frame_controls()
 
     def _copy_or_cut(self, cut):
         if self.__grid.has_selected_tiles():

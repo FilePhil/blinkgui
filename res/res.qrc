@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="/icons">
+    <file>application-x-font-ttf.png</file>
     <file>document-export-table.png</file>
     <file>edit-delete.png</file>
     <file>gradient.png</file>

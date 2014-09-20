@@ -327,6 +327,7 @@
     </property>
     <addaction name="actionGenerate_color_gradient"/>
     <addaction name="actionGenerate_function"/>
+    <addaction name="actionGenerate_ticker_font"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -1241,6 +1242,15 @@
    </property>
    <property name="shortcut">
     <string>R</string>
+   </property>
+  </action>
+  <action name="actionGenerate_ticker_font">
+   <property name="icon">
+    <iconset resource="res/res.qrc">
+     <normaloff>:/icons/application-x-font-ttf.png</normaloff>:/icons/application-x-font-ttf.png</iconset>
+   </property>
+   <property name="text">
+    <string>Ticker font</string>
    </property>
   </action>
  </widget>

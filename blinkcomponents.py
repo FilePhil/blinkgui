@@ -4,6 +4,7 @@ import random
 from colorgenerator import *
 from blinkconfig import *
 import numpy as np
+from PIL import Image, ImageFont, ImageDraw
 
 
 class Frame:
@@ -433,3 +434,22 @@ class Grid(QtCore.QObject):
             return True, ""
         except (SyntaxError, NameError) as err:
             return False, err
+
+    def _generate_text(self, params):
+        font = ImageFont.truetype("VCR_OSD_MONO.ttf", params.font_size)
+        dimensions = font.getsize(params.text)
+        image = Image.new("RGB", (dimensions[0], self.grid_size.height), DEFAULT_TILE_COLOR)
+        draw = ImageDraw.Draw(image)
+        start = (0, self.grid_size.height/2 - 0.5*dimensions[1])
+        draw.text(start, params.text, (255, 255, 255), font=font)
+        return image.getdata()
+
+    def generate_ticker_font(self, params):
+        """for char in params.text:
+            img = self._generate_char(char, params)
+            self.create_new_frame(duration=params.duration)
+            self._set_tile_colors(img.getdata())
+        """
+        img = self._generate_text(params)
+        for color in img:
+            print(color)
