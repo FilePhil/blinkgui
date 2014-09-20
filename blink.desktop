@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Blink GUI
+GenericName=Blinking LED GUI
+Exec=/usr/bin/blink
+Icon=/usr/share/blink/blink_icon.xpm
+Terminal=false
+Categories=Development;Engineering;Electronics;
+Keywords=embedded electronics;electronics;avr;microcontroller;
+
