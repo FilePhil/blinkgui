@@ -1,0 +1,30 @@
+[DEFAULT]
+# width, height (int, int)
+grid_size: 10, 10
+
+# 100 ms for new frames (int)
+frame_duration: 100
+
+# black ( r, g, b) 
+tile_color: 0, 0, 0
+
+# default paint color ( r, g, b )
+pen_color: 255,255,255
+
+# font for ticker text
+font: VCR_OSD_MONO.ttf
+
+# (int)
+max_zoom: 40
+
+# scale change when zooming (float)
+zoom_step: 0.05
+
+# color of lines between tiles ( r, g, b )
+grid_line_color: 30, 30, 30
+
+# grid line thickness in pixels (int)
+grid_width: 1
+
+# color for background ( r, g, b)
+background_color: 30, 30, 30

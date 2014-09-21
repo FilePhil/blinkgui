@@ -4,7 +4,7 @@ import random
 from colorgenerator import *
 from blinkconfig import *
 import numpy as np
-from PIL import Image, ImageFont, ImageDraw
+from PIL import ImageFont
 
 
 class Frame:
@@ -20,9 +20,9 @@ class Tile(QtGui.QGraphicsRectItem):
         self.__grid = grid
         self.id = idx
         self.pos = pos
-        self.setBrush(QtGui.QColor.fromRgb(*DEFAULT_TILE_COLOR))
-        pen = QtGui.QPen(QtGui.QColor.fromRgb(*GRID_LINE_COLOR))
-        pen.setWidth(GRID_WIDTH)
+        self.setBrush(QtGui.QColor.fromRgb(*config.getcolor("tile_color")))
+        pen = QtGui.QPen(QtGui.QColor.fromRgb(*config.getcolor("grid_line_color")))
+        pen.setWidth(config.getint("grid_width"))
         self.setPen(pen)
         self.__grid.add_item(self)
         self.setFlags(QtGui.QGraphicsItem.ItemIsSelectable)
@@ -95,10 +95,10 @@ class Grid(QtCore.QObject):
 
         self.resize_tiles(widget_size)
         if frames is None:
-            self.frames = [Frame(DEFAULT_FRAME_DURATION, [DEFAULT_TILE_COLOR] * (len(self.tiles)))]
+            self.frames = [Frame(config.getint("frame_duration"), [config.getcolor("tile_color")] * (len(self.tiles)))]
         else:
             self.frames = frames
-        self.current_color = DEFAULT_PEN_COLOR
+        self.current_color = config.getcolor("pen_color")
         self.load_frame_number(0)
         self.current_frame_num = 0
         self.widget_size = widget_size
@@ -124,7 +124,8 @@ class Grid(QtCore.QObject):
         if item_size is None:
             item_size = self._calculate_item_size(size)
         for t in self.tiles:
-            t.setRect(t.pos.x*item_size, t.pos.y*item_size, item_size-GRID_WIDTH, item_size-GRID_WIDTH)
+            t.setRect(t.pos.x*item_size, t.pos.y*item_size, item_size-config.getint("grid_width"),
+                      item_size-config.getint("grid_width"))
         self.scene.setSceneRect(QtCore.QRectF(0, 0, size, size))
 
     def go_to_next_frame(self):
@@ -153,8 +154,8 @@ class Grid(QtCore.QObject):
         for tile in self.scene.selectedItems():
             tile.set_color(self.current_color)
 
-    def create_new_frame(self, duration=DEFAULT_FRAME_DURATION):
-        new_frame = Frame(duration, [DEFAULT_TILE_COLOR] * (len(self.tiles)))
+    def create_new_frame(self, duration=config.getint("frame_duration")):
+        new_frame = Frame(duration, [config.getcolor("tile_color")] * (len(self.tiles)))
         self.frames.insert(self.current_frame_num + 1, new_frame)
         self.current_frame_num += 1
         self._load_frame(self.frames[self.current_frame_num], False)
@@ -166,7 +167,7 @@ class Grid(QtCore.QObject):
             self.frames.insert(pos, frame)
 
     def insert_frame_with_colors(self, frame_colors, pos=None):
-        f = Frame(DEFAULT_FRAME_DURATION, frame_colors)
+        f = Frame(config.getint("frame_duration"), frame_colors)
         self.insert_frame(f, pos)
 
     def duplicate_frame(self):
@@ -238,7 +239,7 @@ class Grid(QtCore.QObject):
     def delete_selected(self):
         for t in self.tiles:
             if t.isSelected():
-                t.set_color(DEFAULT_TILE_COLOR)
+                t.set_color(config.getcolor("tile_color"))
         self.select_all_tiles(False)
 
     def get_selection(self):
@@ -273,7 +274,7 @@ class Grid(QtCore.QObject):
             if t.isSelected():
                 copy.append(t.color)
                 if cut:
-                    t.set_color(DEFAULT_TILE_COLOR)
+                    t.set_color(config.getcolor("tile_color"))
             else:
                 copy.append((-1, -1, -1))
         self.__buffer = copy
@@ -293,7 +294,7 @@ class Grid(QtCore.QObject):
                 pos = x * self.grid_size.width + y
                 r = self.tiles[pos]
                 if r.pos.x == self.grid_size.width - 1:
-                    r.set_color(DEFAULT_TILE_COLOR)
+                    r.set_color(config.getcolor("tile_color"))
                 elif pos < len(self.tiles) - 1:
                     r.set_color(self.tiles[pos + 1].color)
 
@@ -338,7 +339,7 @@ class Grid(QtCore.QObject):
                 pos = (x - 1) * self.grid_size.width + y - 1
                 r = self.tiles[pos]
                 if r.pos.x == 0:
-                    r.set_color(DEFAULT_TILE_COLOR)
+                    r.set_color(config.getcolor("tile_color"))
                 elif pos > 0:
                     r.set_color(self.tiles[pos - 1].color)
 
@@ -348,7 +349,7 @@ class Grid(QtCore.QObject):
                 pos = self.grid_size.width * x + y
                 r = self.tiles[pos]
                 if r.pos.y == self.grid_size.height - 1:
-                    r.set_color(DEFAULT_TILE_COLOR)
+                    r.set_color(config.getcolor("tile_color"))
                 else:
                     r.set_color(self.tiles[pos + self.grid_size.width].color)
 
@@ -358,7 +359,7 @@ class Grid(QtCore.QObject):
                 pos = (x - 1) * self.grid_size.height + y - 1
                 r = self.tiles[pos]
                 if r.pos.y == 0:
-                    r.set_color(DEFAULT_TILE_COLOR)
+                    r.set_color(config.getcolor("tile_color"))
                 else:
                     r.set_color(self.tiles[pos - self.grid_size.width].color)
 

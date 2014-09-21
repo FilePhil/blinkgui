@@ -249,7 +249,7 @@
    </widget>
    <widget class="QMenu" name="menuFrames">
     <property name="tearOffEnabled">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="title">
      <string>&amp;Frame</string>

@@ -2,7 +2,6 @@ from PySide import QtGui, QtCore
 from lg_dialog import Ui_LinearGradientDialog
 from color_transition_dialog import Ui_ColorTransitionDialog
 from text_dialog import Ui_TickerDialog
-#from collections import namedtuple
 from blinkconfig import *
 
 tr = lambda string: QtCore.QCoreApplication.translate("GUI", string)
@@ -44,14 +43,14 @@ class TickerTextDialog(QtGui.QDialog, Ui_TickerDialog):
         self.openFontButton.clicked.connect(self.font_button_clicked)
         self.fontColorButton.clicked.connect(self.font_color_button_clicked)
         self.backgroundColorButton.clicked.connect(self.background_color_button_clicked)
-        self.fontEdit.setText(DEFAULT_FONT)
-        self.background_color = DEFAULT_TILE_COLOR
-        self.font_color = DEFAULT_PEN_COLOR
+        self.fontEdit.setText(config.getstring("font"))
+        self.background_color = config.getcolor("tile_color")
+        self.font_color = config.getcolor("pen_color")
         self.fontColorButton.setPalette(QtGui.QColor.fromRgb(*self.font_color))
         self.backgroundColorButton.setPalette(QtGui.QColor.fromRgb(*self.background_color))
 
     def font_button_clicked(self):
-        filename = QtGui.QFileDialog.getOpenFileName(self, tr("Open file"), "~", FONT_FILTER)
+        filename = QtGui.QFileDialog.getOpenFileName(self, tr("Open file"), "~", config.FONT_FILTER)
         if filename[0] == "":
             return
         self.fontEdit.setText(filename[0])

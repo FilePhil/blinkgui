@@ -26,7 +26,7 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         self.__active_connection = None
         self.filename = None
         self.__zoom = 0
-        self._initialize(DEFAULT_GRID_SIZE)
+        self._initialize(config.getsize("grid_size"))
 
     """
     BUTTON EVENTS
@@ -365,18 +365,19 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         self._connect_slot(self.actionDelete_colors.triggered, self.__grid.delete_selected)
 
     def _zoom(self, scale):
+        zoom_step = config.getfloat("zoom_step")
         if scale > 0:
             self.__grid.allow_resize = False
-            self.graphicsView.scale(1.0+ZOOM_STEP, 1.0+ZOOM_STEP)
+            self.graphicsView.scale(1.0 + zoom_step, 1.0 + zoom_step)
             self.__zoom += 1
-            if self.__zoom == MAX_ZOOM:
+            if self.__zoom == config.getint("max_zoom"):
                 self.actionZoom_in.setEnabled(False)
             self.actionZoom_out.setEnabled(True)
         elif scale < 0:
             self.__grid.allow_resize = False
-            self.graphicsView.scale(1.0-ZOOM_STEP, 1.0-ZOOM_STEP)
+            self.graphicsView.scale(1.0 - zoom_step, 1.0 - zoom_step)
             self.__zoom -= 1
-            if self.__zoom == -MAX_ZOOM:
+            if self.__zoom == - config.getint("max_zoom"):
                 self.actionZoom_out.setEnabled(False)
             self.actionZoom_in.setEnabled(True)
         else:
@@ -450,11 +451,11 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         self.menuBar.setNativeMenuBar(False)
         self.menuEdit.setVisible(False)  # TODO: Remove after implementing undo
         self.graphicsView.setCacheMode(QtGui.QGraphicsView.CacheNone)
-        self.graphicsView.setBackgroundBrush(QtGui.QColor.fromRgb(*BACKGROUND_COLOR))
+        self.graphicsView.setBackgroundBrush(QtGui.QColor.fromRgb(*config.getcolor("background_color")))
         scene = QtGui.QGraphicsScene()
         self.graphicsView.setScene(scene)
         max_size = min(self.graphicsView.minimumWidth(), self.graphicsView.minimumHeight())
-        self.__grid = Grid(max_size, scene, Grid_Size(*dimensions), frames)
+        self.__grid = Grid(max_size, scene, Size(*dimensions), frames)
         self.__grid.playback_stopped.connect(self._handle_playback_stopped)
         self.__grid.mouse_shift_event.connect(self._handle_mouse_shift_event)
         self.__grid.tile_colored.connect(self._handle_tile_colored)

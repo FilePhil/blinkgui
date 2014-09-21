@@ -28,27 +28,27 @@
         <translation>Maße eingeben (HxB):</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="426"/>
+        <location filename="blinkgui.py" line="427"/>
         <source>Undo</source>
         <translation>Rückgängig</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="430"/>
+        <location filename="blinkgui.py" line="431"/>
         <source>Undo &quot;%s&quot;</source>
         <translation>&quot;%s&quot; rückgängig machen</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="436"/>
+        <location filename="blinkgui.py" line="437"/>
         <source>SHIFT: Left-Click on a tile to record its color</source>
         <translation>SHIFT: Links-Klicken auf eine Kachel, um die Farbe zu speichern</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="438"/>
+        <location filename="blinkgui.py" line="439"/>
         <source>CTRL: Left-Click to select multiple tiles</source>
         <translation>CTRL: Links-Klicken um mehrere Kacheln auszuwählen</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="488"/>
+        <location filename="blinkgui.py" line="489"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>

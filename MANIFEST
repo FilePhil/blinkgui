@@ -6,6 +6,7 @@ blinkcomponents.py
 blinkconfig.py
 blinkgui
 blinkgui.py
+blinkrc.example
 bmlparser.py
 color_transition_dialog.py
 colorgenerator.py
