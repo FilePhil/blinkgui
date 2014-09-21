@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'mainwindow.ui'
 #
-# Created: Sun Sep 21 16:26:14 2014
+# Created: Sun Sep 21 16:42:21 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -569,6 +569,7 @@ class Ui_MainWindow(object):
         self.menuFrames.addAction(self.actionDelete_frame)
         self.menuFrames.addSeparator()
         self.menuFrames.addAction(self.actionRotate_right)
+        self.menuFrames.addAction(self.actionRotate_left)
         self.menuFrames.addSeparator()
         self.menuFrames.addAction(self.actionExport_frame)
         self.menuFrames.addSeparator()
