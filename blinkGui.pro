@@ -1,7 +1,3 @@
-SOURCES += blinkgui.py
-SOURCES += mainwindow.py
-SOURCES += generator_dialogs.py
-SOURCES += lg_dialog.py
-SOURCES += color_transition_dialog.py
-SOURCES += avrconnector.py
+SOURCES += blinkgui.py mainwindow.py generator_dialogs.py lg_dialog.py color_transition_dialog.py avrconnector.py
+SOURCES += text_dialog.py
 TRANSLATIONS += translations/blinkgui_de.ts

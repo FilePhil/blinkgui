@@ -1,6 +1,6 @@
 from distutils.core import setup
 setup(name='blink',
-      version='1.0.2',
+      version='1.0.3',
       author='Christoph Hirtz',
       author_email='christoph.hirtz@online.de',
       maintainer='Christoph Hirtz',

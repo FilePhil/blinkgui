@@ -1,6 +1,5 @@
 SHELL := /bin/bash
 cur-dir := $(shell pwd)
-all: deb
 
 deb: 
 	@ python3 setup.py --command-packages=stdeb.command sdist_dsc -d out;
@@ -14,3 +13,11 @@ deb:
 		cp out/*.deb .; \
 		rm -rf out; \
 	done
+
+ui:
+	 pyside-rcc -py3 res/res.qrc -o res_rc.py
+	 pyside-uic mainwindow.ui -o mainwindow.py
+	 pyside-uic color_transition_dialog.ui -o color_transition_dialog.py
+	 pyside-uic lg_dialog.ui -o lg_dialog.py
+	 pyside-uic text_dialog.ui -o text_dialog.py
+	 pyside-lupdate blinkGui.pro

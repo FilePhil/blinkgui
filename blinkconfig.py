@@ -11,12 +11,14 @@ EMPTY_HEADER = {"bits": 8, "channels": 3, "title": "Untitled", "description": No
 FILE_FILTER = "Blinkenlights Markup (*.bml) (*.bml);;All files (*.*)"
 EXPORT_FILTER = "Images (*.png) (*.png)"
 IMPORT_FILTER = "Images (*.png) (*.png)"
+FONT_FILTER = "TrueType Fonts (*.ttf) (*.ttf)"
 
 # DEFAULTS
 DEFAULT_GRID_SIZE = Grid_Size(10, 10)
 DEFAULT_TILE_COLOR = (0, 0, 0)
 DEFAULT_FRAME_DURATION = 100
 DEFAULT_PEN_COLOR = (255, 255, 255)
+DEFAULT_FONT = "VCR_OSD_MONO.ttf"
 MAX_ZOOM = 40
 ZOOM_STEP = 0.05
 GRID_LINE_COLOR = (30, 30, 30)

@@ -448,6 +448,7 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         self.loopCheckbox.setChecked(False)
         self.actionPaste.setEnabled(False)
         self.menuBar.setNativeMenuBar(False)
+        self.menuEdit.setVisible(False)  # TODO: Remove after implementing undo
         self.graphicsView.setCacheMode(QtGui.QGraphicsView.CacheNone)
         self.graphicsView.setBackgroundBrush(QtGui.QColor.fromRgb(*BACKGROUND_COLOR))
         scene = QtGui.QGraphicsScene()

@@ -42,13 +42,13 @@ class Tile(QtGui.QGraphicsRectItem):
             QtGui.QGraphicsItem.mouseReleaseEvent(self, event)
 
     def mousePressEvent(self, event):
-        if event.button() == QtCore.Qt.LeftButton and \
-                        QtGui.QApplication.keyboardModifiers() != QtCore.Qt.ControlModifier\
-                and QtGui.QApplication.keyboardModifiers() != QtCore.Qt.ShiftModifier:
+        if event.button() == QtCore.Qt.LeftButton and QtGui.QApplication.keyboardModifiers() == 0:
             self.__grid.tile_colored.emit(self.id, self.brush().color().name())
             self.set_color(self.__grid.current_color)
         if QtGui.QApplication.keyboardModifiers() == QtCore.Qt.ShiftModifier:
             self.__grid.mouse_shift_event.emit(self.id)
+        elif QtGui.QApplication.keyboardModifiers() == QtCore.Qt.AltModifier | QtCore.Qt.ControlModifier:
+            self.__grid.select_by_color(self.color)
 
     @property
     def color(self):
@@ -435,21 +435,17 @@ class Grid(QtCore.QObject):
         except (SyntaxError, NameError) as err:
             return False, err
 
-    def _generate_text(self, params):
-        font = ImageFont.truetype("VCR_OSD_MONO.ttf", params.font_size)
-        dimensions = font.getsize(params.text)
-        image = Image.new("RGB", (dimensions[0], self.grid_size.height), DEFAULT_TILE_COLOR)
-        draw = ImageDraw.Draw(image)
-        start = (0, self.grid_size.height/2 - 0.5*dimensions[1])
-        draw.text(start, params.text, (255, 255, 255), font=font)
-        return image.getdata()
+    @staticmethod
+    def _generate_text(params):
+        text = "%s%s%s" % (" "*params.padding, params.text, " "*params.padding)
+        font = ImageFont.truetype(params.font, params.font_size)
+        dimensions = font.getsize(text)
+        return np.array(np.array_split(list(font.getmask(text, "1")), dimensions[1])), dimensions
 
     def generate_ticker_font(self, params):
-        """for char in params.text:
-            img = self._generate_char(char, params)
+        array, dimensions = self._generate_text(params)
+        for step in range(0, max(0, dimensions[0]-self.grid_size.width+1)):
+            colors = np.concatenate(array[:self.grid_size.height, step:self.grid_size.width+step])
+            col = [params.font_color if c == 255 else params.background_color for c in colors]
             self.create_new_frame(duration=params.duration)
-            self._set_tile_colors(img.getdata())
-        """
-        img = self._generate_text(params)
-        for color in img:
-            print(color)
+            self._set_tile_colors(col)

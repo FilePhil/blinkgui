@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'mainwindow.ui'
 #
-# Created: Sat Sep 20 20:49:50 2014
+# Created: Sun Sep 21 13:14:54 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -96,16 +96,23 @@ class Ui_MainWindow(object):
         self.menuFile = QtGui.QMenu(self.menuBar)
         self.menuFile.setObjectName("menuFile")
         self.menuFrames = QtGui.QMenu(self.menuBar)
+        self.menuFrames.setTearOffEnabled(True)
+        self.menuFrames.setSeparatorsCollapsible(False)
         self.menuFrames.setObjectName("menuFrames")
         self.menuGo_to = QtGui.QMenu(self.menuFrames)
         self.menuGo_to.setObjectName("menuGo_to")
         self.menuNew = QtGui.QMenu(self.menuFrames)
         self.menuNew.setObjectName("menuNew")
         self.menuSelection = QtGui.QMenu(self.menuBar)
+        self.menuSelection.setTearOffEnabled(True)
+        self.menuSelection.setSeparatorsCollapsible(False)
         self.menuSelection.setObjectName("menuSelection")
         self.menuShift = QtGui.QMenu(self.menuSelection)
         self.menuShift.setObjectName("menuShift")
         self.menuEdit = QtGui.QMenu(self.menuBar)
+        self.menuEdit.setEnabled(False)
+        self.menuEdit.setTearOffEnabled(False)
+        self.menuEdit.setSeparatorsCollapsible(False)
         self.menuEdit.setObjectName("menuEdit")
         self.menuColoring = QtGui.QMenu(self.menuBar)
         self.menuColoring.setObjectName("menuColoring")
@@ -382,7 +389,7 @@ class Ui_MainWindow(object):
         self.actionSelect_by_color.setShortcutContext(QtCore.Qt.ApplicationShortcut)
         self.actionSelect_by_color.setObjectName("actionSelect_by_color")
         self.actionUndo = QtGui.QAction(MainWindow)
-        self.actionUndo.setEnabled(False)
+        self.actionUndo.setEnabled(True)
         icon16 = QtGui.QIcon()
         icon16.addPixmap(QtGui.QPixmap(":/icons/edit-undo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionUndo.setIcon(icon16)
@@ -527,17 +534,24 @@ class Ui_MainWindow(object):
         self.actionGenerate_ticker_font.setIcon(icon42)
         self.actionGenerate_ticker_font.setObjectName("actionGenerate_ticker_font")
         self.toolBar.addSeparator()
-        self.toolBar.addAction(self.actionLoad_BLM)
-        self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionGo_to_previous_frame)
         self.toolBar.addAction(self.actionGo_to_next_frame)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionCreate_new_frame)
         self.toolBar.addAction(self.actionDuplicate_frame)
+        self.toolBar.addAction(self.actionDelete_frame)
+        self.toolBar.addSeparator()
+        self.toolBar.addAction(self.actionRotate_right)
+        self.toolBar.addAction(self.actionRotate_left)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionZoom_out)
         self.toolBar.addAction(self.actionZoom_in)
         self.toolBar.addAction(self.actionFit_zoom)
+        self.toolBar.addSeparator()
+        self.toolBar.addAction(self.actionSelect_all)
+        self.toolBar.addAction(self.actionDeselect_all)
+        self.toolBar.addAction(self.actionCut_Selection)
+        self.toolBar.addAction(self.actionPaste)
         self.menuFile.addAction(self.actionNew)
         self.menuFile.addAction(self.actionLoad_BLM)
         self.menuFile.addAction(self.actionSave)
@@ -554,7 +568,6 @@ class Ui_MainWindow(object):
         self.menuFrames.addAction(self.menuNew.menuAction())
         self.menuFrames.addAction(self.actionDelete_frame)
         self.menuFrames.addSeparator()
-        self.menuFrames.addAction(self.actionRotate_left)
         self.menuFrames.addAction(self.actionRotate_right)
         self.menuFrames.addSeparator()
         self.menuFrames.addAction(self.actionExport_frame)
@@ -705,7 +718,7 @@ class Ui_MainWindow(object):
         self.actionExport_frames.setText(QtGui.QApplication.translate("MainWindow", "Export frames", None, QtGui.QApplication.UnicodeUTF8))
         self.actionDelete_frame.setText(QtGui.QApplication.translate("MainWindow", "Remove", None, QtGui.QApplication.UnicodeUTF8))
         self.actionDelete_frame.setShortcut(QtGui.QApplication.translate("MainWindow", "R", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionGenerate_ticker_font.setText(QtGui.QApplication.translate("MainWindow", "Ticker font", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionGenerate_ticker_font.setText(QtGui.QApplication.translate("MainWindow", "Ticker text", None, QtGui.QApplication.UnicodeUTF8))
 
 from gridgraphicsview import GridGraphicsView
 import res_rc
