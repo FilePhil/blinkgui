@@ -55,6 +55,11 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
 
     def _play(self):
         if self.__grid.is_stopped():
+            self.progressBar.setMaximum(self.__grid.get_number_of_frames())
+            self.frameSlider.setVisible(False)
+            self.progressBar.setVisible(True)
+            self.currentFrameBox.setEnabled(False)
+            self.colorBox.setEnabled(False)
             self.actionPlayStop.setText(tr("Stop playback"))
             self.actionPlayStop.setIcon(QtGui.QIcon(":/icons/media-playback-stop.png"))
             self.actionPlayStopDevice.setEnabled(False)
@@ -160,9 +165,17 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         else:
             self.actionPlayStop.setText(tr("Play preview"))
             self.actionPlayStop.setIcon(QtGui.QIcon(":/icons/media-playback-start.png"))
+            self.frameSlider.setVisible(True)
+            self.progressBar.setVisible(False)
+            self.currentFrameBox.setEnabled(True)
+            self.colorBox.setEnabled(True)
             if self.__active_connection:
                 self.actionPlayStopDevice.setEnabled(True)
         self.update_frame_controls()
+
+    @QtCore.Slot(int)
+    def _handle_frame_changed(self, idx):
+        self.progressBar.setValue(idx+1)
 
     def _set_working_color(self, color, change_selected=True):
         cmd = CommandColorChanged(self, color, tr("Set color"), change_selected)
@@ -450,15 +463,17 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         self.actionPaste.setEnabled(False)
         self.menuBar.setNativeMenuBar(False)
         self.menuEdit.setVisible(False)  # TODO: Remove after implementing undo
+        self.progressBar.setVisible(False)
         self.graphicsView.setCacheMode(QtGui.QGraphicsView.CacheNone)
         self.graphicsView.setBackgroundBrush(QtGui.QColor.fromRgb(*config.getcolor("background_color")))
         scene = QtGui.QGraphicsScene()
         self.graphicsView.setScene(scene)
         max_size = min(self.graphicsView.minimumWidth(), self.graphicsView.minimumHeight())
         self.__grid = Grid(max_size, scene, Size(*dimensions), frames)
-        self.__grid.playback_stopped.connect(self._handle_playback_stopped)
+        self.__grid.playback_stopped_event.connect(self._handle_playback_stopped)
         self.__grid.mouse_shift_event.connect(self._handle_mouse_shift_event)
-        self.__grid.tile_colored.connect(self._handle_tile_colored)
+        self.__grid.tile_colored_event.connect(self._handle_tile_colored)
+        self.__grid.frame_changed_event.connect(self._handle_frame_changed)
         if not self.__active_connection:
             self.actionConnect_to_device.setEnabled(True)
             self.actionPlayStopDevice.setEnabled(False)

@@ -3,12 +3,12 @@
 <context>
     <name>@default</name>
     <message>
-        <location filename="blinkgui.py" line="76"/>
+        <location filename="blinkgui.py" line="81"/>
         <source>Save file</source>
         <translation>Datei speichern</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="109"/>
+        <location filename="blinkgui.py" line="114"/>
         <source>Export frame</source>
         <translation>Frame exportieren</translation>
     </message>
@@ -18,37 +18,37 @@
         <translation>Datei öffnen</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="257"/>
+        <location filename="blinkgui.py" line="270"/>
         <source>New file</source>
         <translation>Neue Datei</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="257"/>
+        <location filename="blinkgui.py" line="270"/>
         <source>Please enter the grid dimensions:</source>
         <translation>Maße eingeben (HxB):</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="427"/>
+        <location filename="blinkgui.py" line="440"/>
         <source>Undo</source>
         <translation>Rückgängig</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="431"/>
+        <location filename="blinkgui.py" line="444"/>
         <source>Undo &quot;%s&quot;</source>
         <translation>&quot;%s&quot; rückgängig machen</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="437"/>
+        <location filename="blinkgui.py" line="450"/>
         <source>SHIFT: Left-Click on a tile to record its color</source>
         <translation>SHIFT: Links-Klicken auf eine Kachel, um die Farbe zu speichern</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="439"/>
+        <location filename="blinkgui.py" line="452"/>
         <source>CTRL: Left-Click to select multiple tiles</source>
         <translation>CTRL: Links-Klicken um mehrere Kacheln auszuwählen</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="489"/>
+        <location filename="blinkgui.py" line="504"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
@@ -63,52 +63,52 @@
         <translation>Frame löschen</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="151"/>
+        <location filename="blinkgui.py" line="156"/>
         <source>Color tile</source>
         <translation>Kachel färben</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="168"/>
+        <location filename="blinkgui.py" line="181"/>
         <source>Set color</source>
         <translation>Farbe wählen</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="219"/>
+        <location filename="blinkgui.py" line="232"/>
         <source>Frame: %d/%d, Total duration: %dms</source>
         <translation>Frame: %d/%d, Gesamtdauer: %dms</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="239"/>
+        <location filename="blinkgui.py" line="252"/>
         <source>Go to frame</source>
         <translation>Gehe zu Frame</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="239"/>
+        <location filename="blinkgui.py" line="252"/>
         <source>Please enter the frame number:</source>
         <translation>Frame-Nummer:</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="157"/>
+        <location filename="blinkgui.py" line="162"/>
         <source>Play on device</source>
         <translation>Auf Gerät abspielen</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="161"/>
+        <location filename="blinkgui.py" line="166"/>
         <source>Play preview</source>
         <translation>Vorschau abspielen</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="69"/>
+        <location filename="blinkgui.py" line="74"/>
         <source>Stop playback</source>
         <translation>Abspielen stoppen</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="288"/>
+        <location filename="blinkgui.py" line="301"/>
         <source>A connection already exists.</source>
         <translation>Es besteht bereits eine Verbindung.</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="119"/>
+        <location filename="blinkgui.py" line="124"/>
         <source>Import frame</source>
         <translation>Frame importieren</translation>
     </message>
@@ -202,12 +202,12 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="mainwindow.py" line="617"/>
+        <location filename="mainwindow.py" line="621"/>
         <source>Blink</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="618"/>
+        <location filename="mainwindow.py" line="622"/>
         <source>(CTRL+) Left-click to select a tile, right-click to tint</source>
         <translation>(STRG+) Links-Klick,, um eine Kachel auszuwählen, Rechts-Klick zum Färben</translation>
     </message>
@@ -217,7 +217,7 @@
         <translation type="obsolete">Farbeinstellungen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="632"/>
+        <location filename="mainwindow.py" line="637"/>
         <source>Tint selected tiles</source>
         <translation>Markierte Kacheln färben</translation>
     </message>
@@ -227,7 +227,7 @@
         <translation type="obsolete">Frameeinstellungen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="634"/>
+        <location filename="mainwindow.py" line="639"/>
         <source>Duration (ms)</source>
         <translation>Dauer (ms)</translation>
     </message>
@@ -237,7 +237,7 @@
         <translation type="obsolete">Playeroptionen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="636"/>
+        <location filename="mainwindow.py" line="641"/>
         <source>Loop playback</source>
         <translation>Endlosschleife</translation>
     </message>
@@ -247,42 +247,42 @@
         <translation type="obsolete">Dateiinformationen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="640"/>
+        <location filename="mainwindow.py" line="645"/>
         <source>Property</source>
         <translation>Eigenschaft</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="641"/>
+        <location filename="mainwindow.py" line="646"/>
         <source>Value</source>
         <translation>Wert</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="620"/>
+        <location filename="mainwindow.py" line="625"/>
         <source>&amp;File</source>
         <translation>&amp;Datei</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="621"/>
+        <location filename="mainwindow.py" line="626"/>
         <source>&amp;Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="624"/>
+        <location filename="mainwindow.py" line="629"/>
         <source>&amp;Selection</source>
         <translation>&amp;Auswahl</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="626"/>
+        <location filename="mainwindow.py" line="631"/>
         <source>&amp;Edit</source>
         <translation>&amp;Bearbeiten</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="627"/>
+        <location filename="mainwindow.py" line="632"/>
         <source>&amp;Coloring</source>
         <translation>&amp;Färben</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="628"/>
+        <location filename="mainwindow.py" line="633"/>
         <source>&amp;Player</source>
         <translation type="unfinished"></translation>
     </message>
@@ -292,7 +292,7 @@
         <translation type="obsolete">Gerät</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="629"/>
+        <location filename="mainwindow.py" line="634"/>
         <source>Generate</source>
         <translation>Generieren</translation>
     </message>
@@ -302,7 +302,7 @@
         <translation type="obsolete">&amp;Neuen, leeren Frame erstellen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="643"/>
+        <location filename="mainwindow.py" line="648"/>
         <source>F</source>
         <translation type="unfinished"></translation>
     </message>
@@ -312,42 +312,42 @@
         <translation type="obsolete">Frame entfernen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="721"/>
+        <location filename="mainwindow.py" line="726"/>
         <source>R</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="644"/>
+        <location filename="mainwindow.py" line="649"/>
         <source>E&amp;xit</source>
         <translation>&amp;Beenden</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="645"/>
+        <location filename="mainwindow.py" line="650"/>
         <source>Ctrl+Q</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="646"/>
+        <location filename="mainwindow.py" line="651"/>
         <source>&amp;Load BLM</source>
         <translation>BML &amp;laden</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="647"/>
+        <location filename="mainwindow.py" line="652"/>
         <source>Load BML</source>
         <translation>BML laden</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="648"/>
+        <location filename="mainwindow.py" line="653"/>
         <source>Ctrl+L</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="649"/>
+        <location filename="mainwindow.py" line="654"/>
         <source>&amp;Duplicate current frame</source>
         <translation>Aktuellen Frame &amp;duplizieren</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="650"/>
+        <location filename="mainwindow.py" line="655"/>
         <source>D</source>
         <translation type="unfinished"></translation>
     </message>
@@ -357,17 +357,17 @@
         <translation type="obsolete">Sequenz abs&amp;pielen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="652"/>
+        <location filename="mainwindow.py" line="657"/>
         <source>Ctrl+P</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="653"/>
+        <location filename="mainwindow.py" line="658"/>
         <source>&amp;New</source>
         <translation>&amp;Neu</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="654"/>
+        <location filename="mainwindow.py" line="659"/>
         <source>Ctrl+N</source>
         <translation type="unfinished"></translation>
     </message>
@@ -377,7 +377,7 @@
         <translation type="obsolete">&amp;Speichern als BML</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="658"/>
+        <location filename="mainwindow.py" line="663"/>
         <source>Ctrl+S</source>
         <translation type="unfinished"></translation>
     </message>
@@ -392,7 +392,7 @@
         <translation type="obsolete">Zu &amp;vorherigem Frame springen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="660"/>
+        <location filename="mainwindow.py" line="665"/>
         <source>P</source>
         <translation type="unfinished"></translation>
     </message>
@@ -402,77 +402,77 @@
         <translation type="obsolete">Zu &amp;nächstem Frame springen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="662"/>
+        <location filename="mainwindow.py" line="667"/>
         <source>N</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="663"/>
+        <location filename="mainwindow.py" line="668"/>
         <source>Select &amp;all</source>
         <translation>&amp;Alle auswählen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="664"/>
+        <location filename="mainwindow.py" line="669"/>
         <source>Ctrl+A</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="665"/>
+        <location filename="mainwindow.py" line="670"/>
         <source>&amp;Deselect all</source>
         <translation>Alle &amp;deselektieren</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="666"/>
+        <location filename="mainwindow.py" line="671"/>
         <source>Ctrl+Shift+A</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="667"/>
+        <location filename="mainwindow.py" line="672"/>
         <source>&amp;Invert</source>
         <translation>&amp;Invertieren</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="668"/>
+        <location filename="mainwindow.py" line="673"/>
         <source>Ctrl+I</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="669"/>
+        <location filename="mainwindow.py" line="674"/>
         <source>Select by &amp;color</source>
         <translation>Nach &amp;Farbe selektieren</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="670"/>
+        <location filename="mainwindow.py" line="675"/>
         <source>Ctrl+Shift+C</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="671"/>
+        <location filename="mainwindow.py" line="676"/>
         <source>&amp;Undo</source>
         <translation>&amp;Rückgängig machen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="672"/>
+        <location filename="mainwindow.py" line="677"/>
         <source>Ctrl+Z</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="673"/>
+        <location filename="mainwindow.py" line="678"/>
         <source>Choose &amp;color</source>
         <translation>Farbe &amp;wählen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="674"/>
+        <location filename="mainwindow.py" line="679"/>
         <source>C</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="675"/>
+        <location filename="mainwindow.py" line="680"/>
         <source>&amp;Tint selected tiles</source>
         <translation>Ausgewählte &amp;Kacheln färben</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="676"/>
+        <location filename="mainwindow.py" line="681"/>
         <source>T</source>
         <translation type="unfinished"></translation>
     </message>
@@ -482,12 +482,12 @@
         <translation type="obsolete">Nach links bewegen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="678"/>
+        <location filename="mainwindow.py" line="683"/>
         <source>Shift content left</source>
         <translation>Inhalt nach links bewegen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="679"/>
+        <location filename="mainwindow.py" line="684"/>
         <source>Shift+Left</source>
         <translation type="unfinished"></translation>
     </message>
@@ -497,7 +497,7 @@
         <translation type="obsolete">Nach rechts bewegen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="681"/>
+        <location filename="mainwindow.py" line="686"/>
         <source>Shift+Right</source>
         <translation type="unfinished"></translation>
     </message>
@@ -512,17 +512,17 @@
         <translation type="obsolete">Live-Modus aktivieren</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="684"/>
+        <location filename="mainwindow.py" line="689"/>
         <source>Play on device</source>
         <translation>Auf Gerät abspielen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="686"/>
+        <location filename="mainwindow.py" line="691"/>
         <source>Randomize selected tiles</source>
         <translation>Ausgewählte Kacheln randomisieren</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="687"/>
+        <location filename="mainwindow.py" line="692"/>
         <source>Z</source>
         <translation type="unfinished"></translation>
     </message>
@@ -532,7 +532,7 @@
         <translation type="obsolete">Nach oben bewegen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="689"/>
+        <location filename="mainwindow.py" line="694"/>
         <source>Shift+Up</source>
         <translation type="unfinished"></translation>
     </message>
@@ -542,72 +542,72 @@
         <translation type="obsolete">Nach unten bewegen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="691"/>
+        <location filename="mainwindow.py" line="696"/>
         <source>Shift+Down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="692"/>
+        <location filename="mainwindow.py" line="697"/>
         <source>Copy colors</source>
         <translation>Farben kopieren</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="693"/>
+        <location filename="mainwindow.py" line="698"/>
         <source>Ctrl+C</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="694"/>
+        <location filename="mainwindow.py" line="699"/>
         <source>Paste selection</source>
         <translation>Markierung einfügen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="695"/>
+        <location filename="mainwindow.py" line="700"/>
         <source>Ctrl+V</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="696"/>
+        <location filename="mainwindow.py" line="701"/>
         <source>Persist changes</source>
         <translation>Änderungen übernehmen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="697"/>
+        <location filename="mainwindow.py" line="702"/>
         <source>Return</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="698"/>
+        <location filename="mainwindow.py" line="703"/>
         <source>Cut colors</source>
         <translation>Farben ausschneiden</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="699"/>
+        <location filename="mainwindow.py" line="704"/>
         <source>Ctrl+X</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="700"/>
+        <location filename="mainwindow.py" line="705"/>
         <source>Export as image</source>
         <translation>Als Bild exportieren</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="701"/>
+        <location filename="mainwindow.py" line="706"/>
         <source>Color gradient</source>
         <translation>Farbübergang</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="655"/>
+        <location filename="mainwindow.py" line="660"/>
         <source>&amp;Save as...</source>
         <translation>&amp;Speichern unter...</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="657"/>
+        <location filename="mainwindow.py" line="662"/>
         <source>Save as...</source>
         <translation>Speichern unter...</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="702"/>
+        <location filename="mainwindow.py" line="707"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
@@ -617,127 +617,127 @@
         <translation type="obsolete">Gehe zu Frame...</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="705"/>
+        <location filename="mainwindow.py" line="710"/>
         <source>Zoom in</source>
         <translation>Einzoomen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="706"/>
+        <location filename="mainwindow.py" line="711"/>
         <source>Ctrl+=</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="707"/>
+        <location filename="mainwindow.py" line="712"/>
         <source>Zoom out</source>
         <translation>Auszoomen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="708"/>
+        <location filename="mainwindow.py" line="713"/>
         <source>Ctrl+-</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="709"/>
+        <location filename="mainwindow.py" line="714"/>
         <source>Fit zoom</source>
         <translation>Größe automatisch anpassen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="710"/>
+        <location filename="mainwindow.py" line="715"/>
         <source>Ctrl+0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="637"/>
+        <location filename="mainwindow.py" line="642"/>
         <source>Playback</source>
         <translation>Abspielen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="638"/>
+        <location filename="mainwindow.py" line="643"/>
         <source>Playback on Device</source>
         <translation>Auf Gerät abspielen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="651"/>
+        <location filename="mainwindow.py" line="656"/>
         <source>&amp;Play preview</source>
         <translation>&amp;Vorschau abspielen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="682"/>
+        <location filename="mainwindow.py" line="687"/>
         <source>Connect to device</source>
         <translation>Mit Gerät verbinden</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="704"/>
+        <location filename="mainwindow.py" line="709"/>
         <source>Ctrl+F</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="711"/>
+        <location filename="mainwindow.py" line="716"/>
         <source>Function</source>
         <translation>Funktion</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="630"/>
+        <location filename="mainwindow.py" line="635"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="631"/>
+        <location filename="mainwindow.py" line="636"/>
         <source>Color</source>
         <translation>Farbe</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="633"/>
+        <location filename="mainwindow.py" line="638"/>
         <source>Current Frame</source>
         <translation>Aktueller Frame</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="635"/>
+        <location filename="mainwindow.py" line="640"/>
         <source>Player</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="619"/>
+        <location filename="mainwindow.py" line="624"/>
         <source>Toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="639"/>
+        <location filename="mainwindow.py" line="644"/>
         <source>File information</source>
         <translation>Dateiinformationen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="685"/>
+        <location filename="mainwindow.py" line="690"/>
         <source>Ctrl+Return</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="712"/>
+        <location filename="mainwindow.py" line="717"/>
         <source>Import from image</source>
         <translation>Bild importieren</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="713"/>
+        <location filename="mainwindow.py" line="718"/>
         <source>Rotate right</source>
         <translation>Rechts rotieren</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="714"/>
+        <location filename="mainwindow.py" line="719"/>
         <source>Ctrl+Right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="715"/>
+        <location filename="mainwindow.py" line="720"/>
         <source>Rotate left</source>
         <translation>Links rotieren</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="716"/>
+        <location filename="mainwindow.py" line="721"/>
         <source>Ctrl+Left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="683"/>
+        <location filename="mainwindow.py" line="688"/>
         <source>Ctrl+D</source>
         <translation type="unfinished"></translation>
     </message>
@@ -747,77 +747,77 @@
         <translation type="obsolete">Farben löschen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="718"/>
+        <location filename="mainwindow.py" line="723"/>
         <source>Del</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="719"/>
+        <location filename="mainwindow.py" line="724"/>
         <source>Export frames</source>
         <translation>Frames exportieren</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="622"/>
+        <location filename="mainwindow.py" line="627"/>
         <source>&amp;Go to...</source>
         <translation type="unfinished">&amp;Gehe zu...</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="625"/>
+        <location filename="mainwindow.py" line="630"/>
         <source>&amp;Shift</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="659"/>
+        <location filename="mainwindow.py" line="664"/>
         <source>&amp;Previous frame</source>
         <translation>&amp;Vorheriger Frame</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="661"/>
+        <location filename="mainwindow.py" line="666"/>
         <source>&amp;Next frame</source>
         <translation>&amp;Nächster Frame</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="677"/>
+        <location filename="mainwindow.py" line="682"/>
         <source>Left</source>
         <translation>Links</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="680"/>
+        <location filename="mainwindow.py" line="685"/>
         <source>Right</source>
         <translation>Rechts</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="688"/>
+        <location filename="mainwindow.py" line="693"/>
         <source>Up</source>
         <translation>Hoch</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="690"/>
+        <location filename="mainwindow.py" line="695"/>
         <source>Down</source>
         <translation>Runter</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="703"/>
+        <location filename="mainwindow.py" line="708"/>
         <source>Enter frame...</source>
         <translation>Frame eingeben...</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="717"/>
+        <location filename="mainwindow.py" line="722"/>
         <source>D&amp;elete colors</source>
         <translation>Farben &amp;löschen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="623"/>
+        <location filename="mainwindow.py" line="628"/>
         <source>New</source>
         <translation>Neu</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="642"/>
+        <location filename="mainwindow.py" line="647"/>
         <source>&amp;Empty frame</source>
         <translation>&amp;Leerer Frame</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="720"/>
+        <location filename="mainwindow.py" line="725"/>
         <source>Remove</source>
         <translation>Entfernen</translation>
     </message>
@@ -827,9 +827,14 @@
         <translation type="obsolete">Lauftext</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="722"/>
+        <location filename="mainwindow.py" line="727"/>
         <source>Ticker text</source>
         <translation>Laufschrift</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.py" line="623"/>
+        <source>%p% (Frame %v/%m)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

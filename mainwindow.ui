@@ -169,6 +169,16 @@
           </property>
          </widget>
         </item>
+        <item>
+         <widget class="QProgressBar" name="progressBar">
+          <property name="value">
+           <number>24</number>
+          </property>
+          <property name="format">
+           <string>%p% (Frame %v/%m)</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </item>
      </layout>
@@ -392,7 +402,7 @@
         <enum>QLayout::SetMinimumSize</enum>
        </property>
        <item>
-        <widget class="QGroupBox" name="groupBox_5">
+        <widget class="QGroupBox" name="colorBox">
          <property name="title">
           <string>Color</string>
          </property>
@@ -466,7 +476,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBox">
+        <widget class="QGroupBox" name="currentFrameBox">
          <property name="title">
           <string>Current Frame</string>
          </property>
@@ -523,7 +533,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBox_2">
+        <widget class="QGroupBox" name="playerBox">
          <property name="title">
           <string>Player</string>
          </property>
@@ -633,7 +643,7 @@
       </layout>
      </item>
      <item row="1" column="0">
-      <widget class="QGroupBox" name="groupBox_3">
+      <widget class="QGroupBox" name="infoBox">
        <property name="title">
         <string>File information</string>
        </property>

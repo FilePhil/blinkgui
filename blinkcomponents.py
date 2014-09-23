@@ -72,8 +72,9 @@ class Tile(QtGui.QGraphicsRectItem):
 
 # noinspection PyCallByClass,PyArgumentList,PyTypeChecker
 class Grid(QtCore.QObject):
-    tile_colored = QtCore.Signal(int, str)
-    playback_stopped = QtCore.Signal(bool)
+    tile_colored_event = QtCore.Signal(int, str)
+    playback_stopped_event = QtCore.Signal(bool)
+    frame_changed_event = QtCore.Signal(int)
     mouse_shift_event = QtCore.Signal(int)
 
     def __init__(self, widget_size, scene, grid_size, frames=None):
@@ -203,11 +204,12 @@ class Grid(QtCore.QObject):
     def play_sequence(self, on_device=False):
         self.__stopped = False
         while not self.__stopped:
-            for f in self.frames:
+            for idx, f in enumerate(self.frames):
                 if on_device:
                     self.connection.write_frame(f.tile_colors, self.grid_size)
                 else:
                     self._load_frame(f, False)
+                    self.frame_changed_event.emit(idx)
                 QtGui.QApplication.processEvents()
                 time.sleep(f.duration / 1000.0)
                 if self.__stopped:
@@ -217,7 +219,7 @@ class Grid(QtCore.QObject):
         self.__stopped = True
         if not on_device:
             self.load_frame_number(0)
-        self.playback_stopped.emit(on_device)
+        self.playback_stopped_event.emit(on_device)
 
     def is_stopped(self):
         return self.__stopped
