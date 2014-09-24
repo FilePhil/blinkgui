@@ -481,7 +481,9 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
             self.__grid.connection = self.__active_connection
         self.undoStack = QtGui.QUndoStack(self)
         self._connect_slots()
-        self.colorButton.setPalette(QtGui.QColor.fromRgb(255, 255, 255))
+        self.colorWidget.setAutoFillBackground(True)
+        self.colorWidget.setPalette(QtGui.QColor.fromRgb(*config.getcolor("pen_color")))
+        #self.colorButton.setPalette(QtGui.QColor.fromRgb(255, 255, 255))
         self.update_frame_controls()
         self.graphicsView.resize(self.graphicsView.width(), self.graphicsView.height())
         self.__zoom = 0

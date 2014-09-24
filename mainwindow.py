@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'mainwindow.ui'
 #
-# Created: Tue Sep 23 20:15:23 2014
+# Created: Wed Sep 24 15:20:46 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -149,6 +149,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_5.setObjectName("verticalLayout_5")
         self.verticalLayout_2 = QtGui.QVBoxLayout()
         self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.horizontalLayout = QtGui.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
         self.colorButton = QtGui.QPushButton(self.colorBox)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -168,7 +170,14 @@ class Ui_MainWindow(object):
         self.colorButton.setDefault(False)
         self.colorButton.setFlat(False)
         self.colorButton.setObjectName("colorButton")
-        self.verticalLayout_2.addWidget(self.colorButton)
+        self.horizontalLayout.addWidget(self.colorButton)
+        self.colorWidget = QtGui.QFrame(self.colorBox)
+        self.colorWidget.setMinimumSize(QtCore.QSize(30, 0))
+        self.colorWidget.setFrameShape(QtGui.QFrame.Box)
+        self.colorWidget.setFrameShadow(QtGui.QFrame.Raised)
+        self.colorWidget.setObjectName("colorWidget")
+        self.horizontalLayout.addWidget(self.colorWidget)
+        self.verticalLayout_2.addLayout(self.horizontalLayout)
         self.tintButton = QtGui.QPushButton(self.colorBox)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)

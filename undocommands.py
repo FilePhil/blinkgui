@@ -26,7 +26,9 @@ class CommandColorChanged(QtGui.QUndoCommand):
 
     def _set_color(self, color):
         self.gui.grid.current_color = color
-        self.gui.ui.colorButton.setPalette(QtGui.QColor.fromRgb(*color))
+        self.gui.colorWidget.setPalette(QtGui.QColor.fromRgb(*color))
+        #self.gui.colorButton.setPalette(QtGui.QColor.fromRgb(*color))
+        #self.gui.
         # Change color of selected tiles when color
         #if not self.change_selected:
         #    return
