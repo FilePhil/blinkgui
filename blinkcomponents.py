@@ -4,7 +4,6 @@ import random
 from colorgenerator import *
 from blinkconfig import *
 import numpy as np
-from PIL import ImageFont
 
 
 class Frame:
@@ -43,7 +42,7 @@ class Tile(QtGui.QGraphicsRectItem):
 
     def mousePressEvent(self, event):
         if event.button() == QtCore.Qt.LeftButton and QtGui.QApplication.keyboardModifiers() == 0:
-            self.__grid.tile_colored.emit(self.id, self.brush().color().name())
+            self.__grid.tile_colored_event.emit(self.id, self.brush().color().name())
             self.set_color(self.__grid.current_color)
         if QtGui.QApplication.keyboardModifiers() == QtCore.Qt.ShiftModifier:
             self.__grid.mouse_shift_event.emit(self.id)
@@ -440,6 +439,7 @@ class Grid(QtCore.QObject):
 
     @staticmethod
     def _generate_text(params):
+        from PIL import ImageFont
         text = "%s%s%s" % (" "*params.padding, params.text, " "*params.padding)
         font = ImageFont.truetype(params.font, params.font_size)
         dimensions = font.getsize(text)
