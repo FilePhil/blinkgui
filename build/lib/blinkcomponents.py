@@ -1,9 +1,10 @@
 from PySide import QtGui, QtCore
-from collections import deque
+import time
 import random
 from colorgenerator import *
 from blinkconfig import *
 import numpy as np
+from PIL import ImageFont
 
 
 class Frame:
@@ -42,7 +43,7 @@ class Tile(QtGui.QGraphicsRectItem):
 
     def mousePressEvent(self, event):
         if event.button() == QtCore.Qt.LeftButton and QtGui.QApplication.keyboardModifiers() == 0:
-            self.__grid.tile_colored_event.emit(self.id, self.brush().color().name())
+            self.__grid.tile_colored.emit(self.id, self.brush().color().name())
             self.set_color(self.__grid.current_color)
         if QtGui.QApplication.keyboardModifiers() == QtCore.Qt.ShiftModifier:
             self.__grid.mouse_shift_event.emit(self.id)
@@ -71,9 +72,8 @@ class Tile(QtGui.QGraphicsRectItem):
 
 # noinspection PyCallByClass,PyArgumentList,PyTypeChecker
 class Grid(QtCore.QObject):
-    tile_colored_event = QtCore.Signal(int, str)
-    playback_stopped_event = QtCore.Signal(bool)
-    frame_changed_event = QtCore.Signal(int)
+    tile_colored = QtCore.Signal(int, str)
+    playback_stopped = QtCore.Signal(bool)
     mouse_shift_event = QtCore.Signal(int)
 
     def __init__(self, widget_size, scene, grid_size, frames=None):
@@ -84,11 +84,9 @@ class Grid(QtCore.QObject):
         self.connection = None
         self.scene = scene
         self.scene.grid = self
+        self.__stopped = True
         self.__looping = False
         self.tiles = []
-        self.timer = None
-        self.play_frames = None
-        self.__play_idx = -1
         tile_id = 0
         for y in range(0, self.grid_size.height):
             for x in range(0, self.grid_size.width):
@@ -203,33 +201,26 @@ class Grid(QtCore.QObject):
         self._load_frame(self.get_current_frame())
 
     def play_sequence(self, on_device=False):
-        self.__play_idx = 0
-
-        def play():
-            try:
-                f = self.frame_queue.popleft()
+        self.__stopped = False
+        while not self.__stopped:
+            for f in self.frames:
                 if on_device:
                     self.connection.write_frame(f.tile_colors, self.grid_size)
                 else:
                     self._load_frame(f, False)
-                    self.frame_changed_event.emit(self.__play_idx)
-                self.timer.setInterval(f.duration)
-                self.timer.start()
-                self.__play_idx += 1
-            except IndexError:
-                if self.__looping:
-                    self.__play_idx = 0
-                    self.timer.setInterval(0)
-                    self.timer.start()
-                else:
-                    self.__play_idx = -1
-                    self.playback_stopped_event.emit(on_device)
-        self.timer = QtCore.QTimer()
-        self.timer.setSingleShot(True)
-        self.timer.timeout.connect(play)
-        self.timer.setInterval(0)
-        self.frame_queue = deque(self.frames)
-        self.timer.start()
+                QtGui.QApplication.processEvents()
+                time.sleep(f.duration / 1000.0)
+                if self.__stopped:
+                    break
+            if not self.__looping:
+                break
+        self.__stopped = True
+        if not on_device:
+            self.load_frame_number(0)
+        self.playback_stopped.emit(on_device)
+
+    def is_stopped(self):
+        return self.__stopped
 
     def select_tile(self, idx, selected=True):
         self.tiles[idx].setSelected(selected)
@@ -393,12 +384,7 @@ class Grid(QtCore.QObject):
         self._set_tile_colors(colors)
 
     def stop_playback(self):
-        self.__play_idx = -1
-        self.timer.stop()
-        self.playback_stopped_event.emit(False)
-
-    def is_stopped(self):
-        return self.__play_idx == -1
+        self.__stopped = True
 
     def set_looping(self, enabled):
         self.__looping = enabled
@@ -452,7 +438,6 @@ class Grid(QtCore.QObject):
 
     @staticmethod
     def _generate_text(params):
-        from PIL import ImageFont
         text = "%s%s%s" % (" "*params.padding, params.text, " "*params.padding)
         font = ImageFont.truetype(params.font, params.font_size)
         dimensions = font.getsize(text)

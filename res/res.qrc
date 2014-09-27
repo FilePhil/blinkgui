@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="/icons">
+    <file>drive-removable-media-usb.png</file>
+    <file>preferences-system-bluetooth.png</file>
     <file>application-x-font-ttf.png</file>
     <file>document-export-table.png</file>
     <file>edit-delete.png</file>
@@ -30,8 +32,9 @@
     <file>edit-cut.png</file>
     <file>edit-paste.png</file>
     <file>edit-select-all.png</file>
-    <file>network-wired.png</file>
     <file>color.png</file>
+    <file>network-connect.png</file>
+    <file>network-disconnect.png</file>
     <file>dice.png</file>
     <file>media-flash.png</file>
     <file>edit-undo.png</file>

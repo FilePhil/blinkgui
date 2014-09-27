@@ -25,11 +25,7 @@ default_values = {"grid_size": "10, 10",
                 "zoom_step": "0.05",
                 "grid_line_color": "30, 30, 30",
                 "grid_width": "1",
-                "background_color": "30, 30, 30",
-                "bluetooth_mac": "98:D3:31:50:0E:E7",
-                "serial_device_linux": "/dev/ttyUSB",
-                "serial_device_windows": "\\.\COM3",
-                "connection_timeout": "10"}
+                "background_color": "30, 30, 30"}
 
 DEFAULT_SECTION = "DEFAULT"
 

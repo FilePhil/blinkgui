@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'text_dialog.ui'
 #
-# Created: Sat Sep 27 14:56:57 2014
+# Created: Sat Sep 27 19:26:54 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!

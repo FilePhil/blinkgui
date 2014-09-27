@@ -9,7 +9,7 @@ Size = namedtuple("size", "width height")
 if __name__ == "__main__":
     conn = AVRConnector()
     conn.connect()
-    time.sleep(2)
+    #time.sleep(2)
     grid_size = Size(3, 3)
     while True:
         colors = []

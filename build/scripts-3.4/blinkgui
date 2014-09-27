@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!C:\Python34\python.exe
 # -*- coding: utf-8 -*-
 
 import sys
@@ -9,7 +9,6 @@ from mainwindow import Ui_MainWindow
 from bmlparser import BMLReader, BMLWriter
 from undocommands import *
 from blinkconfig import *
-from avrconnector import AVRConnector
 
 tr = lambda string: QtCore.QCoreApplication.translate("GUI", string)
 
@@ -56,11 +55,6 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
 
     def _play(self):
         if self.__grid.is_stopped():
-            self.progressBar.setMaximum(self.__grid.get_number_of_frames())
-            self.frameSlider.setVisible(False)
-            self.progressBar.setVisible(True)
-            self.currentFrameBox.setEnabled(False)
-            self.colorBox.setEnabled(False)
             self.actionPlayStop.setText(tr("Stop playback"))
             self.actionPlayStop.setIcon(QtGui.QIcon(":/icons/media-playback-stop.png"))
             self.actionPlayStopDevice.setEnabled(False)
@@ -166,18 +160,9 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         else:
             self.actionPlayStop.setText(tr("Play preview"))
             self.actionPlayStop.setIcon(QtGui.QIcon(":/icons/media-playback-start.png"))
-            self.frameSlider.setVisible(True)
-            self.progressBar.setVisible(False)
-            self.currentFrameBox.setEnabled(True)
-            self.colorBox.setEnabled(True)
             if self.__active_connection:
                 self.actionPlayStopDevice.setEnabled(True)
-            self.__grid.load_frame_number(0)
         self.update_frame_controls()
-
-    @QtCore.Slot(int)
-    def _handle_frame_changed(self, idx):
-        self.progressBar.setValue(idx+1)
 
     def _set_working_color(self, color, change_selected=True):
         cmd = CommandColorChanged(self, color, tr("Set color"), change_selected)
@@ -284,29 +269,23 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
             except ValueError:
                 pass
 
-    def _connect_to_device(self, use_bluetooth):
-        def connect_handler():
-            self.menuConnect_to_device.setEnabled(False)
+    def _connect_to_device(self):
+        from avrconnector import AVRConnector
+
+        def connect_handler(device):
+            self.actionConnect_to_device.setEnabled(False)
             self.actionPlayStopDevice.setEnabled(True)
-            self.actionDisconnect.setEnabled(True)
         if not self.__active_connection:
             connection = AVRConnector()
             connection.add_connection_handler(connect_handler)
-            ret = connection.connect(use_bluetooth)
+            ret, msg = connection.connect()
             if not ret:
-                self._show_error(tr("Connection could not be established."))
+                self._show_error(msg)
                 return
             self.__active_connection = connection
             self.__grid.connection = self.__active_connection
         else:
             self._show_error(tr("A connection already exists."))
-
-    def _disconnect_device(self):
-        assert self.__active_connection
-        self.__active_connection.close()
-        self.__active_connection = None
-        self.menuConnect_to_device.setEnabled(True)
-        self.actionDisconnect.setEnabled(False)
 
     def _disconnect_slots(self):
         try:
@@ -361,9 +340,7 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         self._connect_slot(self.actionUndo.triggered, self._undo)
         self._connect_slot(self.actionShift_left.triggered, lambda: self.__grid.shift("left"))
         self._connect_slot(self.actionShift_right.triggered, lambda: self.__grid.shift("right"))
-        self._connect_slot(self.actionConnectBluetooth.triggered, lambda: self._connect_to_device(use_bluetooth=True))
-        self._connect_slot(self.actionConnectUSB.triggered, lambda: self._connect_to_device(use_bluetooth=False))
-        self._connect_slot(self.actionDisconnect.triggered, self._disconnect_device)
+        self._connect_slot(self.actionConnect_to_device.triggered, self._connect_to_device)
         self._connect_slot(self.actionPlayStop.triggered, self._play)
         self._connect_slot(self.actionPlayStopDevice.triggered, self._play_device)
         self._connect_slot(self.actionRandomize_selected_tiles.triggered, self.__grid.randomize_selected_tiles)
@@ -473,29 +450,23 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         self.actionPaste.setEnabled(False)
         self.menuBar.setNativeMenuBar(False)
         self.menuEdit.setVisible(False)  # TODO: Remove after implementing undo
-        self.progressBar.setVisible(False)
         self.graphicsView.setCacheMode(QtGui.QGraphicsView.CacheNone)
         self.graphicsView.setBackgroundBrush(QtGui.QColor.fromRgb(*config.getcolor("background_color")))
         scene = QtGui.QGraphicsScene()
         self.graphicsView.setScene(scene)
         max_size = min(self.graphicsView.minimumWidth(), self.graphicsView.minimumHeight())
         self.__grid = Grid(max_size, scene, Size(*dimensions), frames)
-        self.__grid.playback_stopped_event.connect(self._handle_playback_stopped)
+        self.__grid.playback_stopped.connect(self._handle_playback_stopped)
         self.__grid.mouse_shift_event.connect(self._handle_mouse_shift_event)
-        self.__grid.tile_colored_event.connect(self._handle_tile_colored)
-        self.__grid.frame_changed_event.connect(self._handle_frame_changed)
+        self.__grid.tile_colored.connect(self._handle_tile_colored)
         if not self.__active_connection:
-            self.menuConnect_to_device.setEnabled(True)
+            self.actionConnect_to_device.setEnabled(True)
             self.actionPlayStopDevice.setEnabled(False)
-            self.actionDisconnect.setEnabled(False)
         else:
             self.__grid.connection = self.__active_connection
-            self.actionDisconnect.setEnabled(True)
         self.undoStack = QtGui.QUndoStack(self)
         self._connect_slots()
-        self.colorWidget.setAutoFillBackground(True)
-        self.colorWidget.setPalette(QtGui.QColor.fromRgb(*config.getcolor("pen_color")))
-        #self.colorButton.setPalette(QtGui.QColor.fromRgb(255, 255, 255))
+        self.colorButton.setPalette(QtGui.QColor.fromRgb(255, 255, 255))
         self.update_frame_controls()
         self.graphicsView.resize(self.graphicsView.width(), self.graphicsView.height())
         self.__zoom = 0

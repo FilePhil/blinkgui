@@ -353,10 +353,22 @@
     <property name="title">
      <string>&amp;Player</string>
     </property>
-    <addaction name="actionPlayStop"/>
-    <addaction name="separator"/>
-    <addaction name="actionConnect_to_device"/>
+    <widget class="QMenu" name="menuConnect_to_device">
+     <property name="title">
+      <string>Connect to device</string>
+     </property>
+     <property name="icon">
+      <iconset resource="res/res.qrc">
+       <normaloff>:/icons/network-connect.png</normaloff>:/icons/network-connect.png</iconset>
+     </property>
+     <addaction name="actionConnectUSB"/>
+     <addaction name="actionConnectBluetooth"/>
+    </widget>
+    <addaction name="menuConnect_to_device"/>
     <addaction name="actionPlayStopDevice"/>
+    <addaction name="actionDisconnect"/>
+    <addaction name="separator"/>
+    <addaction name="actionPlayStop"/>
    </widget>
    <widget class="QMenu" name="menuGenerate">
     <property name="title">
@@ -1034,18 +1046,6 @@
     <string>Shift+Right</string>
    </property>
   </action>
-  <action name="actionConnect_to_device">
-   <property name="icon">
-    <iconset resource="res/res.qrc">
-     <normaloff>:/icons/network-wired.png</normaloff>:/icons/network-wired.png</iconset>
-   </property>
-   <property name="text">
-    <string>Connect to device</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+D</string>
-   </property>
-  </action>
   <action name="actionPlayStopDevice">
    <property name="icon">
     <iconset resource="res/res.qrc">
@@ -1308,6 +1308,36 @@
    </property>
    <property name="text">
     <string>Ticker text</string>
+   </property>
+  </action>
+  <action name="actionConnectUSB">
+   <property name="icon">
+    <iconset resource="res/res.qrc">
+     <normaloff>:/icons/drive-removable-media-usb.png</normaloff>:/icons/drive-removable-media-usb.png</iconset>
+   </property>
+   <property name="text">
+    <string>USB</string>
+   </property>
+  </action>
+  <action name="actionConnectBluetooth">
+   <property name="icon">
+    <iconset resource="res/res.qrc">
+     <normaloff>:/icons/preferences-system-bluetooth.png</normaloff>:/icons/preferences-system-bluetooth.png</iconset>
+   </property>
+   <property name="text">
+    <string>Bluetooth</string>
+   </property>
+  </action>
+  <action name="actionDisconnect">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="res/res.qrc">
+     <normaloff>:/icons/network-disconnect.png</normaloff>:/icons/network-disconnect.png</iconset>
+   </property>
+   <property name="text">
+    <string>Disconnect</string>
    </property>
   </action>
  </widget>

@@ -1,6 +1,8 @@
 import struct
 import serial
+from blinkconfig import config
 from sys import platform
+import logging
 
 
 class AVRConnector():
@@ -12,10 +14,11 @@ class AVRConnector():
         self.active = False
 
     def _connect_linux(self):
-        dev = "/dev/ttyUSB"
-        for x in range(0, 10):
+        dev = config.getstring("serial_device_linux")
+        for x in [""] + list(range(0, 10)):
             try:
-                ser = serial.Serial("%s%d" % (dev, x), baudrate=self.baud_rate)
+                logging.info("Trying to connect to %s%s" % (dev, str(x)))
+                ser = serial.Serial("%s%s" % (dev, str(x)), baudrate=self.baud_rate)
                 for h in self.__handlers:
                     h()
                 return ser.write, ser.close
@@ -24,35 +27,35 @@ class AVRConnector():
         return False
 
     def _connect_bluetooth(self):
-            #try:
+        try:
             import socket
-            server_mac = '98:D3:31:50:0E:E7'
+            server_mac = config.getstring("bluetooth_mac")
             s = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
+            s.settimeout(config.getint("connection_timeout"))
             s.connect((server_mac, 1))
             for h in self.__handlers:
                 h()
             return s.send, s.close
-            #except:
+        except:
             return False
 
     def _connect_windows(self):
         try:
-            ser = serial.Serial(port="\\.\COM3", baudrate=self.baud_rate)
+            ser = serial.Serial(port=config.getstring("serial_device_windows"), baudrate=self.baud_rate)
             for h in self.__handlers:
                     h()
             return ser.write, ser.close
         except:
             return False
 
-    def connect(self, bluetooth=True):
-        if bluetooth:
+    def connect(self, use_bluetooth=False):
+        if use_bluetooth:
             ret = self._connect_bluetooth()
         elif platform == "win32":
             ret = self._connect_windows()
         else:
             ret = self._connect_linux()
         if not ret:
-            print("ERR")
             return False
         else:
             self.write, self.close = ret
