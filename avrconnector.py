@@ -1,47 +1,62 @@
 import struct
 import serial
-from PySide import QtCore
 from sys import platform
-
-tr = lambda string: QtCore.QCoreApplication.translate("avrconnector", string)
 
 
 class AVRConnector():
     def __init__(self, baud_rate=1000000):
         self.baud_rate = baud_rate
         self.__handlers = []
-        self.__ser = None
-        self.live_mode = False
-
-    def set_live_mode(self, value):
-        self.live_mode = value
+        self.write = None
+        self.close = None
+        self.active = False
 
     def _connect_linux(self):
         dev = "/dev/ttyUSB"
         for x in range(0, 10):
             try:
-
-                self.__ser = serial.Serial("%s%d" % (dev, x), baudrate=self.baud_rate)
+                ser = serial.Serial("%s%d" % (dev, x), baudrate=self.baud_rate)
                 for h in self.__handlers:
-                    h(x)
-                return True, ""
+                    h()
+                return ser.write, ser.close
             except serial.serialutil.SerialException:
                 pass
-        return False, tr("Connection could not be established")
+        return False
+
+    def _connect_bluetooth(self):
+        try:
+            import socket
+            server_mac = '98:D3:31:50:0E:E7'
+            s = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
+            s.connect((server_mac, 1))
+            for h in self.__handlers:
+                h()
+            return True, s.send, s.close
+        except:
+            return False
 
     def _connect_windows(self):
-        self.__ser = serial.Serial(port="\\.\COM3", baudrate=self.baud_rate)
-        for h in self.__handlers:
-                h("ok")
-        return True, ""
-        #return False,
-        # tr("Win: Connection could not be established")
+        try:
+            ser = serial.Serial(port="\\.\COM3", baudrate=self.baud_rate)
+            for h in self.__handlers:
+                    h()
+            return ser.write, ser.close
+        except:
+            return False
 
-    def connect(self):
-        if platform == "win32":
-            return self._connect_windows()
+    def connect(self, bluetooth=True):
+        if bluetooth:
+            ret = self._connect_bluetooth()
+        elif platform == "win32":
+            ret = self._connect_windows()
         else:
-            return self._connect_linux()
+            ret = self._connect_linux()
+        if len(ret) == 3 and ret[0]:
+            self.write, self.close = ret[1:]
+            self.active = True
+            return True
+        else:
+            return False
 
     @staticmethod
     def pack_mcuf(dat, size, even_line_starts_left):
@@ -59,20 +74,17 @@ class AVRConnector():
 
     def write_frame(self, colors, grid_size, even_line_starts_left=False):
         d = self.pack_mcuf(colors, grid_size, even_line_starts_left)
-        self.__ser.write(d)
-        self.__ser.flush()
-
-    def write(self, byte_list):
-        self.__ser.write(byte_list)
+        self.write(d)
 
     def add_connection_handler(self, handler):
         self.__handlers.append(handler)
 
     def is_active(self):
-        return self.__ser.isOpen()
+        return self.active
 
     def close(self):
-        self.__ser.close()
+        self.close()
+        self.active = False
 
 # TESTS
 if __name__ == "__main__":
