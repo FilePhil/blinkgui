@@ -55,7 +55,7 @@
     <message>
         <location filename="avrconnector.py" line="32"/>
         <source>Connection could not be established</source>
-        <translation>Verbindung konnte nicht aufgebaut werden</translation>
+        <translation type="obsolete">Verbindung konnte nicht aufgebaut werden</translation>
     </message>
     <message>
         <location filename="blinkgui.py" line="45"/>
@@ -111,6 +111,11 @@
         <location filename="blinkgui.py" line="124"/>
         <source>Import frame</source>
         <translation>Frame importieren</translation>
+    </message>
+    <message>
+        <location filename="blinkgui.py" line="296"/>
+        <source>Connection could not be established.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -4,7 +4,7 @@ from sys import platform
 
 
 class AVRConnector():
-    def __init__(self, baud_rate=1000000):
+    def __init__(self, baud_rate=38400):
         self.baud_rate = baud_rate
         self.__handlers = []
         self.write = None
@@ -24,15 +24,15 @@ class AVRConnector():
         return False
 
     def _connect_bluetooth(self):
-        try:
+            #try:
             import socket
             server_mac = '98:D3:31:50:0E:E7'
             s = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
             s.connect((server_mac, 1))
             for h in self.__handlers:
                 h()
-            return True, s.send, s.close
-        except:
+            return s.send, s.close
+            #except:
             return False
 
     def _connect_windows(self):
@@ -51,12 +51,13 @@ class AVRConnector():
             ret = self._connect_windows()
         else:
             ret = self._connect_linux()
-        if len(ret) == 3 and ret[0]:
-            self.write, self.close = ret[1:]
+        if not ret:
+            print("ERR")
+            return False
+        else:
+            self.write, self.close = ret
             self.active = True
             return True
-        else:
-            return False
 
     @staticmethod
     def pack_mcuf(dat, size, even_line_starts_left):

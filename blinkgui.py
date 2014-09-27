@@ -285,15 +285,15 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
     def _connect_to_device(self):
         from avrconnector import AVRConnector
 
-        def connect_handler(device):
+        def connect_handler():
             self.actionConnect_to_device.setEnabled(False)
             self.actionPlayStopDevice.setEnabled(True)
         if not self.__active_connection:
             connection = AVRConnector()
             connection.add_connection_handler(connect_handler)
-            ret, msg = connection.connect()
+            ret = connection.connect()
             if not ret:
-                self._show_error(msg)
+                self._show_error(tr("Connection could not be established."))
                 return
             self.__active_connection = connection
             self.__grid.connection = self.__active_connection
