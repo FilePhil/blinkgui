@@ -87,8 +87,8 @@ class Grid(QtCore.QObject):
         self.__looping = False
         self.tiles = []
         self.timer = None
-        self.play_frames = None
         self.__play_idx = -1
+        self.__play_on_device = False
         tile_id = 0
         for y in range(0, self.grid_size.height):
             for x in range(0, self.grid_size.width):
@@ -203,11 +203,12 @@ class Grid(QtCore.QObject):
         self._load_frame(self.get_current_frame())
 
     def play_sequence(self, on_device=False):
+        self.__play_on_device = on_device
         self.__play_idx = 0
 
         def play():
             try:
-                f = self.frame_queue.popleft()
+                f = self.frames[self.__play_idx]
                 if on_device:
                     self.connection.write_frame(f.tile_colors, self.grid_size)
                 else:
@@ -228,7 +229,6 @@ class Grid(QtCore.QObject):
         self.timer.setSingleShot(True)
         self.timer.timeout.connect(play)
         self.timer.setInterval(0)
-        self.frame_queue = deque(self.frames)
         self.timer.start()
 
     def select_tile(self, idx, selected=True):
@@ -395,7 +395,7 @@ class Grid(QtCore.QObject):
     def stop_playback(self):
         self.__play_idx = -1
         self.timer.stop()
-        self.playback_stopped_event.emit(False)
+        self.playback_stopped_event.emit(self.__play_on_device)
 
     def is_stopped(self):
         return self.__play_idx == -1
