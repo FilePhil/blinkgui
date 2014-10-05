@@ -77,7 +77,8 @@ class AVRConnector():
         return struct.pack("!HHHHHH" + "B"*data_len, 13, 37, size.height, size.width, 3, 255, *dat)
 
     def write_frame(self, colors, grid_size, even_line_starts_left=False):
-        d = self.pack_mcuf(colors, grid_size, even_line_starts_left)
+        c = list(reversed(colors))
+        d = self.pack_mcuf(c, grid_size, even_line_starts_left)
         self.write(d)
 
     def add_connection_handler(self, handler):
