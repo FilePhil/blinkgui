@@ -1,8 +1,10 @@
 from collections import namedtuple
-from configparser import ConfigParser
 from os.path import expanduser
+
 VERSION = "1.0.6"
 AUTHOR = "Christoph Hirtz"
+MAIL = "christoph.hirtz@online.de"
+
 Moves = namedtuple("moves", "left up right down")
 Pos = namedtuple("pos", "x y")
 FrameInfo = namedtuple("frame", "frame_number frame")
@@ -35,31 +37,34 @@ default_values = {"grid_size": "10, 10",
 
 DEFAULT_SECTION = "DEFAULT"
 
+try:
+    from configparser import ConfigParser
+    class Config(ConfigParser):
+        def __init__(self, defaults):
+            ConfigParser.__init__(self, defaults)
 
-class Config(ConfigParser):
-    def __init__(self, defaults):
-        ConfigParser.__init__(self, defaults)
+        def getcolor(self, key):
+            value = ConfigParser.get(self, DEFAULT_SECTION, key)
+            items = [int(val) for val in value.split(",")]
+            return items
 
-    def getcolor(self, key):
-        value = ConfigParser.get(self, DEFAULT_SECTION, key)
-        items = [int(val) for val in value.split(",")]
-        return items
+        def getint(self, key):
+            return ConfigParser.getint(self, DEFAULT_SECTION, key)
 
-    def getint(self, key):
-        return ConfigParser.getint(self, DEFAULT_SECTION, key)
+        def getfloat(self, key):
+            return ConfigParser.getfloat(self, DEFAULT_SECTION, key)
 
-    def getfloat(self, key):
-        return ConfigParser.getfloat(self, DEFAULT_SECTION, key)
+        def getstring(self, key):
+            return str(ConfigParser.get(self, DEFAULT_SECTION, key))
 
-    def getstring(self, key):
-        return str(ConfigParser.get(self, DEFAULT_SECTION, key))
+        def getsize(self, key):
+            value = ConfigParser.get(self, DEFAULT_SECTION, key)
+            items = [int(val) for val in value.split(",")]
+            assert len(items) == 2
+            return Size(*items)
 
-    def getsize(self, key):
-        value = ConfigParser.get(self, DEFAULT_SECTION, key)
-        items = [int(val) for val in value.split(",")]
-        assert len(items) == 2
-        return Size(*items)
+    config = Config(default_values)
+    config.read("%s/.blinkrc" % expanduser("~"))
+except ImportError:
+    pass
 
-
-config = Config(default_values)
-config.read("%s/.blinkrc" % expanduser("~"))

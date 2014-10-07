@@ -1,5 +1,6 @@
+#!/usr/bin/env python3
 import sys
-import blinkconfig
+from blinkconfig import VERSION, AUTHOR, MAIL
 
 base = None
 if sys.platform == "win32":
@@ -9,14 +10,14 @@ else:
     from distutils.core import setup
 
 setup(name='blink',
-    version=blinkconfig.VERSION,
-    author='Christoph Hirtz',
-    author_email='christoph.hirtz@online.de',
-    maintainer='Christoph Hirtz',
-    maintainer_email='christoph.hirtz@online.de',
+    version=VERSION,
+    author=AUTHOR,
+    author_email=MAIL,
+    maintainer=AUTHOR,
+    maintainer_email=MAIL,
     description='GUI for blinking LED grids',
     requires=['serial', 'numpy', 'lxml', 'pyside', 'pil'],
-    scripts=['blinkgui', "blink_cmd"],
+    scripts=['blinkgui.py', "blink_cmd.py"],
     #executables = [Executable("blinkgui.py", base=base)],
     data_files=[("share/blink", ["blink_icon.xpm"]),
         ("share/applications", ["blink.desktop"]),
