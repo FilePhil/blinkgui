@@ -1,4 +1,6 @@
 import sys
+import blinkconfig
+
 base = None
 if sys.platform == "win32":
     from cx_Freeze import setup, Executable
@@ -7,14 +9,14 @@ else:
     from distutils.core import setup
 
 setup(name='blink',
-    version='1.0.5',
+    version=blinkconfig.VERSION,
     author='Christoph Hirtz',
     author_email='christoph.hirtz@online.de',
     maintainer='Christoph Hirtz',
     maintainer_email='christoph.hirtz@online.de',
     description='GUI for blinking LED grids',
     requires=['serial', 'numpy', 'lxml', 'pyside', 'pil'],
-    scripts=['blinkgui'],
+    scripts=['blinkgui', "blink_cmd"],
     #executables = [Executable("blinkgui.py", base=base)],
     data_files=[("share/blink", ["blink_icon.xpm"]),
         ("share/applications", ["blink.desktop"]),

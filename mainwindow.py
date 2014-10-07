@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'mainwindow.ui'
 #
-# Created: Tue Oct  7 14:53:37 2014
+# Created: Tue Oct  7 15:07:06 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -129,6 +129,8 @@ class Ui_MainWindow(object):
         self.menuConnect_to_device.setObjectName("menuConnect_to_device")
         self.menuGenerate = QtGui.QMenu(self.menuBar)
         self.menuGenerate.setObjectName("menuGenerate")
+        self.menuInfo = QtGui.QMenu(self.menuBar)
+        self.menuInfo.setObjectName("menuInfo")
         MainWindow.setMenuBar(self.menuBar)
         self.statusBar = QtGui.QStatusBar(MainWindow)
         self.statusBar.setObjectName("statusBar")
@@ -562,6 +564,10 @@ class Ui_MainWindow(object):
         icon45.addPixmap(QtGui.QPixmap(":/icons/network-disconnect.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionDisconnect.setIcon(icon45)
         self.actionDisconnect.setObjectName("actionDisconnect")
+        self.actionAbout_Qt = QtGui.QAction(MainWindow)
+        self.actionAbout_Qt.setObjectName("actionAbout_Qt")
+        self.actionAbout = QtGui.QAction(MainWindow)
+        self.actionAbout.setObjectName("actionAbout")
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionGo_to_previous_frame)
         self.toolBar.addAction(self.actionGo_to_next_frame)
@@ -634,6 +640,8 @@ class Ui_MainWindow(object):
         self.menuGenerate.addAction(self.actionGenerate_color_gradient)
         self.menuGenerate.addAction(self.actionGenerate_function)
         self.menuGenerate.addAction(self.actionGenerate_ticker_font)
+        self.menuInfo.addAction(self.actionAbout)
+        self.menuInfo.addAction(self.actionAbout_Qt)
         self.menuBar.addAction(self.menuFile.menuAction())
         self.menuBar.addAction(self.menuEdit.menuAction())
         self.menuBar.addAction(self.menuFrames.menuAction())
@@ -641,6 +649,7 @@ class Ui_MainWindow(object):
         self.menuBar.addAction(self.menuColoring.menuAction())
         self.menuBar.addAction(self.menuGenerate.menuAction())
         self.menuBar.addAction(self.menuPlayer.menuAction())
+        self.menuBar.addAction(self.menuInfo.menuAction())
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -661,6 +670,7 @@ class Ui_MainWindow(object):
         self.menuPlayer.setTitle(QtGui.QApplication.translate("MainWindow", "&Player", None, QtGui.QApplication.UnicodeUTF8))
         self.menuConnect_to_device.setTitle(QtGui.QApplication.translate("MainWindow", "Connect to device", None, QtGui.QApplication.UnicodeUTF8))
         self.menuGenerate.setTitle(QtGui.QApplication.translate("MainWindow", "Generate", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuInfo.setTitle(QtGui.QApplication.translate("MainWindow", "Info", None, QtGui.QApplication.UnicodeUTF8))
         self.dockWidget.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Settings", None, QtGui.QApplication.UnicodeUTF8))
         self.colorBox.setTitle(QtGui.QApplication.translate("MainWindow", "Color", None, QtGui.QApplication.UnicodeUTF8))
         self.tintButton.setText(QtGui.QApplication.translate("MainWindow", "Tint selected tiles", None, QtGui.QApplication.UnicodeUTF8))
@@ -755,6 +765,8 @@ class Ui_MainWindow(object):
         self.actionConnectUSB.setText(QtGui.QApplication.translate("MainWindow", "USB", None, QtGui.QApplication.UnicodeUTF8))
         self.actionConnectBluetooth.setText(QtGui.QApplication.translate("MainWindow", "Bluetooth", None, QtGui.QApplication.UnicodeUTF8))
         self.actionDisconnect.setText(QtGui.QApplication.translate("MainWindow", "Disconnect", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionAbout_Qt.setText(QtGui.QApplication.translate("MainWindow", "About Qt", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionAbout.setText(QtGui.QApplication.translate("MainWindow", "Blink", None, QtGui.QApplication.UnicodeUTF8))
 
 from gridgraphicsview import GridGraphicsView
 import res_rc

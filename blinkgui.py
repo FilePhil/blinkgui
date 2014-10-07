@@ -392,6 +392,11 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         self._connect_slot(self.actionRotate_left.triggered, self.__grid.rotate_left)
         self._connect_slot(self.actionRotate_right.triggered, self.__grid.rotate_right)
         self._connect_slot(self.actionDelete_colors.triggered, self.__grid.delete_selected)
+        self._connect_slot(self.actionAbout.triggered, self._show_about)
+        self._connect_slot(self.actionAbout_Qt.triggered, QtGui.QApplication.aboutQt)
+
+    def _show_about(self):
+        QtGui.QMessageBox.about(self, "Blink", "Version: %s\nAuthor: %s" % (VERSION, AUTHOR))
 
     def _zoom(self, scale):
         zoom_step = config.getfloat("zoom_step")

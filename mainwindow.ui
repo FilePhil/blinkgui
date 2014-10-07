@@ -378,6 +378,13 @@
     <addaction name="actionGenerate_function"/>
     <addaction name="actionGenerate_ticker_font"/>
    </widget>
+   <widget class="QMenu" name="menuInfo">
+    <property name="title">
+     <string>Info</string>
+    </property>
+    <addaction name="actionAbout"/>
+    <addaction name="actionAbout_Qt"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
    <addaction name="menuFrames"/>
@@ -385,6 +392,7 @@
    <addaction name="menuColoring"/>
    <addaction name="menuGenerate"/>
    <addaction name="menuPlayer"/>
+   <addaction name="menuInfo"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <widget class="QDockWidget" name="dockWidget">
@@ -1338,6 +1346,16 @@
    </property>
    <property name="text">
     <string>Disconnect</string>
+   </property>
+  </action>
+  <action name="actionAbout_Qt">
+   <property name="text">
+    <string>About Qt</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>Blink</string>
    </property>
   </action>
  </widget>

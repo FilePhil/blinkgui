@@ -1,7 +1,8 @@
 from collections import namedtuple
 from configparser import ConfigParser
 from os.path import expanduser
-
+VERSION = "1.0.6"
+AUTHOR = "Christoph Hirtz"
 Moves = namedtuple("moves", "left up right down")
 Pos = namedtuple("pos", "x y")
 FrameInfo = namedtuple("frame", "frame_number frame")
