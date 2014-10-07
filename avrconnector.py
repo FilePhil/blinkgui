@@ -26,7 +26,7 @@ class AVRConnector():
                 pass
         return False
 
-    def _connect_bluetooth(self):
+    def _connect_bluetooth_linux(self):
         try:
             import socket
             server_mac = config.getstring("bluetooth_mac")
@@ -36,6 +36,15 @@ class AVRConnector():
             for h in self.__handlers:
                 h()
             return s.send, s.close
+        except:
+            return False
+
+    def _connect_bluetooth_windows(self):
+        try:
+            ser = serial.Serial(port=config.getstring("bluetooth_device_windows"), baudrate=self.baud_rate)
+            for h in self.__handlers:
+                    h()
+            return ser.write, ser.close
         except:
             return False
 
@@ -49,12 +58,16 @@ class AVRConnector():
             return False
 
     def connect(self, use_bluetooth=False):
-        if use_bluetooth:
-            ret = self._connect_bluetooth()
-        elif platform == "win32":
-            ret = self._connect_windows()
+        if platform == "win32":
+            if use_bluetooth:
+                ret = self._connect_bluetooth_windows()
+            else:
+                ret = self._connect_windows()
         else:
-            ret = self._connect_linux()
+            if use_bluetooth:
+                ret = self._connect_bluetooth_linux()
+            else:
+                ret = self._connect_linux()
         if not ret:
             return False
         else:

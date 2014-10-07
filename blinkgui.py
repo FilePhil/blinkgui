@@ -16,7 +16,7 @@ tr = lambda string: QtCore.QCoreApplication.translate("GUI", string)
 
 # noinspection PyCallByClass,PyTypeChecker
 class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
-    def __init__(self, parent=None):
+    def __init__(self, args, parent=None):
         QtGui.QMainWindow.__init__(self, parent)
         self.setupUi(self)
         self.frame_id_label = QtGui.QLabel()
@@ -28,6 +28,8 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         self.filename = None
         self.__zoom = 0
         self._initialize(config.getsize("grid_size"))
+        if len(args) == 2:
+            self._load(args[1])
 
     """
     BUTTON EVENTS
@@ -91,17 +93,21 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         else:
             self.save_as()
 
-    def _load(self):
-        filename = QtGui.QFileDialog.getOpenFileName(self, tr("Open file"), "~", FILE_FILTER)
-        if filename[0] == "":
-            return
+    def _load(self, filename=None):
+        if filename is None:
+            filename = QtGui.QFileDialog.getOpenFileName(self, tr("Open file"), "~", FILE_FILTER)
+            if filename[0] == "":
+                return
+            filename = filename[0]
+        if not os.path.isfile(filename):
+            self._show_error(tr("File does not exist."))
         reader = BMLReader()
-        frames, info, dimensions = reader.read_xml(filename[0])
+        frames, info, dimensions = reader.read_xml(filename)
         # re-initialize grid with new dimensions
         self._initialize(dimensions, frames=frames)
         self._apply_header_info(info)
         self.update_frame_controls()
-        self.filename = filename[0]
+        self.filename = filename
 
     def _export_frame(self):
         filename = QtGui.QFileDialog.getSaveFileName(self, tr("Export frame"), "~", EXPORT_FILTER)
@@ -524,6 +530,6 @@ if __name__ == "__main__":
     translator = QtCore.QTranslator(app)
     translator.load("translations/blinkgui_%s.qm" % (locale.getlocale()[0]))
     app.installTranslator(translator)
-    gui = BlinkGui()
+    gui = BlinkGui(sys.argv)
     gui.show()
     sys.exit(app.exec_())

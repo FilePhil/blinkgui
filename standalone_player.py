@@ -11,7 +11,7 @@ Size = namedtuple("size", "width height")
 class AVRPlayer():
     def __init__(self):
         self.connector = AVRConnector()
-        ret = self.connector.connect()
+        ret = self.connector.connect(True)
         time.sleep(2)
         if not ret:
             print("ERR")

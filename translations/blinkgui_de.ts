@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="de_DE">
+<!DOCTYPE TS>
+<TS version="2.0" language="de_DE">
 <context>
     <name>@default</name>
     <message>
-        <location filename="blinkgui.py" line="82"/>
+        <location filename="blinkgui.py" line="84"/>
         <source>Save file</source>
         <translation>Datei speichern</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="115"/>
+        <location filename="blinkgui.py" line="121"/>
         <source>Export frame</source>
         <translation>Frame exportieren</translation>
     </message>
@@ -18,37 +19,37 @@
         <translation>Datei öffnen</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="272"/>
+        <location filename="blinkgui.py" line="278"/>
         <source>New file</source>
         <translation>Neue Datei</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="272"/>
+        <location filename="blinkgui.py" line="278"/>
         <source>Please enter the grid dimensions:</source>
         <translation>Maße eingeben (HxB):</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="450"/>
+        <location filename="blinkgui.py" line="456"/>
         <source>Undo</source>
         <translation>Rückgängig</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="454"/>
+        <location filename="blinkgui.py" line="460"/>
         <source>Undo &quot;%s&quot;</source>
         <translation>&quot;%s&quot; rückgängig machen</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="460"/>
+        <location filename="blinkgui.py" line="466"/>
         <source>SHIFT: Left-Click on a tile to record its color</source>
         <translation>SHIFT: Links-Klicken auf eine Kachel, um die Farbe zu speichern</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="462"/>
+        <location filename="blinkgui.py" line="468"/>
         <source>CTRL: Left-Click to select multiple tiles</source>
         <translation>CTRL: Links-Klicken um mehrere Kacheln auszuwählen</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="518"/>
+        <location filename="blinkgui.py" line="524"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
@@ -58,64 +59,69 @@
         <translation type="obsolete">Verbindung konnte nicht aufgebaut werden</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="46"/>
+        <location filename="blinkgui.py" line="48"/>
         <source>Delete frame</source>
         <translation>Frame löschen</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="157"/>
+        <location filename="blinkgui.py" line="163"/>
         <source>Color tile</source>
         <translation>Kachel färben</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="183"/>
+        <location filename="blinkgui.py" line="189"/>
         <source>Set color</source>
         <translation>Farbe wählen</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="234"/>
+        <location filename="blinkgui.py" line="240"/>
         <source>Frame: %d/%d, Total duration: %dms</source>
         <translation>Frame: %d/%d, Gesamtdauer: %dms</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="254"/>
+        <location filename="blinkgui.py" line="260"/>
         <source>Go to frame</source>
         <translation>Gehe zu Frame</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="254"/>
+        <location filename="blinkgui.py" line="260"/>
         <source>Please enter the frame number:</source>
         <translation>Frame-Nummer:</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="163"/>
+        <location filename="blinkgui.py" line="169"/>
         <source>Play on device</source>
         <translation>Auf Gerät abspielen</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="167"/>
+        <location filename="blinkgui.py" line="173"/>
         <source>Play preview</source>
         <translation>Vorschau abspielen</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="75"/>
+        <location filename="blinkgui.py" line="77"/>
         <source>Stop playback</source>
         <translation>Abspielen stoppen</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="302"/>
+        <location filename="blinkgui.py" line="308"/>
         <source>A connection already exists.</source>
         <translation>Es besteht bereits eine Verbindung.</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="125"/>
+        <location filename="blinkgui.py" line="131"/>
         <source>Import frame</source>
         <translation>Frame importieren</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="297"/>
+        <location filename="blinkgui.py" line="303"/>
         <source>Connection could not be established.</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbindung konnte nicht aufgebaut werden.</translation>
+    </message>
+    <message>
+        <location filename="blinkgui.py" line="103"/>
+        <source>File does not exist.</source>
+        <translation>Datei wurde nicht gefunden.</translation>
     </message>
 </context>
 <context>
@@ -759,7 +765,7 @@
     <message>
         <location filename="mainwindow.py" line="655"/>
         <source>&amp;Go to...</source>
-        <translation type="unfinished">&amp;Gehe zu...</translation>
+        <translation>&amp;Gehe zu...</translation>
     </message>
     <message>
         <location filename="mainwindow.py" line="658"/>
@@ -849,7 +855,7 @@
     <message>
         <location filename="mainwindow.py" line="757"/>
         <source>Disconnect</source>
-        <translation type="unfinished"></translation>
+        <translation>Trennen</translation>
     </message>
 </context>
 <context>
