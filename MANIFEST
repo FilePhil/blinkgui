@@ -16,4 +16,5 @@ lg_dialog.py
 mainwindow.py
 res_rc.py
 setup.py
+text_dialog.py
 undocommands.py

@@ -7,7 +7,7 @@ else:
     from distutils.core import setup
 
 setup(name='blink',
-    version='1.0.4',
+    version='1.0.5',
     author='Christoph Hirtz',
     author_email='christoph.hirtz@online.de',
     maintainer='Christoph Hirtz',
@@ -15,7 +15,7 @@ setup(name='blink',
     description='GUI for blinking LED grids',
     requires=['serial', 'numpy', 'lxml', 'pyside', 'pil'],
     scripts=['blinkgui'],
-    executables = [Executable("blinkgui.py", base=base)],
+    #executables = [Executable("blinkgui.py", base=base)],
     data_files=[("share/blink", ["blink_icon.xpm"]),
         ("share/applications", ["blink.desktop"]),
         ("share/doc/blink", ["blinkrc.example"])],
