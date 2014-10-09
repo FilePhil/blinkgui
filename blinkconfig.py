@@ -32,7 +32,9 @@ default_values = {"grid_size": "10, 10",
                 "bluetooth_mac": "98:D3:31:50:0E:E7",
                 "serial_device_linux": "/dev/ttyUSB",
                 "serial_device_windows": "\\.\COM3",
+                "serial_device_macos": "/dev/ttyusb",
                 "bluetooth_device_windows": "\\.\COM5",
+                "bluetooth_device_macos": "/dev/BLUE-DevB",
                 "connection_timeout": "10"}
 
 DEFAULT_SECTION = "DEFAULT"

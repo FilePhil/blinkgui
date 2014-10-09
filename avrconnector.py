@@ -48,6 +48,16 @@ class AVRConnector():
         except:
             return False
 
+    def _connect_macos(self, dev):
+        try:
+            logging.info("Trying to connect to %s" % dev)
+            ser = serial.Serial(dev, baudrate=self.baud_rate)
+            for h in self.__handlers:
+                h()
+            return ser.write, ser.close
+        except serial.serialutil.SerialException:
+                return False
+
     def _connect_windows(self):
         try:
             ser = serial.Serial(port=config.getstring("serial_device_windows"), baudrate=self.baud_rate)
@@ -63,6 +73,11 @@ class AVRConnector():
                 ret = self._connect_bluetooth_windows()
             else:
                 ret = self._connect_windows()
+        elif platform == "darwin":
+            if use_bluetooth:
+                ret = self._connect_macos(config.getstring("bluetooth_device_macos"))
+            else:
+                ret = self._connect_macos(config.getstring("serial_device_macos"))
         else:
             if use_bluetooth:
                 ret = self._connect_bluetooth_linux()
