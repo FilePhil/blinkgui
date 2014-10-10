@@ -2,9 +2,9 @@
 Type=Application
 Name=Blink
 GenericName=Blinking LED GUI
-Exec=/usr/bin/blink
+Exec=/usr/bin/blink %f
 Icon=/usr/share/blink/blink_icon.xpm
 Terminal=false
 Categories=Graphics;Electronics;
 Keywords=embedded electronics;electronics;avr;microcontroller;
-
+MimeType=text/html;text/xml;application/xml
