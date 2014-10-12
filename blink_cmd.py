@@ -16,24 +16,27 @@ class AVRPlayer():
         if not ret:
             print("ERR")
             sys.exit(1)
-        self.frames = []
+        self.videos = []
 
     def load_frames(self, frames, size):
+        vid_frames = []
         for f in frames:
             packet = self.connector.pack_mcuf(f.tile_colors, size, False)
-            self.frames.append((f.duration/1000, packet))
+            vid_frames.append((f.duration/1000, packet))
+        self.videos.append(vid_frames)
 
     def play(self, loop=False):
         while True:
-            for f in self.frames:
-                self.connector.write(f[1])
-                time.sleep(f[0])
+            for v in self.videos:
+                for f in v.frames:
+                    self.connector.write(f[1])
+                    time.sleep(f[0])
             if not loop:
                 break
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
+    if len(sys.argv) < 2:
         sys.exit(1)
     reader = BMLReader()
     fra, info, (width, height) = reader.read_xml(sys.argv[1])

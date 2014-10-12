@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'color_transition_dialog.ui'
 #
-# Created: Sat Oct 11 18:13:09 2014
+# Created: Thu Oct  9 13:32:10 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
