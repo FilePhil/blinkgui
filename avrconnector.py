@@ -109,6 +109,11 @@ class AVRConnector():
         d = self.pack_mcuf(c, grid_size, even_line_starts_left)
         self.write(d)
 
+    def write_single_color(self, color, grid_size):
+        colors = [color]*grid_size.height*grid_size.width
+        d = self.pack_mcuf(colors, grid_size, True)
+        self.write(d)
+
     def add_connection_handler(self, handler):
         self.__handlers.append(handler)
 
