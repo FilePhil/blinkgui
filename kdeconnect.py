@@ -5,7 +5,7 @@ import dbus.service
 import dbus.mainloop.glib
 from PySide.QtCore import QCoreApplication
 
-playing_items = {}
+playlist_items = {}
 
 
 class DBUSClient:
@@ -27,12 +27,12 @@ class DBUSClient:
         print("%s -> %s" % (properties["appName"], properties["ticker"]))
         #idx = blinkerface.add_notification(properties["appName"], properties["ticker"])
         idx = conn.iface.add_notification("blue-blink", properties["ticker"])
-        playing_items[int(msg_id)] = idx
+        playlist_items[int(msg_id)] = idx
 
     def notification_removed(self, msg_id):
-        if int(msg_id) in playing_items:
-            conn.iface.remove_notification(playing_items[int(msg_id)])
-            del playing_items[int(msg_id)]
+        if int(msg_id) in playlist_items:
+            conn.iface.remove_notification(playlist_items[int(msg_id)])
+            del playlist_items[int(msg_id)]
 
 if __name__ == "__main__":
     from dbus_connector import DBUSBlinkConnector
