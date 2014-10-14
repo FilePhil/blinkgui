@@ -9,7 +9,7 @@ from mainwindow import Ui_MainWindow
 from bmlparser import BMLReader, BMLWriter
 from undocommands import *
 from blinkconfig import *
-from avrconnector import AVRConnector
+from avrconnector import AVRConnector, ConnectionType
 
 tr = lambda string: QtCore.QCoreApplication.translate("GUI", string)
 
@@ -290,7 +290,11 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
             except ValueError:
                 pass
 
-    def _connect_to_device(self, use_bluetooth):
+    def _connect_to_device(self, type):
+        """
+        :param type: bluetooth, ethernet, usb
+        :return:
+        """
         def connect_handler():
             self.menuConnect_to_device.setEnabled(False)
             self.actionPlayStopDevice.setEnabled(True)
@@ -298,7 +302,7 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         if not self.__active_connection:
             connection = AVRConnector()
             connection.add_connection_handler(connect_handler)
-            ret = connection.connect(use_bluetooth)
+            ret = connection.connect(type)
             if not ret:
                 self._show_error(tr("Connection could not be established."))
                 return
@@ -367,8 +371,11 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         self._connect_slot(self.actionUndo.triggered, self._undo)
         self._connect_slot(self.actionShift_left.triggered, lambda: self.__grid.shift("left"))
         self._connect_slot(self.actionShift_right.triggered, lambda: self.__grid.shift("right"))
-        self._connect_slot(self.actionConnectBluetooth.triggered, lambda: self._connect_to_device(use_bluetooth=True))
-        self._connect_slot(self.actionConnectUSB.triggered, lambda: self._connect_to_device(use_bluetooth=False))
+        self._connect_slot(self.actionConnectBluetooth.triggered,
+                           lambda: self._connect_to_device(type=ConnectionType.bluetooth))
+        self._connect_slot(self.actionConnectUSB.triggered, lambda: self._connect_to_device(type=ConnectionType.usb))
+        self._connect_slot(self.actionConnectEthernet.triggered,
+                           lambda: self._connect_to_device(type=ConnectionType.ethernet))
         self._connect_slot(self.actionDisconnect.triggered, self._disconnect_device)
         self._connect_slot(self.actionPlayStop.triggered, self._play)
         self._connect_slot(self.actionPlayStopDevice.triggered, self._play_device)
@@ -394,6 +401,7 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         self._connect_slot(self.actionDelete_colors.triggered, self.__grid.delete_selected)
         self._connect_slot(self.actionAbout.triggered, self._show_about)
         self._connect_slot(self.actionAbout_Qt.triggered, QtGui.QApplication.aboutQt)
+
 
     def _show_about(self):
         QtGui.QMessageBox.about(self, "Blink", "Version: %s\nAuthor: %s" % (VERSION, AUTHOR))

@@ -3,9 +3,16 @@ import serial
 from blinkconfig import config
 from sys import platform
 import logging
+from enum import Enum
 
 
-class AVRConnector():
+class ConnectionType(Enum):
+    usb = 1
+    bluetooth = 2
+    ethernet = 3
+
+
+class AVRConnector:
     def __init__(self, baud_rate=38400):
         self.baud_rate = baud_rate
         self.__handlers = []
@@ -67,21 +74,38 @@ class AVRConnector():
         except:
             return False
 
-    def connect(self, use_bluetooth=False):
-        if platform == "win32":
-            if use_bluetooth:
+    def _connect_ethernet(self):
+        try:
+            import socket
+            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            s.connect(("127.0.0.1", 8888))
+            for h in self.__handlers:
+                h()
+            return s.send, s.close
+        except:
+            return False
+
+    def connect(self, type):
+        """
+        :param type: usb, ethernet, bluetooth
+        :return:
+        """
+        if type == ConnectionType.ethernet:
+            ret = self._connect_ethernet()
+        elif platform == "win32":
+            if type == ConnectionType.bluetooth:
                 ret = self._connect_bluetooth_windows()
-            else:
+            elif type == ConnectionType.usb:
                 ret = self._connect_windows()
         elif platform == "darwin":
-            if use_bluetooth:
+            if type == ConnectionType.bluetooth:
                 ret = self._connect_macos(config.getstring("bluetooth_device_macos"))
-            else:
+            elif type == ConnectionType.usb:
                 ret = self._connect_macos(config.getstring("serial_device_macos"))
         else:
-            if use_bluetooth:
+            if type == ConnectionType.bluetooth:
                 ret = self._connect_bluetooth_linux()
-            else:
+            elif type == ConnectionType.usb:
                 ret = self._connect_linux()
         if not ret:
             return False

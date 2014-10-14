@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'mainwindow.ui'
 #
-# Created: Thu Oct  9 13:32:10 2014
+# Created: Tue Oct 14 13:45:32 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -568,6 +568,8 @@ class Ui_MainWindow(object):
         self.actionAbout_Qt.setObjectName("actionAbout_Qt")
         self.actionAbout = QtGui.QAction(MainWindow)
         self.actionAbout.setObjectName("actionAbout")
+        self.actionConnectEthernet = QtGui.QAction(MainWindow)
+        self.actionConnectEthernet.setObjectName("actionConnectEthernet")
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionGo_to_previous_frame)
         self.toolBar.addAction(self.actionGo_to_next_frame)
@@ -632,6 +634,7 @@ class Ui_MainWindow(object):
         self.menuColoring.addAction(self.actionRandomize_selected_tiles)
         self.menuConnect_to_device.addAction(self.actionConnectUSB)
         self.menuConnect_to_device.addAction(self.actionConnectBluetooth)
+        self.menuConnect_to_device.addAction(self.actionConnectEthernet)
         self.menuPlayer.addAction(self.menuConnect_to_device.menuAction())
         self.menuPlayer.addAction(self.actionPlayStopDevice)
         self.menuPlayer.addAction(self.actionDisconnect)
@@ -767,6 +770,7 @@ class Ui_MainWindow(object):
         self.actionDisconnect.setText(QtGui.QApplication.translate("MainWindow", "Disconnect", None, QtGui.QApplication.UnicodeUTF8))
         self.actionAbout_Qt.setText(QtGui.QApplication.translate("MainWindow", "About Qt", None, QtGui.QApplication.UnicodeUTF8))
         self.actionAbout.setText(QtGui.QApplication.translate("MainWindow", "Blink", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionConnectEthernet.setText(QtGui.QApplication.translate("MainWindow", "Ethernet", None, QtGui.QApplication.UnicodeUTF8))
 
 from gridgraphicsview import GridGraphicsView
 import res_rc

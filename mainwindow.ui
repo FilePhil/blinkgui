@@ -363,6 +363,7 @@
      </property>
      <addaction name="actionConnectUSB"/>
      <addaction name="actionConnectBluetooth"/>
+     <addaction name="actionConnectEthernet"/>
     </widget>
     <addaction name="menuConnect_to_device"/>
     <addaction name="actionPlayStopDevice"/>
@@ -1356,6 +1357,11 @@
   <action name="actionAbout">
    <property name="text">
     <string>Blink</string>
+   </property>
+  </action>
+  <action name="actionConnectEthernet">
+   <property name="text">
+    <string>Ethernet</string>
    </property>
   </action>
  </widget>

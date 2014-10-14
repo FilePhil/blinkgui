@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'lg_dialog.ui'
 #
-# Created: Thu Oct  9 13:32:10 2014
+# Created: Tue Oct 14 13:45:32 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
