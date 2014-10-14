@@ -27,7 +27,7 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         self.__active_connection = None
         self.filename = None
         self.__zoom = 0
-        self._initialize(config.getsize("grid_size"))
+        self._initialize(getsize("grid_size"))
         if len(args) == 2:
             self._load(args[1])
 
@@ -290,11 +290,7 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
             except ValueError:
                 pass
 
-    def _connect_to_device(self, type):
-        """
-        :param type: bluetooth, ethernet, usb
-        :return:
-        """
+    def _connect_to_device(self, connection_type):
         def connect_handler():
             self.menuConnect_to_device.setEnabled(False)
             self.actionPlayStopDevice.setEnabled(True)
@@ -302,7 +298,7 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         if not self.__active_connection:
             connection = AVRConnector()
             connection.add_connection_handler(connect_handler)
-            ret = connection.connect(type)
+            ret = connection.connect(connection_type)
             if not ret:
                 self._show_error(tr("Connection could not be established."))
                 return
@@ -372,10 +368,10 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         self._connect_slot(self.actionShift_left.triggered, lambda: self.__grid.shift("left"))
         self._connect_slot(self.actionShift_right.triggered, lambda: self.__grid.shift("right"))
         self._connect_slot(self.actionConnectBluetooth.triggered,
-                           lambda: self._connect_to_device(type=ConnectionType.bluetooth))
-        self._connect_slot(self.actionConnectUSB.triggered, lambda: self._connect_to_device(type=ConnectionType.usb))
-        self._connect_slot(self.actionConnectEthernet.triggered,
-                           lambda: self._connect_to_device(type=ConnectionType.ethernet))
+                           lambda: self._connect_to_device(connection_type=ConnectionType.bluetooth))
+        self._connect_slot(self.actionConnectUSB.triggered,
+                           lambda: self._connect_to_device(connection_type=ConnectionType.usb))
+        self._connect_slot(self.actionConnectEthernet.triggered, self._connect_ethernet)
         self._connect_slot(self.actionDisconnect.triggered, self._disconnect_device)
         self._connect_slot(self.actionPlayStop.triggered, self._play)
         self._connect_slot(self.actionPlayStopDevice.triggered, self._play_device)
@@ -402,24 +398,33 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         self._connect_slot(self.actionAbout.triggered, self._show_about)
         self._connect_slot(self.actionAbout_Qt.triggered, QtGui.QApplication.aboutQt)
 
+    def _connect_ethernet(self):
+        from simple_dialogs import EthernetDialog
+        dialog = EthernetDialog(self)
+        if dialog.exec_() == QtGui.QDialog.Accepted:
+            values = dialog.get_values()
+            setvalue("ethernet_hostname", values.host_name)
+            setvalue("ethernet_port", values.port)
+            print (getint("ethernet_port"))
+            self._connect_to_device(connection_type=ConnectionType.ethernet)
 
     def _show_about(self):
         QtGui.QMessageBox.about(self, "Blink", "Version: %s\nAuthor: %s" % (VERSION, AUTHOR))
 
     def _zoom(self, scale):
-        zoom_step = config.getfloat("zoom_step")
+        zoom_step = getfloat("zoom_step")
         if scale > 0:
             self.__grid.allow_resize = False
             self.graphicsView.scale(1.0 + zoom_step, 1.0 + zoom_step)
             self.__zoom += 1
-            if self.__zoom == config.getint("max_zoom"):
+            if self.__zoom == getint("max_zoom"):
                 self.actionZoom_in.setEnabled(False)
             self.actionZoom_out.setEnabled(True)
         elif scale < 0:
             self.__grid.allow_resize = False
             self.graphicsView.scale(1.0 - zoom_step, 1.0 - zoom_step)
             self.__zoom -= 1
-            if self.__zoom == - config.getint("max_zoom"):
+            if self.__zoom == - getint("max_zoom"):
                 self.actionZoom_out.setEnabled(False)
             self.actionZoom_in.setEnabled(True)
         else:
@@ -435,14 +440,14 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         self.update_frame_controls()
 
     def _generate_color_gradient(self):
-        from generator_dialogs import LinearGradientDialog
+        from simple_dialogs import LinearGradientDialog
         dialog = LinearGradientDialog(self)
         if dialog.exec_() == QtGui.QDialog.Accepted:
             self.__grid.generate_linear_color_gradient(dialog.get_values())
             self.update_frame_controls()
 
     def _generate_function(self):
-        from generator_dialogs import ColorTransitionDialog
+        from simple_dialogs import ColorTransitionDialog
         dialog = ColorTransitionDialog(self)
         if dialog.exec_() == QtGui.QDialog.Accepted:
             ok, err = self.__grid.generate_function(dialog.get_values())
@@ -451,7 +456,7 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         self.update_frame_controls()
 
     def _generate_ticker_font(self):
-        from generator_dialogs import TickerTextDialog
+        from simple_dialogs import TickerTextDialog
         dialog = TickerTextDialog(self)
         if dialog.exec_() == QtGui.QDialog.Accepted:
             self.__grid.generate_ticker_font(dialog.get_values())
@@ -494,7 +499,7 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         self.menuEdit.setVisible(False)  # TODO: Remove after implementing undo
         self.progressBar.setVisible(False)
         self.graphicsView.setCacheMode(QtGui.QGraphicsView.CacheNone)
-        self.graphicsView.setBackgroundBrush(QtGui.QColor.fromRgb(*config.getcolor("background_color")))
+        self.graphicsView.setBackgroundBrush(QtGui.QColor.fromRgb(*getcolor("background_color")))
         scene = QtGui.QGraphicsScene()
         self.graphicsView.setScene(scene)
         max_size = min(self.graphicsView.minimumWidth(), self.graphicsView.minimumHeight())
@@ -513,7 +518,7 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         self.undoStack = QtGui.QUndoStack(self)
         self._connect_slots()
         self.colorWidget.setAutoFillBackground(True)
-        self.colorWidget.setPalette(QtGui.QColor.fromRgb(*config.getcolor("pen_color")))
+        self.colorWidget.setPalette(QtGui.QColor.fromRgb(*getcolor("pen_color")))
         #self.colorButton.setPalette(QtGui.QColor.fromRgb(255, 255, 255))
         self.update_frame_controls()
         self.graphicsView.resize(self.graphicsView.width(), self.graphicsView.height())

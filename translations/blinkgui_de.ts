@@ -13,7 +13,7 @@
         <translation>Frame exportieren</translation>
     </message>
     <message>
-        <location filename="generator_dialogs.py" line="53"/>
+        <location filename="blinkgui.py" line="98"/>
         <source>Open file</source>
         <translation>Datei öffnen</translation>
     </message>
@@ -28,27 +28,27 @@
         <translation>Maße eingeben (HxB):</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="467"/>
+        <location filename="blinkgui.py" line="474"/>
         <source>Undo</source>
         <translation>Rückgängig</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="471"/>
+        <location filename="blinkgui.py" line="478"/>
         <source>Undo &quot;%s&quot;</source>
         <translation>&quot;%s&quot; rückgängig machen</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="477"/>
+        <location filename="blinkgui.py" line="484"/>
         <source>SHIFT: Left-Click on a tile to record its color</source>
         <translation>SHIFT: Links-Klicken auf eine Kachel, um die Farbe zu speichern</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="479"/>
+        <location filename="blinkgui.py" line="486"/>
         <source>CTRL: Left-Click to select multiple tiles</source>
         <translation>CTRL: Links-Klicken um mehrere Kacheln auszuwählen</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="535"/>
+        <location filename="blinkgui.py" line="542"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
@@ -103,7 +103,7 @@
         <translation>Abspielen stoppen</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="312"/>
+        <location filename="blinkgui.py" line="308"/>
         <source>A connection already exists.</source>
         <translation>Es besteht bereits eine Verbindung.</translation>
     </message>
@@ -113,7 +113,7 @@
         <translation>Frame importieren</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="307"/>
+        <location filename="blinkgui.py" line="303"/>
         <source>Connection could not be established.</source>
         <translation>Verbindung konnte nicht aufgebaut werden.</translation>
     </message>

@@ -20,4 +20,5 @@ ui:
 	 pyside-uic color_transition_dialog.ui -o color_transition_dialog.py
 	 pyside-uic lg_dialog.ui -o lg_dialog.py
 	 pyside-uic text_dialog.ui -o text_dialog.py
+	 pyside-uic ethernet_dialog.ui -o ethernet_dialog.py
 	 pyside-lupdate blinkGui.pro

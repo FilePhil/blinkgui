@@ -35,38 +35,41 @@ default_values = {"grid_size": "10, 10",
                 "serial_device_macos": "/dev/ttyusb",
                 "bluetooth_device_windows": "\\.\COM5",
                 "bluetooth_device_macos": "/dev/BLUE-DevB",
+                "ethernet_host": "127.0.0.1",
+                "ethernet_port": "2222",
                 "connection_timeout": "10"}
 
 DEFAULT_SECTION = "DEFAULT"
 
 try:
     from configparser import ConfigParser
-    class Config(ConfigParser):
-        def __init__(self, defaults):
-            ConfigParser.__init__(self, defaults)
-
-        def getcolor(self, key):
-            value = ConfigParser.get(self, DEFAULT_SECTION, key)
-            items = [int(val) for val in value.split(",")]
-            return items
-
-        def getint(self, key):
-            return ConfigParser.getint(self, DEFAULT_SECTION, key)
-
-        def getfloat(self, key):
-            return ConfigParser.getfloat(self, DEFAULT_SECTION, key)
-
-        def getstring(self, key):
-            return str(ConfigParser.get(self, DEFAULT_SECTION, key))
-
-        def getsize(self, key):
-            value = ConfigParser.get(self, DEFAULT_SECTION, key)
-            items = [int(val) for val in value.split(",")]
-            assert len(items) == 2
-            return Size(*items)
-
-    config = Config(default_values)
+    config = ConfigParser(default_values)
     config.read("%s/.blinkrc" % expanduser("~"))
+
+    def getcolor(key):
+        value = config.get(DEFAULT_SECTION, key)
+        items = [int(val) for val in value.split(",")]
+        return items
+
+    def getint(key):
+        return config.getint(DEFAULT_SECTION, key)
+
+    def getfloat(key):
+        return config.getfloat(DEFAULT_SECTION, key)
+
+    def getstring(key):
+        return str(config.get(DEFAULT_SECTION, key))
+
+    def setvalue(key, value):
+        config.set(DEFAULT_SECTION, key, str(value))
+
+    def getsize(key):
+        value = config.get(DEFAULT_SECTION, key)
+        items = [int(val) for val in value.split(",")]
+        assert len(items) == 2
+        return Size(*items)
+
+
 except ImportError:
     pass
 

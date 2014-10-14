@@ -1,12 +1,13 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3.4
 
 import socket
 import sys
 import threading
+import blinkconfig
 from avrconnector import AVRConnector, ConnectionType
 
-HOST = ""
-PORT = 8888
+HOST = blinkconfig.getstring("ethernet_host")
+PORT = blinkconfig.getint("ethernet_port")
 
 
 class BlinkConnector:

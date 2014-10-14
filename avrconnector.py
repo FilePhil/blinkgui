@@ -1,6 +1,6 @@
 import struct
 import serial
-from blinkconfig import config
+from blinkconfig import *
 from sys import platform
 import logging
 from enum import Enum
@@ -21,7 +21,7 @@ class AVRConnector:
         self.active = False
 
     def _connect_linux(self):
-        dev = config.getstring("serial_device_linux")
+        dev = getstring("serial_device_linux")
         for x in [""] + list(range(0, 10)):
             try:
                 logging.info("Trying to connect to %s%s" % (dev, str(x)))
@@ -36,9 +36,9 @@ class AVRConnector:
     def _connect_bluetooth_linux(self):
         try:
             import socket
-            server_mac = config.getstring("bluetooth_mac")
+            server_mac = getstring("bluetooth_mac")
             s = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
-            s.settimeout(config.getint("connection_timeout"))
+            s.settimeout(getint("connection_timeout"))
             s.connect((server_mac, 1))
             for h in self.__handlers:
                 h()
@@ -48,7 +48,7 @@ class AVRConnector:
 
     def _connect_bluetooth_windows(self):
         try:
-            ser = serial.Serial(port=config.getstring("bluetooth_device_windows"), baudrate=self.baud_rate)
+            ser = serial.Serial(port=getstring("bluetooth_device_windows"), baudrate=self.baud_rate)
             for h in self.__handlers:
                     h()
             return ser.write, ser.close
@@ -67,7 +67,7 @@ class AVRConnector:
 
     def _connect_windows(self):
         try:
-            ser = serial.Serial(port=config.getstring("serial_device_windows"), baudrate=self.baud_rate)
+            ser = serial.Serial(port=getstring("serial_device_windows"), baudrate=self.baud_rate)
             for h in self.__handlers:
                     h()
             return ser.write, ser.close
@@ -78,7 +78,7 @@ class AVRConnector:
         try:
             import socket
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            s.connect(("127.0.0.1", 8888))
+            s.connect((getstring("ethernet_host"), getint("ethernet_port")))
             for h in self.__handlers:
                 h()
             return s.send, s.close
@@ -99,9 +99,9 @@ class AVRConnector:
                 ret = self._connect_windows()
         elif platform == "darwin":
             if type == ConnectionType.bluetooth:
-                ret = self._connect_macos(config.getstring("bluetooth_device_macos"))
+                ret = self._connect_macos(getstring("bluetooth_device_macos"))
             elif type == ConnectionType.usb:
-                ret = self._connect_macos(config.getstring("serial_device_macos"))
+                ret = self._connect_macos(getstring("serial_device_macos"))
         else:
             if type == ConnectionType.bluetooth:
                 ret = self._connect_bluetooth_linux()
