@@ -23,7 +23,7 @@ class BlinkConnector:
                 t.start()
             self.socket.close()
         except socket.error as msg:
-            print("Bind failed. Error Code : ' + str(msg[0]) + ' Message ' + msg[1]")
+            print("Bind failed. Error Code : " + str(msg[0]) + " Message " + msg[1])
             sys.exit()
 
     def client_thread(self, conn):
