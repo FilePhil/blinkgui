@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 import cmd
 import sys
-
-sys.path.insert(0, '../')
 from socket_protocol import BlinkClient
 from blinkconfig import *
 

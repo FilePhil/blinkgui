@@ -4,7 +4,6 @@ import socket
 import sys
 import threading
 import blinkconfig
-sys.path.insert(0, '../')
 from avrconnector import AVRConnector, ConnectionType
 
 HOST = blinkconfig.getstring("ethernet_host")

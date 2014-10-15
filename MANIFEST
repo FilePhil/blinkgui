@@ -10,7 +10,6 @@ blinkrc.example
 bmlparser.py
 color_transition_dialog.py
 colorgenerator.py
-generator_dialogs.py
 gridgraphicsview.py
 lg_dialog.py
 mainwindow.py
@@ -18,3 +17,8 @@ res_rc.py
 setup.py
 text_dialog.py
 undocommands.py
+commandline/blinkclient.py
+commandline/blinkserver.py
+commandline/ethernet_server.py
+commandline/simple_player.py
+commandline/socket_protocol.py
