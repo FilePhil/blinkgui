@@ -2,7 +2,8 @@
 import cmd
 import sys
 
-from commandline.socket_protocol import BlinkClient
+sys.path.insert(0, '../')
+from socket_protocol import BlinkClient
 from blinkconfig import *
 
 

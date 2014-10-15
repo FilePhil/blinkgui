@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 
 import os
+import sys
 import time
 import json
 from threading import Thread
 from threading import Condition
-
-from commandline.socket_protocol import *
-from blinkconfig import *
+from collections import namedtuple
+sys.path.insert(0, '../')
+from socket_protocol import *
 from avrconnector import AVRConnector, ConnectionType
 from bmlparser import BMLReader
 

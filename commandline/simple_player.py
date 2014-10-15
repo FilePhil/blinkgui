@@ -2,6 +2,7 @@
 import sys
 import time
 from collections import namedtuple
+sys.path.insert(0, '../')
 from avrconnector import AVRConnector
 from bmlparser import BMLReader
 
