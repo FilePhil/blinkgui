@@ -1,18 +1,16 @@
 #!/usr/bin/env python3
 
-import sys
 import os
 import time
 import json
-import socket
-from socket_protocol import *
-import threading
-from blinkconfig import *
-from collections import namedtuple
-from avrconnector import AVRConnector, ConnectionType
 from threading import Thread
 from threading import Condition
+
+from commandline.socket_protocol import *
+from blinkconfig import *
+from avrconnector import AVRConnector, ConnectionType
 from bmlparser import BMLReader
+
 Size = namedtuple("size", "width height")
 grid_size = Size(3, 3)
 

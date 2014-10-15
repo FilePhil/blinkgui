@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-from socket_protocol import BlinkClient
-from blinkconfig import *
 import cmd
 import sys
+
+from commandline.socket_protocol import BlinkClient
+from blinkconfig import *
 
 
 class Prompt(cmd.Cmd):
