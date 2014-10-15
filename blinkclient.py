@@ -2,6 +2,7 @@
 from socket_protocol import BlinkClient
 from blinkconfig import *
 import cmd
+import sys
 
 
 class Prompt(cmd.Cmd):
@@ -42,9 +43,15 @@ class Prompt(cmd.Cmd):
         ret = connector.get_available_clips()
         print(ret)
 
+    def do_quit(self, line):
+        return True
+
     def help_load_file(self):
         print("Reads a file and adds it to the list of available clips.")
 
 if __name__ == '__main__':
-    connector = BlinkClient(getstring("ethernet_host"), getint("ethernet_port"))
+    args = sys.argv[1:]
+    host = args[0] if len(args) > 0 else getstring("ethernet_host")
+    port = int(args[1]) if len(args) == 2 else getint("ethernet_port")
+    connector = BlinkClient(host, port)
     Prompt().cmdloop()

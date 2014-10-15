@@ -1,7 +1,7 @@
 from collections import namedtuple
 from os.path import expanduser
 
-VERSION = "1.0.7"
+VERSION = "1.0.8"
 AUTHOR = "Christoph Hirtz"
 MAIL = "christoph.hirtz@online.de"
 
