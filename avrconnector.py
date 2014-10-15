@@ -15,7 +15,6 @@ class ConnectionType(Enum):
 class AVRConnector:
     def __init__(self, baud_rate=38400):
         self.baud_rate = baud_rate
-        self.__handlers = []
         self.write = None
         self.close = None
         self.active = False
@@ -26,8 +25,6 @@ class AVRConnector:
             try:
                 logging.info("Trying to connect to %s%s" % (dev, str(x)))
                 ser = serial.Serial("%s%s" % (dev, str(x)), baudrate=self.baud_rate)
-                for h in self.__handlers:
-                    h()
                 return ser.write, ser.close
             except serial.serialutil.SerialException:
                 pass
@@ -40,8 +37,6 @@ class AVRConnector:
             s = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
             s.settimeout(getint("connection_timeout"))
             s.connect((server_mac, 1))
-            for h in self.__handlers:
-                h()
             return s.send, s.close
         except:
             return False
@@ -49,8 +44,6 @@ class AVRConnector:
     def _connect_bluetooth_windows(self):
         try:
             ser = serial.Serial(port=getstring("bluetooth_device_windows"), baudrate=self.baud_rate)
-            for h in self.__handlers:
-                    h()
             return ser.write, ser.close
         except:
             return False
@@ -59,8 +52,6 @@ class AVRConnector:
         try:
             logging.info("Trying to connect to %s" % dev)
             ser = serial.Serial(dev, baudrate=self.baud_rate)
-            for h in self.__handlers:
-                h()
             return ser.write, ser.close
         except serial.serialutil.SerialException:
                 return False
@@ -68,8 +59,6 @@ class AVRConnector:
     def _connect_windows(self):
         try:
             ser = serial.Serial(port=getstring("serial_device_windows"), baudrate=self.baud_rate)
-            for h in self.__handlers:
-                    h()
             return ser.write, ser.close
         except:
             return False
@@ -79,33 +68,31 @@ class AVRConnector:
             import socket
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             s.connect((getstring("ethernet_host"), getint("ethernet_port")))
-            for h in self.__handlers:
-                h()
             return s.send, s.close
         except:
             return False
 
-    def connect(self, type):
+    def connect(self, connection_type):
         """
-        :param type: usb, ethernet, bluetooth
+        :param connection_type: usb, ethernet, bluetooth
         :return:
         """
-        if type == ConnectionType.ethernet:
+        if connection_type == ConnectionType.ethernet:
             ret = self._connect_ethernet()
         elif platform == "win32":
-            if type == ConnectionType.bluetooth:
+            if connection_type == ConnectionType.bluetooth:
                 ret = self._connect_bluetooth_windows()
-            elif type == ConnectionType.usb:
+            elif connection_type == ConnectionType.usb:
                 ret = self._connect_windows()
         elif platform == "darwin":
-            if type == ConnectionType.bluetooth:
+            if connection_type == ConnectionType.bluetooth:
                 ret = self._connect_macos(getstring("bluetooth_device_macos"))
-            elif type == ConnectionType.usb:
+            elif connection_type == ConnectionType.usb:
                 ret = self._connect_macos(getstring("serial_device_macos"))
         else:
-            if type == ConnectionType.bluetooth:
+            if connection_type == ConnectionType.bluetooth:
                 ret = self._connect_bluetooth_linux()
-            elif type == ConnectionType.usb:
+            elif connection_type == ConnectionType.usb:
                 ret = self._connect_linux()
         if not ret:
             return False
@@ -138,8 +125,6 @@ class AVRConnector:
         d = self.pack_mcuf(colors, grid_size, True)
         self.write(d)
 
-    def add_connection_handler(self, handler):
-        self.__handlers.append(handler)
 
     def is_active(self):
         return self.active

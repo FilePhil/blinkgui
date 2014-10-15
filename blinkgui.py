@@ -291,19 +291,17 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
                 pass
 
     def _connect_to_device(self, connection_type):
-        def connect_handler():
-            self.menuConnect_to_device.setEnabled(False)
-            self.actionPlayStopDevice.setEnabled(True)
-            self.actionDisconnect.setEnabled(True)
         if not self.__active_connection:
             connection = AVRConnector()
-            connection.add_connection_handler(connect_handler)
             ret = connection.connect(connection_type)
             if not ret:
                 self._show_error(tr("Connection could not be established."))
                 return
             self.__active_connection = connection
             self.__grid.connection = self.__active_connection
+            self.menuConnect_to_device.setEnabled(False)
+            self.actionPlayStopDevice.setEnabled(True)
+            self.actionDisconnect.setEnabled(True)
         else:
             self._show_error(tr("A connection already exists."))
 
@@ -403,10 +401,9 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         dialog = EthernetDialog(self)
         if dialog.exec_() == QtGui.QDialog.Accepted:
             values = dialog.get_values()
-            setvalue("ethernet_hostname", values.host_name)
+            setvalue("ethernet_host", values.host_name)
             setvalue("ethernet_port", values.port)
-            print (getint("ethernet_port"))
-            self._connect_to_device(connection_type=ConnectionType.ethernet)
+            self._connect_to_device(ConnectionType.ethernet)
 
     def _show_about(self):
         QtGui.QMessageBox.about(self, "Blink", "Version: %s\nAuthor: %s" % (VERSION, AUTHOR))

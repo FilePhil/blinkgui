@@ -1350,16 +1350,28 @@
    </property>
   </action>
   <action name="actionAbout_Qt">
+   <property name="icon">
+    <iconset resource="res/res.qrc">
+     <normaloff>:/icons/QtProject-qtcreator.png</normaloff>:/icons/QtProject-qtcreator.png</iconset>
+   </property>
    <property name="text">
     <string>About Qt</string>
    </property>
   </action>
   <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="res/res.qrc">
+     <normaloff>:/icons/dialog-information.png</normaloff>:/icons/dialog-information.png</iconset>
+   </property>
    <property name="text">
     <string>Blink</string>
    </property>
   </action>
   <action name="actionConnectEthernet">
+   <property name="icon">
+    <iconset resource="res/res.qrc">
+     <normaloff>:/icons/network-wired.png</normaloff>:/icons/network-wired.png</iconset>
+   </property>
    <property name="text">
     <string>Ethernet</string>
    </property>

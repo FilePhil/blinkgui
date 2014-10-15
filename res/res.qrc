@@ -1,5 +1,8 @@
 <RCC>
   <qresource prefix="/icons">
+    <file>QtProject-qtcreator.png</file>
+    <file>network-wired.png</file>
+    <file>dialog-information.png</file>
     <file>drive-removable-media-usb.png</file>
     <file>preferences-system-bluetooth.png</file>
     <file>application-x-font-ttf.png</file>

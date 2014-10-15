@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'mainwindow.ui'
 #
-# Created: Tue Oct 14 18:46:08 2014
+# Created: Wed Oct 15 10:48:03 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -565,10 +565,19 @@ class Ui_MainWindow(object):
         self.actionDisconnect.setIcon(icon45)
         self.actionDisconnect.setObjectName("actionDisconnect")
         self.actionAbout_Qt = QtGui.QAction(MainWindow)
+        icon46 = QtGui.QIcon()
+        icon46.addPixmap(QtGui.QPixmap(":/icons/QtProject-qtcreator.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionAbout_Qt.setIcon(icon46)
         self.actionAbout_Qt.setObjectName("actionAbout_Qt")
         self.actionAbout = QtGui.QAction(MainWindow)
+        icon47 = QtGui.QIcon()
+        icon47.addPixmap(QtGui.QPixmap(":/icons/dialog-information.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionAbout.setIcon(icon47)
         self.actionAbout.setObjectName("actionAbout")
         self.actionConnectEthernet = QtGui.QAction(MainWindow)
+        icon48 = QtGui.QIcon()
+        icon48.addPixmap(QtGui.QPixmap(":/icons/network-wired.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionConnectEthernet.setIcon(icon48)
         self.actionConnectEthernet.setObjectName("actionConnectEthernet")
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionGo_to_previous_frame)

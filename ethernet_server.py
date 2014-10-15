@@ -10,14 +10,13 @@ HOST = blinkconfig.getstring("ethernet_host")
 PORT = blinkconfig.getint("ethernet_port")
 
 
-class BlinkConnector:
+class EthernetConnector:
     def __init__(self):
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         try:
             self.socket.bind((HOST, PORT))
             self.socket.listen(10)
             while True:
-                #wait to accept a connection - blocking call
                 conn, addr = self.socket.accept()
                 t = threading.Thread(target=self.client_thread, args=(conn,))
                 t.start()
@@ -37,6 +36,6 @@ class BlinkConnector:
 
 if __name__ == "__main__":
     avr_connector = AVRConnector()
-    avr_connector.connect(ConnectionType.bluetooth)
-    connector = BlinkConnector()
+    avr_connector.connect(ConnectionType.usb)
+    connector = EthernetConnector()
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from collections import namedtuple
-from avrconnector import AVRConnector
+from avrconnector import AVRConnector, ConnectionType
 import random
 import time
 Size = namedtuple("size", "width height")
@@ -8,7 +8,7 @@ Size = namedtuple("size", "width height")
 
 if __name__ == "__main__":
     conn = AVRConnector()
-    conn.connect(True)
+    conn.connect(ConnectionType.ethernet)
     #time.sleep(2)
     grid_size = Size(3, 3)
     while True:
