@@ -6,9 +6,9 @@ import time
 import json
 from threading import Thread
 from threading import Condition
-from collections import namedtuple
 sys.path.insert(0, '../')
 from socket_protocol import *
+from blinkconfig import *
 from avrconnector import AVRConnector, ConnectionType
 from bmlparser import BMLReader
 
@@ -22,7 +22,7 @@ continue_condition = Condition()
 class AVRPlayer():
     def __init__(self):
         self.connector = AVRConnector()
-        ret = self.connector.connect(ConnectionType.bluetooth)
+        ret = self.connector.connect(ConnectionType.usb)
         if not ret:
             print("ERR")
             sys.exit(1)
