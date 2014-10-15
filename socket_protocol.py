@@ -95,8 +95,12 @@ class BlinkServer:
 
 class BlinkClient:
     def __init__(self, host, port):
-        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.socket.connect((host, port))
+        try:
+            print("Connecting to %s:%d" % (host, port))
+            self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            self.socket.connect((host, port))
+        except:
+            print("Connection could not be established")
 
     def add_to_playlist(self, alias):
         msg = "a %s" % alias
