@@ -65,6 +65,10 @@ class BlinkServer:
     def get_playlist(sock):
         raise NotImplementedError
 
+    @staticmethod
+    def receive_file(sock):
+        raise NotImplementedError
+
     def handle_message(self, conn):
         try:
             msg = recv_one_message(conn)
@@ -84,6 +88,8 @@ class BlinkServer:
             self.get_available_clips(conn)
         elif cmd == "p":
             self.get_playlist(conn)
+        elif cmd == "f":
+            self.receive_file(conn, params)
         return True
 
     def client_thread(self, conn):
@@ -101,6 +107,7 @@ class BlinkClient:
             self.socket.connect((host, port))
         except:
             print("Connection could not be established")
+            sys.exit(1)
 
     def add_to_playlist(self, alias):
         msg = "a %s" % alias
@@ -129,5 +136,10 @@ class BlinkClient:
 
     def get_playlist(self):
         msg = "p 1"
+        send_one_message(self.socket, msg)
+        return recv_one_message(self.socket)
+
+    def send_data(self, alias, data):
+        msg = "f %s %s" % (alias, data)
         send_one_message(self.socket, msg)
         return recv_one_message(self.socket)

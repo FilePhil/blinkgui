@@ -2,7 +2,7 @@
 import sys
 import time
 from collections import namedtuple
-from avrconnector import AVRConnector
+from avrconnector import AVRConnector, ConnectionType
 from bmlparser import BMLReader
 
 Size = namedtuple("size", "width height")
@@ -11,7 +11,7 @@ Size = namedtuple("size", "width height")
 class AVRPlayer():
     def __init__(self):
         self.connector = AVRConnector()
-        ret = self.connector.connect(True)
+        ret = self.connector.connect(ConnectionType.usb)
         time.sleep(2)
         if not ret:
             print("ERR")

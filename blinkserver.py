@@ -3,6 +3,7 @@
 import os
 import time
 import json
+from io import StringIO
 from threading import Thread
 from threading import Condition
 from socket_protocol import *
@@ -106,6 +107,13 @@ class EthernetSocket(BlinkServer):
     def get_playlist(sock):
         lis = ["%d -> %s" % (idx, str(item["alias"])) for idx, item in enumerate(playlist_items)]
         send_one_message(sock, str(lis))
+
+    @staticmethod
+    def receive_file(sock, dat):
+        alias, data = dat.split(" ", 1)
+        player.load_clips({alias: StringIO(data)})
+        send_one_message(sock, "OK")
+
 
 
 if __name__ == "__main__":

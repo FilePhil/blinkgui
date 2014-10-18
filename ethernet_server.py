@@ -27,7 +27,7 @@ class EthernetConnector:
 
     def client_thread(self, conn):
         while True:
-            data = conn.recv(1024)
+            data = conn.recv(39)
             avr_connector.write(data)
             if not data:
                 break
