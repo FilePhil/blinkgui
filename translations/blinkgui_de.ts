@@ -28,27 +28,27 @@
         <translation>Maße eingeben (HxB):</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="471"/>
+        <location filename="blinkgui.py" line="474"/>
         <source>Undo</source>
         <translation>Rückgängig</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="475"/>
+        <location filename="blinkgui.py" line="478"/>
         <source>Undo &quot;%s&quot;</source>
         <translation>&quot;%s&quot; rückgängig machen</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="481"/>
+        <location filename="blinkgui.py" line="484"/>
         <source>SHIFT: Left-Click on a tile to record its color</source>
         <translation>SHIFT: Links-Klicken auf eine Kachel, um die Farbe zu speichern</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="483"/>
+        <location filename="blinkgui.py" line="486"/>
         <source>CTRL: Left-Click to select multiple tiles</source>
         <translation>CTRL: Links-Klicken um mehrere Kacheln auszuwählen</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="539"/>
+        <location filename="blinkgui.py" line="542"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
@@ -103,7 +103,7 @@
         <translation>Abspielen stoppen</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="306"/>
+        <location filename="blinkgui.py" line="309"/>
         <source>A connection already exists.</source>
         <translation>Es besteht bereits eine Verbindung.</translation>
     </message>
@@ -113,7 +113,7 @@
         <translation>Frame importieren</translation>
     </message>
     <message>
-        <location filename="blinkgui.py" line="298"/>
+        <location filename="blinkgui.py" line="301"/>
         <source>Connection could not be established.</source>
         <translation>Verbindung konnte nicht aufgebaut werden.</translation>
     </message>
@@ -402,19 +402,9 @@
         <translation type="obsolete">Zu &amp;vorherigem Frame springen</translation>
     </message>
     <message>
-        <location filename="mainwindow.py" line="716"/>
-        <source>P</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="mainwindow.py" line="635"/>
         <source>Go to &amp;next frame</source>
         <translation type="obsolete">Zu &amp;nächstem Frame springen</translation>
-    </message>
-    <message>
-        <location filename="mainwindow.py" line="718"/>
-        <source>N</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.py" line="719"/>
@@ -869,6 +859,16 @@
     <message>
         <location filename="mainwindow.py" line="782"/>
         <source>Ethernet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.py" line="716"/>
+        <source>P</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.py" line="718"/>
+        <source>N</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

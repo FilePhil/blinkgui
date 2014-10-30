@@ -392,9 +392,10 @@ class Grid(QtCore.QObject):
         self._set_tile_colors(colors)
 
     def stop_playback(self):
-        self.__play_idx = -1
-        self.timer.stop()
-        self.playback_stopped_event.emit(self.__play_on_device)
+        if self.__play_idx != -1:
+            self.__play_idx = -1
+            self.timer.stop()
+            self.playback_stopped_event.emit(self.__play_on_device)
 
     def is_stopped(self):
         return self.__play_idx == -1

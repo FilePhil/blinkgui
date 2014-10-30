@@ -41,7 +41,7 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
             self._set_working_color(color.getRgb()[:3])
 
     def _create_frame_button_clicked(self):
-        self.__grid.create_new_frame()
+        self.__grid.create_new_frame(self.durationSpinBox.value())
         self.update_frame_controls()
 
     def _delete_frame_button_clicked(self):
@@ -283,6 +283,9 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
                     if len(dimensions) != 2:
                         continue
                     if 0 < dimensions[0] <= 1000 and 0 < dimensions[1] <= 1000:
+                        # Stop playback before creating a new Grid
+                        if self.__grid is not None:
+                            self.__grid.stop_playback()
                         self._initialize(dimensions)
                         break
                 else:
