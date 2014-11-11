@@ -187,6 +187,10 @@ class Grid(QtCore.QObject):
     def set_current_duration(self, duration):
         self.frames[self.current_frame_num].duration = duration
 
+    def set_all_duration(self, duration):
+        for f in self.frames:
+            f.duration = duration
+
     def get_current_duration(self):
         return self.frames[self.current_frame_num].duration
 

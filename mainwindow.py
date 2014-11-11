@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'mainwindow.ui'
 #
-# Created: Thu Oct 30 16:33:24 2014
+# Created: Tue Nov 11 16:07:36 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -232,6 +232,15 @@ class Ui_MainWindow(object):
         self.durationSpinBox.setProperty("value", 100)
         self.durationSpinBox.setObjectName("durationSpinBox")
         self.verticalLayout.addWidget(self.durationSpinBox)
+        self.durationButton = QtGui.QPushButton(self.currentFrameBox)
+        self.durationButton.setMinimumSize(QtCore.QSize(0, 25))
+        font = QtGui.QFont()
+        font.setWeight(50)
+        font.setBold(False)
+        self.durationButton.setFont(font)
+        self.durationButton.setFocusPolicy(QtCore.Qt.TabFocus)
+        self.durationButton.setObjectName("durationButton")
+        self.verticalLayout.addWidget(self.durationButton)
         self.verticalLayout_9.addLayout(self.verticalLayout)
         self.verticalLayout_3.addWidget(self.currentFrameBox)
         self.playerBox = QtGui.QGroupBox(self.dockWidgetContents)
@@ -688,6 +697,7 @@ class Ui_MainWindow(object):
         self.tintButton.setText(QtGui.QApplication.translate("MainWindow", "Tint selected tiles", None, QtGui.QApplication.UnicodeUTF8))
         self.currentFrameBox.setTitle(QtGui.QApplication.translate("MainWindow", "Current Frame", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("MainWindow", "Duration (ms)", None, QtGui.QApplication.UnicodeUTF8))
+        self.durationButton.setText(QtGui.QApplication.translate("MainWindow", "Apply for all frames", None, QtGui.QApplication.UnicodeUTF8))
         self.playerBox.setTitle(QtGui.QApplication.translate("MainWindow", "Player", None, QtGui.QApplication.UnicodeUTF8))
         self.loopCheckbox.setText(QtGui.QApplication.translate("MainWindow", "Loop playback", None, QtGui.QApplication.UnicodeUTF8))
         self.playButton.setText(QtGui.QApplication.translate("MainWindow", "Playback", None, QtGui.QApplication.UnicodeUTF8))

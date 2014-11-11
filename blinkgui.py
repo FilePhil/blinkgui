@@ -39,6 +39,10 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         color = QtGui.QColorDialog.getColor(QtGui.QColor.fromRgb(*self.__grid.current_color))
         if color.isValid():
             self._set_working_color(color.getRgb()[:3])
+    
+    def _duration_button_clicked(self):
+        self.__grid.set_all_duration(self.durationSpinBox.value())
+        self.update_frame_controls()
 
     def _create_frame_button_clicked(self):
         self.__grid.create_new_frame(self.durationSpinBox.value())
@@ -398,6 +402,7 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         self._connect_slot(self.actionDelete_colors.triggered, self.__grid.delete_selected)
         self._connect_slot(self.actionAbout.triggered, self._show_about)
         self._connect_slot(self.actionAbout_Qt.triggered, QtGui.QApplication.aboutQt)
+        self._connect_slot(self.durationButton.clicked, self._duration_button_clicked)
 
     def _connect_ethernet(self):
         from simple_dialogs import EthernetDialog
