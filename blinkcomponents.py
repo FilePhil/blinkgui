@@ -35,6 +35,12 @@ class Tile(QtWidgets.QGraphicsRectItem):
         if event.buttons() == QtCore.Qt.LeftButton:
             item.set_color(self.__grid.current_color)
 
+        if event.buttons() == QtCore.Qt.RightButton:
+            # Paint the tile black on right click
+            item.set_color([0,0,0])
+
+
+
     def mouseReleaseEvent(self, event):
         if QtWidgets.QApplication.keyboardModifiers() == QtCore.Qt.ControlModifier:
             QtWidgets.QGraphicsItem.mouseReleaseEvent(self, event)
@@ -47,7 +53,9 @@ class Tile(QtWidgets.QGraphicsRectItem):
             self.__grid.mouse_shift_event.emit(self.id)
         elif QtWidgets.QApplication.keyboardModifiers() == QtCore.Qt.AltModifier | QtCore.Qt.ControlModifier:
             self.__grid.select_by_color(self.color)
-
+        if event.button() == QtCore.Qt.RightButton and QtWidgets.QApplication.keyboardModifiers() == 0:
+            self.__grid.tile_colored_event.emit(self.id, self.brush().color().name())
+            self.set_color([0,0,0])
     @property
     def color(self):
         return self.brush().color().getRgb()[:3]
