@@ -1,4 +1,4 @@
-from PySide import QtGui, QtCore
+from PySide2 import QtWidgets, QtCore, QtGui
 import random
 from colorgenerator import *
 from blinkconfig import *
@@ -12,7 +12,7 @@ class Frame:
 
 
 # noinspection PyCallByClass,PyTypeChecker,PyArgumentList
-class Tile(QtGui.QGraphicsRectItem):
+class Tile(QtWidgets.QGraphicsRectItem):
     def __init__(self, idx, grid, pos):
         super(Tile, self).__init__()
         self.__grid = grid
@@ -23,29 +23,29 @@ class Tile(QtGui.QGraphicsRectItem):
         pen.setWidth(getint("grid_width"))
         self.setPen(pen)
         self.__grid.add_item(self)
-        self.setFlags(QtGui.QGraphicsItem.ItemIsSelectable)
+        self.setFlags(QtWidgets.QGraphicsItem.ItemIsSelectable)
 
     def mouseMoveEvent(self, event):
-        if QtGui.QApplication.keyboardModifiers() != 0:
+        if QtWidgets.QApplication.keyboardModifiers() != 0:
             return
         if event.buttons() != QtCore.Qt.NoButton:
-            item = self.__grid.scene.itemAt(event.pos())
+            item = self.__grid.scene.itemAt(event.pos(),QtGui.QTransform())
             if item is None:
                 return
         if event.buttons() == QtCore.Qt.LeftButton:
             item.set_color(self.__grid.current_color)
 
     def mouseReleaseEvent(self, event):
-        if QtGui.QApplication.keyboardModifiers() == QtCore.Qt.ControlModifier:
-            QtGui.QGraphicsItem.mouseReleaseEvent(self, event)
+        if QtWidgets.QApplication.keyboardModifiers() == QtCore.Qt.ControlModifier:
+            QtWidgets.QGraphicsItem.mouseReleaseEvent(self, event)
 
     def mousePressEvent(self, event):
-        if event.button() == QtCore.Qt.LeftButton and QtGui.QApplication.keyboardModifiers() == 0:
+        if event.button() == QtCore.Qt.LeftButton and QtWidgets.QApplication.keyboardModifiers() == 0:
             self.__grid.tile_colored_event.emit(self.id, self.brush().color().name())
             self.set_color(self.__grid.current_color)
-        if QtGui.QApplication.keyboardModifiers() == QtCore.Qt.ShiftModifier:
+        if QtWidgets.QApplication.keyboardModifiers() == QtCore.Qt.ShiftModifier:
             self.__grid.mouse_shift_event.emit(self.id)
-        elif QtGui.QApplication.keyboardModifiers() == QtCore.Qt.AltModifier | QtCore.Qt.ControlModifier:
+        elif QtWidgets.QApplication.keyboardModifiers() == QtCore.Qt.AltModifier | QtCore.Qt.ControlModifier:
             self.__grid.select_by_color(self.color)
 
     @property
@@ -418,8 +418,8 @@ class Grid(QtCore.QObject):
             colors = list(self.get_current_frame().tile_colors)
         else:
             colors = list(frame.tile_colors)
-        image = QtGui.QImage(self.grid_size.width, self.grid_size.height, QtGui.QImage.Format_RGB32)
-        transform = QtGui.QTransform()
+        image = QtWidgets.QImage(self.grid_size.width, self.grid_size.height, QtWidgets.QImage.Format_RGB32)
+        transform = QtWidgets.QTransform()
         for x in range(self.grid_size.width-1, -1, -1):
             for y in range(0, self.grid_size.height):
                 image.setPixel(x, y, QtGui.QColor(*colors.pop(0)).rgb())

@@ -10,7 +10,7 @@ import json
 import signal
 from collections import namedtuple
 from avrconnector import AVRConnector
-from PySide.QtCore import QCoreApplication
+from PySide2.QtCore import QCoreApplication
 from threading import Thread
 from threading import Condition
 from bmlparser import BMLReader

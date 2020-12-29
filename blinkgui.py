@@ -15,11 +15,11 @@ tr = lambda string: QtCore.QCoreApplication.translate("GUI", string)
 
 
 # noinspection PyCallByClass,PyTypeChecker
-class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
+class BlinkGui(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, args, parent=None):
-        QtGui.QMainWindow.__init__(self, parent)
+        QtWidgets.QMainWindow.__init__(self, parent)
         self.setupUi(self)
-        self.frame_id_label = QtGui.QLabel()
+        self.frame_id_label = QtWidgets.QLabel()
         self.statusBar.addPermanentWidget(self.frame_id_label)
         self.centralwidget.keyPressEvent = lambda event: self._modifier_event(0, event)
         self.centralwidget.keyReleaseEvent = lambda event: self._modifier_event(1, event)
@@ -36,7 +36,7 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
     """
 
     def _color_button_clicked(self):
-        color = QtGui.QColorDialog.getColor(QtGui.QColor.fromRgb(*self.__grid.current_color))
+        color = QtWidgets.QColorDialog.getColor(QtGui.QColor.fromRgb(*self.__grid.current_color))
         if color.isValid():
             self._set_working_color(color.getRgb()[:3])
     
@@ -70,7 +70,7 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
             self.actionPlayStop.setText(tr("Stop playback"))
             self.actionPlayStop.setIcon(QtGui.QIcon(":/icons/media-playback-stop.png"))
             self.actionPlayStopDevice.setEnabled(False)
-            QtGui.QApplication.processEvents()
+            QtWidgets.QApplication.processEvents()
             self.__grid.play_sequence()
         else:
             self.__grid.stop_playback()
@@ -79,13 +79,13 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         if self.__grid.is_stopped():
             self.actionPlayStop.setEnabled(False)
             self.actionPlayStopDevice.setText(tr("Stop playback"))
-            QtGui.QApplication.processEvents()
+            QtWidgets.QApplication.processEvents()
             self.__grid.play_sequence(on_device=True)
         else:
             self.__grid.stop_playback()
 
     def _save_as(self):
-        filename = QtGui.QFileDialog.getSaveFileName(self, tr("Save file"), "~", FILE_FILTER)
+        filename = QtWidgets.QFileDialog.getSaveFileName(self, tr("Save file"), "~", FILE_FILTER)
         if filename[0] == "":
             return
         self._save_file(filename[0])
@@ -99,7 +99,7 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
 
     def _load(self, filename=None):
         if filename is None:
-            filename = QtGui.QFileDialog.getOpenFileName(self, tr("Open file"), "~", FILE_FILTER)
+            filename = QtWidgets.QFileDialog.getOpenFileName(self, tr("Open file"), "~", FILE_FILTER)
             if filename[0] == "":
                 return
             filename = filename[0]
@@ -114,32 +114,32 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         self.filename = filename
 
     def _export_frame(self):
-        filename = QtGui.QFileDialog.getSaveFileName(self, tr("Export frame"), "~", EXPORT_FILTER)
+        filename = QtWidgets.QFileDialog.getSaveFileName(self, tr("Export frame"), "~", EXPORT_FILTER)
         if filename[0] == "":
             return
-        writer = QtGui.QImageWriter(filename[0])
+        writer = QtWidgets.QImageWriter(filename[0])
         image = self.__grid.get_bitmap_image()
         writer.write(image)
 
     def _export_frames(self):
-        filename = QtGui.QFileDialog.getSaveFileName(self, tr("Export frame"), "~", EXPORT_FILTER)
+        filename = QtWidgets.QFileDialog.getSaveFileName(self, tr("Export frame"), "~", EXPORT_FILTER)
         if filename[0] == "":
             return
         file_name, file_extension = os.path.splitext(filename[0])
-        writer = QtGui.QImageWriter(filename[0])
+        writer = QtWidgets.QImageWriter(filename[0])
         for idx, image in enumerate(self.__grid.get_bitmap_images()):
             writer.setFileName("%s_%d%s" % (file_name, idx, file_extension))
             writer.write(image)
 
     def _import_frame(self):
-        file_names = QtGui.QFileDialog.getOpenFileNames(self, tr("Import frame"), "~", IMPORT_FILTER)
+        file_names = QtWidgets.QFileDialog.getOpenFileNames(self, tr("Import frame"), "~", IMPORT_FILTER)
         if len(file_names[0]) == 0:
             return
         for f in file_names[0]:
-            reader = QtGui.QImageReader(f)
+            reader = QtWidgets.QImageReader(f)
             image = reader.read()
             image = image.scaled(QtCore.QSize(*self.__grid.grid_size))
-            transform = QtGui.QTransform()
+            transform = QtWidgets.QTransform()
             transform.rotate(270)
             image = image.transformed(transform)
             colors = []
@@ -213,7 +213,7 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
     def _apply_header_info(self, data):
         for idx, item in enumerate(RO_FIELDS+HEADER_FIELDS):
             text = str(data[item]) if data[item] is not None else None
-            item2 = QtGui.QTableWidgetItem(text)
+            item2 = QtWidgets.QTableWidgetItem(text)
             if idx < len(RO_FIELDS):
                 item2.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
             self.metaInfoTable.setItem(idx, 1, item2)
@@ -261,8 +261,8 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         self.update_frame_controls()
 
     def _go_to_frame(self):
-        frame_num, ok = QtGui.QInputDialog.getInt(self, tr("Go to frame"), tr("Please enter the frame number:"),
-                                                  QtGui.QLineEdit.Normal, 1, self.__grid.get_number_of_frames(), 0)
+        frame_num, ok = QtWidgets.QInputDialog.getInt(self, tr("Go to frame"), tr("Please enter the frame number:"),
+                                                  QtWidgets.QLineEdit.Normal, 1, self.__grid.get_number_of_frames(), 0)
         if ok:
             self.__grid.load_frame_number(frame_num-1)
             self.update_frame_controls()
@@ -279,8 +279,8 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         grid_size = self.__grid.grid_size
         while True:
             try:
-                text, ok = QtGui.QInputDialog.getText(self, tr("New file"), tr("Please enter the grid dimensions:"),
-                                                      QtGui.QLineEdit.Normal,
+                text, ok = QtWidgets.QInputDialog.getText(self, tr("New file"), tr("Please enter the grid dimensions:"),
+                                                      QtWidgets.QLineEdit.Normal,
                                                       "%dx%d" % (grid_size.width, grid_size.height))
                 if ok:
                     dimensions = [int(x) for x in text.split("x")]
@@ -343,7 +343,7 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
             self.__grid.stop_playback()
         if self.__active_connection:
             self.__active_connection.close()
-        QtGui.QMainWindow.close(self)
+        QtWidgets.QMainWindow.close(self)
 
     def _connect_slots(self):
         self._disconnect_slots()
@@ -401,20 +401,20 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         self._connect_slot(self.actionRotate_right.triggered, self.__grid.rotate_right)
         self._connect_slot(self.actionDelete_colors.triggered, self.__grid.delete_selected)
         self._connect_slot(self.actionAbout.triggered, self._show_about)
-        self._connect_slot(self.actionAbout_Qt.triggered, QtGui.QApplication.aboutQt)
+        self._connect_slot(self.actionAbout_Qt.triggered, QtWidgets.QApplication.aboutQt)
         self._connect_slot(self.durationButton.clicked, self._duration_button_clicked)
 
     def _connect_ethernet(self):
         from simple_dialogs import EthernetDialog
         dialog = EthernetDialog(self)
-        if dialog.exec_() == QtGui.QDialog.Accepted:
+        if dialog.exec_() == QtWidgets.QDialog.Accepted:
             values = dialog.get_values()
             setvalue("ethernet_host", values.host_name)
             setvalue("ethernet_port", values.port)
             self._connect_to_device(ConnectionType.ethernet)
 
     def _show_about(self):
-        QtGui.QMessageBox.about(self, "Blink", "Version: %s\nAuthor: %s" % (VERSION, AUTHOR))
+        QtWidgets.QMessageBox.about(self, "Blink", "Version: %s\nAuthor: %s" % (VERSION, AUTHOR))
 
     def _zoom(self, scale):
         zoom_step = getfloat("zoom_step")
@@ -447,14 +447,14 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
     def _generate_color_gradient(self):
         from simple_dialogs import LinearGradientDialog
         dialog = LinearGradientDialog(self)
-        if dialog.exec_() == QtGui.QDialog.Accepted:
+        if dialog.exec_() == QtWidgets.QDialog.Accepted:
             self.__grid.generate_linear_color_gradient(dialog.get_values())
             self.update_frame_controls()
 
     def _generate_function(self):
         from simple_dialogs import ColorTransitionDialog
         dialog = ColorTransitionDialog(self)
-        if dialog.exec_() == QtGui.QDialog.Accepted:
+        if dialog.exec_() == QtWidgets.QDialog.Accepted:
             ok, err = self.__grid.generate_function(dialog.get_values())
             if not ok:
                 self._show_error(str(err))
@@ -463,7 +463,7 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
     def _generate_ticker_font(self):
         from simple_dialogs import TickerTextDialog
         dialog = TickerTextDialog(self)
-        if dialog.exec_() == QtGui.QDialog.Accepted:
+        if dialog.exec_() == QtWidgets.QDialog.Accepted:
             self.__grid.generate_ticker_font(dialog.get_values())
             self.update_frame_controls()
 
@@ -503,9 +503,9 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         self.menuBar.setNativeMenuBar(False)
         self.menuEdit.setVisible(False)  # TODO: Remove after implementing undo
         self.progressBar.setVisible(False)
-        self.graphicsView.setCacheMode(QtGui.QGraphicsView.CacheNone)
+        self.graphicsView.setCacheMode(QtWidgets.QGraphicsView.CacheNone)
         self.graphicsView.setBackgroundBrush(QtGui.QColor.fromRgb(*getcolor("background_color")))
-        scene = QtGui.QGraphicsScene()
+        scene = QtWidgets.QGraphicsScene()
         self.graphicsView.setScene(scene)
         max_size = min(self.graphicsView.minimumWidth(), self.graphicsView.minimumHeight())
         self.__grid = Grid(max_size, scene, Size(*dimensions), frames)
@@ -520,7 +520,7 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         else:
             self.__grid.connection = self.__active_connection
             self.actionDisconnect.setEnabled(True)
-        self.undoStack = QtGui.QUndoStack(self)
+        self.undoStack = QtWidgets.QUndoStack(self)
         self._connect_slots()
         self.colorWidget.setAutoFillBackground(True)
         self.colorWidget.setPalette(QtGui.QColor.fromRgb(*getcolor("pen_color")))
@@ -537,7 +537,7 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
         fields = RO_FIELDS + HEADER_FIELDS
         self.metaInfoTable.setRowCount(len(fields))
         for idx, item in enumerate(fields):
-            item1 = QtGui.QTableWidgetItem(item)
+            item1 = QtWidgets.QTableWidgetItem(item)
             item1.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
             font = QtGui.QFont()
             font.setBold(True)
@@ -545,11 +545,11 @@ class BlinkGui(QtGui.QMainWindow, Ui_MainWindow):
             self.metaInfoTable.setItem(idx, 0, item1)
 
     def _show_error(self, msg, title=tr("Error")):
-        QtGui.QMessageBox.critical(self, title, msg)
+        QtWidgets.QMessageBox.critical(self, title, msg)
 
 
 if __name__ == "__main__":
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     translator = QtCore.QTranslator(app)
     translator.load("translations/blinkgui_%s.qm" % (locale.getlocale()[0]))
     app.installTranslator(translator)

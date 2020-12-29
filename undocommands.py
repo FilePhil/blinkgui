@@ -1,7 +1,7 @@
-from PySide import QtGui
+from PySide2 import QtWidgets, QtGui
 
 
-class CommandDeleteFrame(QtGui.QUndoCommand):
+class CommandDeleteFrame(QtWidgets.QUndoCommand):
     def __init__(self, gui, description):
         super(CommandDeleteFrame, self).__init__(description)
         self.gui = gui
@@ -16,7 +16,7 @@ class CommandDeleteFrame(QtGui.QUndoCommand):
         self.gui.update_frame_controls()
 
 
-class CommandColorChanged(QtGui.QUndoCommand):
+class CommandColorChanged(QtWidgets.QUndoCommand):
     def __init__(self, gui, new_color, description, change_selected=True):
         super(CommandColorChanged, self).__init__(description)
         self.color = new_color
@@ -43,7 +43,7 @@ class CommandColorChanged(QtGui.QUndoCommand):
         self._set_color(self.old_color)
 
 
-class CommandTileColored(QtGui.QUndoCommand):
+class CommandTileColored(QtWidgets.QUndoCommand):
     def __init__(self, grid, tile_id, old_color, description):
         super(CommandTileColored, self).__init__(description)
         self.grid = grid
@@ -55,4 +55,3 @@ class CommandTileColored(QtGui.QUndoCommand):
 
     def undo(self):
         self.grid.tiles[self.tile_id].set_color(self.old_color.getRgb())
-

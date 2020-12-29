@@ -1,6 +1,6 @@
 from lxml import etree
 from blinkcomponents import Frame
-from PySide.QtGui import QColor
+from PySide2 import QtGui
 
 
 class BMLWriter:
@@ -34,7 +34,7 @@ class BMLWriter:
             row_text = ""
             for color in frame.tile_colors:
                 tile_count += 1
-                row_text += str(QColor.fromRgb(*color).name()[1:])
+                row_text += str(QtGui.QColor.fromRgb(*color).name()[1:])
                 if tile_count == self.width:
                     tile_count = 0
                     row.text = row_text
@@ -83,7 +83,7 @@ class BMLReader:
                 for c in self._chunks(row.text, chunk_size):
                     c *= repetitions
                     hexa = "#%s" % c
-                    tile_colors.append(QColor(hexa).getRgb()[:3])
+                    tile_colors.append(QtGui.QColor(hexa).getRgb()[:3])
             duration = int(frame.get("duration"))
             frames.append(Frame(duration, tile_colors))
         return frames, info, (width, height)

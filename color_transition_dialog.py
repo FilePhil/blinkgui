@@ -1,103 +1,126 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'color_transition_dialog.ui'
-#
-# Created: Tue Nov 11 16:07:36 2014
-#      by: pyside-uic 0.2.15 running on PySide 1.2.2
-#
-# WARNING! All changes made in this file will be lost!
+################################################################################
+## Form generated from reading UI file 'color_transition_dialogcdFqRn.ui'
+##
+## Created by: Qt User Interface Compiler version 5.15.2
+##
+## WARNING! All changes made in this file will be lost when recompiling UI file!
+################################################################################
 
-from PySide import QtCore, QtGui
+from PySide2.QtCore import *
+from PySide2.QtGui import *
+from PySide2.QtWidgets import *
+
 
 class Ui_ColorTransitionDialog(object):
     def setupUi(self, ColorTransitionDialog):
-        ColorTransitionDialog.setObjectName("ColorTransitionDialog")
+        if not ColorTransitionDialog.objectName():
+            ColorTransitionDialog.setObjectName(u"ColorTransitionDialog")
         ColorTransitionDialog.resize(350, 177)
-        ColorTransitionDialog.setMinimumSize(QtCore.QSize(350, 177))
-        ColorTransitionDialog.setMaximumSize(QtCore.QSize(350, 177))
-        self.gridLayout = QtGui.QGridLayout(ColorTransitionDialog)
-        self.gridLayout.setObjectName("gridLayout")
-        self.formLayout = QtGui.QFormLayout()
-        self.formLayout.setFieldGrowthPolicy(QtGui.QFormLayout.ExpandingFieldsGrow)
-        self.formLayout.setObjectName("formLayout")
-        self.label = QtGui.QLabel(ColorTransitionDialog)
-        self.label.setObjectName("label")
-        self.formLayout.setWidget(1, QtGui.QFormLayout.LabelRole, self.label)
-        self.frameSpin = QtGui.QSpinBox(ColorTransitionDialog)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Fixed)
+        ColorTransitionDialog.setMinimumSize(QSize(350, 177))
+        ColorTransitionDialog.setMaximumSize(QSize(350, 177))
+        self.gridLayout = QGridLayout(ColorTransitionDialog)
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.formLayout = QFormLayout()
+        self.formLayout.setObjectName(u"formLayout")
+        self.formLayout.setFieldGrowthPolicy(QFormLayout.ExpandingFieldsGrow)
+        self.label = QLabel(ColorTransitionDialog)
+        self.label.setObjectName(u"label")
+
+        self.formLayout.setWidget(1, QFormLayout.LabelRole, self.label)
+
+        self.frameSpin = QSpinBox(ColorTransitionDialog)
+        self.frameSpin.setObjectName(u"frameSpin")
+        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.frameSpin.sizePolicy().hasHeightForWidth())
         self.frameSpin.setSizePolicy(sizePolicy)
         self.frameSpin.setMaximum(10000000)
-        self.frameSpin.setProperty("value", 1000)
-        self.frameSpin.setObjectName("frameSpin")
-        self.formLayout.setWidget(1, QtGui.QFormLayout.FieldRole, self.frameSpin)
-        self.label_2 = QtGui.QLabel(ColorTransitionDialog)
-        self.label_2.setObjectName("label_2")
-        self.formLayout.setWidget(2, QtGui.QFormLayout.LabelRole, self.label_2)
-        self.durationSpin = QtGui.QSpinBox(ColorTransitionDialog)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
+        self.frameSpin.setValue(1000)
+
+        self.formLayout.setWidget(1, QFormLayout.FieldRole, self.frameSpin)
+
+        self.label_2 = QLabel(ColorTransitionDialog)
+        self.label_2.setObjectName(u"label_2")
+
+        self.formLayout.setWidget(2, QFormLayout.LabelRole, self.label_2)
+
+        self.durationSpin = QSpinBox(ColorTransitionDialog)
+        self.durationSpin.setObjectName(u"durationSpin")
         sizePolicy.setHeightForWidth(self.durationSpin.sizePolicy().hasHeightForWidth())
         self.durationSpin.setSizePolicy(sizePolicy)
         self.durationSpin.setMaximum(10000000)
-        self.durationSpin.setProperty("value", 10)
-        self.durationSpin.setObjectName("durationSpin")
-        self.formLayout.setWidget(2, QtGui.QFormLayout.FieldRole, self.durationSpin)
-        self.label_4 = QtGui.QLabel(ColorTransitionDialog)
-        self.label_4.setObjectName("label_4")
-        self.formLayout.setWidget(3, QtGui.QFormLayout.LabelRole, self.label_4)
-        self.valueSpin = QtGui.QDoubleSpinBox(ColorTransitionDialog)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
+        self.durationSpin.setValue(10)
+
+        self.formLayout.setWidget(2, QFormLayout.FieldRole, self.durationSpin)
+
+        self.label_4 = QLabel(ColorTransitionDialog)
+        self.label_4.setObjectName(u"label_4")
+
+        self.formLayout.setWidget(3, QFormLayout.LabelRole, self.label_4)
+
+        self.valueSpin = QDoubleSpinBox(ColorTransitionDialog)
+        self.valueSpin.setObjectName(u"valueSpin")
         sizePolicy.setHeightForWidth(self.valueSpin.sizePolicy().hasHeightForWidth())
         self.valueSpin.setSizePolicy(sizePolicy)
-        self.valueSpin.setMaximum(1.0)
-        self.valueSpin.setSingleStep(0.001)
-        self.valueSpin.setProperty("value", 0.5)
-        self.valueSpin.setObjectName("valueSpin")
-        self.formLayout.setWidget(3, QtGui.QFormLayout.FieldRole, self.valueSpin)
-        self.label_5 = QtGui.QLabel(ColorTransitionDialog)
-        self.label_5.setObjectName("label_5")
-        self.formLayout.setWidget(4, QtGui.QFormLayout.LabelRole, self.label_5)
-        self.saturationSpin = QtGui.QDoubleSpinBox(ColorTransitionDialog)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
+        self.valueSpin.setMaximum(1.000000000000000)
+        self.valueSpin.setSingleStep(0.001000000000000)
+        self.valueSpin.setValue(0.500000000000000)
+
+        self.formLayout.setWidget(3, QFormLayout.FieldRole, self.valueSpin)
+
+        self.label_5 = QLabel(ColorTransitionDialog)
+        self.label_5.setObjectName(u"label_5")
+
+        self.formLayout.setWidget(4, QFormLayout.LabelRole, self.label_5)
+
+        self.saturationSpin = QDoubleSpinBox(ColorTransitionDialog)
+        self.saturationSpin.setObjectName(u"saturationSpin")
         sizePolicy.setHeightForWidth(self.saturationSpin.sizePolicy().hasHeightForWidth())
         self.saturationSpin.setSizePolicy(sizePolicy)
-        self.saturationSpin.setMaximum(1.0)
-        self.saturationSpin.setSingleStep(0.001)
-        self.saturationSpin.setProperty("value", 1.0)
-        self.saturationSpin.setObjectName("saturationSpin")
-        self.formLayout.setWidget(4, QtGui.QFormLayout.FieldRole, self.saturationSpin)
-        self.label_3 = QtGui.QLabel(ColorTransitionDialog)
-        self.label_3.setObjectName("label_3")
-        self.formLayout.setWidget(0, QtGui.QFormLayout.LabelRole, self.label_3)
-        self.functionEdit = QtGui.QLineEdit(ColorTransitionDialog)
-        self.functionEdit.setObjectName("functionEdit")
-        self.formLayout.setWidget(0, QtGui.QFormLayout.FieldRole, self.functionEdit)
+        self.saturationSpin.setMaximum(1.000000000000000)
+        self.saturationSpin.setSingleStep(0.001000000000000)
+        self.saturationSpin.setValue(1.000000000000000)
+
+        self.formLayout.setWidget(4, QFormLayout.FieldRole, self.saturationSpin)
+
+        self.label_3 = QLabel(ColorTransitionDialog)
+        self.label_3.setObjectName(u"label_3")
+
+        self.formLayout.setWidget(0, QFormLayout.LabelRole, self.label_3)
+
+        self.functionEdit = QLineEdit(ColorTransitionDialog)
+        self.functionEdit.setObjectName(u"functionEdit")
+
+        self.formLayout.setWidget(0, QFormLayout.FieldRole, self.functionEdit)
+
+
         self.gridLayout.addLayout(self.formLayout, 0, 0, 1, 1)
-        self.buttonBox = QtGui.QDialogButtonBox(ColorTransitionDialog)
-        self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Ok)
-        self.buttonBox.setObjectName("buttonBox")
+
+        self.buttonBox = QDialogButtonBox(ColorTransitionDialog)
+        self.buttonBox.setObjectName(u"buttonBox")
+        self.buttonBox.setOrientation(Qt.Horizontal)
+        self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel|QDialogButtonBox.Ok)
+
         self.gridLayout.addWidget(self.buttonBox, 1, 0, 1, 1)
 
+
         self.retranslateUi(ColorTransitionDialog)
-        QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("accepted()"), ColorTransitionDialog.accept)
-        QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("rejected()"), ColorTransitionDialog.reject)
-        QtCore.QMetaObject.connectSlotsByName(ColorTransitionDialog)
+        self.buttonBox.accepted.connect(ColorTransitionDialog.accept)
+        self.buttonBox.rejected.connect(ColorTransitionDialog.reject)
+
+        QMetaObject.connectSlotsByName(ColorTransitionDialog)
+    # setupUi
 
     def retranslateUi(self, ColorTransitionDialog):
-        ColorTransitionDialog.setWindowTitle(QtGui.QApplication.translate("ColorTransitionDialog", "Color transition", None, QtGui.QApplication.UnicodeUTF8))
-        self.label.setText(QtGui.QApplication.translate("ColorTransitionDialog", "Number of frames:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_2.setText(QtGui.QApplication.translate("ColorTransitionDialog", "Frame duration (ms):", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_4.setText(QtGui.QApplication.translate("ColorTransitionDialog", "Value (brightness):", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_5.setText(QtGui.QApplication.translate("ColorTransitionDialog", "Saturation:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_3.setText(QtGui.QApplication.translate("ColorTransitionDialog", "Function(x,y,f) to evaluate:", None, QtGui.QApplication.UnicodeUTF8))
-        self.functionEdit.setText(QtGui.QApplication.translate("ColorTransitionDialog", "sin(x)+cos(y) + 0.001*f", None, QtGui.QApplication.UnicodeUTF8))
+        ColorTransitionDialog.setWindowTitle(QCoreApplication.translate("ColorTransitionDialog", u"Color transition", None))
+        self.label.setText(QCoreApplication.translate("ColorTransitionDialog", u"Number of frames:", None))
+        self.label_2.setText(QCoreApplication.translate("ColorTransitionDialog", u"Frame duration (ms):", None))
+        self.label_4.setText(QCoreApplication.translate("ColorTransitionDialog", u"Value (brightness):", None))
+        self.label_5.setText(QCoreApplication.translate("ColorTransitionDialog", u"Saturation:", None))
+        self.label_3.setText(QCoreApplication.translate("ColorTransitionDialog", u"Function(x,y,f) to evaluate:", None))
+        self.functionEdit.setText(QCoreApplication.translate("ColorTransitionDialog", u"sin(x)+cos(y) + 0.001*f", None))
+    # retranslateUi
 

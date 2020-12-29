@@ -1,4 +1,4 @@
-from PySide import QtGui, QtCore
+from PySide2 import QtWidgets, QtCore, QtGui
 from lg_dialog import Ui_LinearGradientDialog
 from color_transition_dialog import Ui_ColorTransitionDialog
 from ethernet_dialog import Ui_EthernetDialog
@@ -15,9 +15,9 @@ TickerDialogResult = namedtuple("tickerresult", "text padding duration font font
 EthernetDialogResult = namedtuple("ethernetresult", "host_name port")
 
 
-class EthernetDialog(QtGui.QDialog, Ui_EthernetDialog):
+class EthernetDialog(QtWidgets.QDialog, Ui_EthernetDialog):
     def __init__(self, parent=None):
-        QtGui.QDialog.__init__(self, parent)
+        QtWidgets.QDialog.__init__(self, parent)
         self.setupUi(self)
         self.portSpin.setValue(getint("ethernet_port"))
         self.hostnameEdit.setText(getstring("ethernet_host"))
@@ -27,9 +27,9 @@ class EthernetDialog(QtGui.QDialog, Ui_EthernetDialog):
         return res
 
 
-class LinearGradientDialog(QtGui.QDialog, Ui_LinearGradientDialog):
+class LinearGradientDialog(QtWidgets.QDialog, Ui_LinearGradientDialog):
     def __init__(self, parent=None):
-        QtGui.QDialog.__init__(self, parent)
+        QtWidgets.QDialog.__init__(self, parent)
         self.setupUi(self)
 
     def get_values(self):
@@ -39,9 +39,9 @@ class LinearGradientDialog(QtGui.QDialog, Ui_LinearGradientDialog):
         return res
 
 
-class ColorTransitionDialog(QtGui.QDialog, Ui_ColorTransitionDialog):
+class ColorTransitionDialog(QtWidgets.QDialog, Ui_ColorTransitionDialog):
     def __init__(self, parent=None):
-        QtGui.QDialog.__init__(self, parent)
+        QtWidgets.QDialog.__init__(self, parent)
         self.setupUi(self)
 
     def get_values(self):
@@ -50,9 +50,9 @@ class ColorTransitionDialog(QtGui.QDialog, Ui_ColorTransitionDialog):
         return res
 
 
-class TickerTextDialog(QtGui.QDialog, Ui_TickerDialog):
+class TickerTextDialog(QtWidgets.QDialog, Ui_TickerDialog):
     def __init__(self, parent=None):
-        QtGui.QDialog.__init__(self, parent)
+        QtWidgets.QDialog.__init__(self, parent)
         self.setupUi(self)
         self.openFontButton.clicked.connect(self.font_button_clicked)
         self.fontColorButton.clicked.connect(self.font_color_button_clicked)
@@ -64,19 +64,19 @@ class TickerTextDialog(QtGui.QDialog, Ui_TickerDialog):
         self.backgroundColorButton.setPalette(QtGui.QColor.fromRgb(*self.background_color))
 
     def font_button_clicked(self):
-        filename = QtGui.QFileDialog.getOpenFileName(self, tr("Open file"), "~", FONT_FILTER)
+        filename = QtWidgets.QFileDialog.getOpenFileName(self, tr("Open file"), "~", FONT_FILTER)
         if filename[0] == "":
             return
         self.fontEdit.setText(filename[0])
 
     def font_color_button_clicked(self):
-        color = QtGui.QColorDialog.getColor(QtGui.QColor.fromRgb(*self.font_color))
+        color = QtWidgets.QColorDialog.getColor(QtGui.QColor.fromRgb(*self.font_color))
         if color.isValid():
             self.font_color = color.getRgb()[:3]
             self.fontColorButton.setPalette(color)
 
     def background_color_button_clicked(self):
-        color = QtGui.QColorDialog.getColor(QtGui.QColor.fromRgb(*self.background_color))
+        color = QtWidgets.QColorDialog.getColor(QtGui.QColor.fromRgb(*self.background_color))
         if color.isValid():
             self.background_color = color.getRgb()[:3]
             self.backgroundColorButton.setPalette(color)
@@ -86,6 +86,3 @@ class TickerTextDialog(QtGui.QDialog, Ui_TickerDialog):
                                  self.fontEdit.text(), self.fontsizeSpin.value(), self.font_color,
                                  self.background_color)
         return res
-
-
-

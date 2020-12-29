@@ -1,9 +1,9 @@
-from PySide import QtGui, QtCore
+from PySide2 import QtWidgets, QtCore
 
 
-class GridGraphicsView(QtGui.QGraphicsView):
+class GridGraphicsView(QtWidgets.QGraphicsView):
     def __init__(self, parent=None):
-        QtGui.QGraphicsView.__init__(self, parent)
+        QtWidgets.QGraphicsView.__init__(self, parent)
 
     def heightForWidth(self, width):
         return width
@@ -13,7 +13,7 @@ class GridGraphicsView(QtGui.QGraphicsView):
             item = self.itemAt(event.pos())
             if item is not None:
                 item.setSelected(True)
-        QtGui.QGraphicsView.mouseMoveEvent(self, event)
+        QtWidgets.QGraphicsView.mouseMoveEvent(self, event)
 
     def resizeEvent(self, evt=None):
         size = evt.size()

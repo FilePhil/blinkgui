@@ -3,7 +3,7 @@
 import dbus
 import dbus.service
 import dbus.mainloop.glib
-from PySide.QtCore import QCoreApplication
+from PySide2.QtCore import QCoreApplication
 
 playlist_items = {}
 
