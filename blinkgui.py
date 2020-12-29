@@ -39,7 +39,7 @@ class BlinkGui(QtWidgets.QMainWindow, Ui_MainWindow):
         color = QtWidgets.QColorDialog.getColor(QtGui.QColor.fromRgb(*self.__grid.current_color))
         if color.isValid():
             self._set_working_color(color.getRgb()[:3])
-    
+
     def _duration_button_clicked(self):
         self.__grid.set_all_duration(self.durationSpinBox.value())
         self.update_frame_controls()
@@ -358,7 +358,7 @@ class BlinkGui(QtWidgets.QMainWindow, Ui_MainWindow):
         self._connect_slot(self.frameSlider.valueChanged, self._slider_moved)
         self._connect_slot(self.durationSpinBox.valueChanged, self._set_current_duration)
         self._connect_slot(self.actionNew.triggered, self._new_document)
-        self._connect_slot(self.actionLoad_BLM.triggered, self._load)
+        self._connect_slot(self.actionLoad_BLM.triggered, lambda state: self._load())
         self._connect_slot(self.actionSave_as.triggered, self._save_as)
         self._connect_slot(self.actionSave.triggered, self._save)
         self._connect_slot(self.loopCheckbox.stateChanged, lambda state: self.__grid.set_looping(state))
