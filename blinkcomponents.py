@@ -504,6 +504,15 @@ class Grid(QtCore.QObject):
         import  cv2 # Import on the file head crashes the Application
 
         cap = cv2.VideoCapture(params.video_file)
+        totalFrames = cap.get(cv2.CAP_PROP_FRAME_COUNT)
+
+        progress = QtWidgets.QProgressDialog("Converting Frames",
+                                             "Abort Converting",
+                                              0,
+                                              totalFrames)
+        progress.setWindowModality(QtCore.Qt.WindowModal)
+
+        frame_cnt = 0
 
         while(cap.isOpened()):
             # Take each frame
@@ -526,9 +535,11 @@ class Grid(QtCore.QObject):
             self.create_new_frame(duration=params.duration)
             self._set_tile_colors(color_list)
 
-            # Press esc to end the process
-            k = cv2.waitKey(5) & 0xFF
-            if k == 27:
+            frame_cnt += 1
+
+            progress.setValue(frame_cnt)
+
+            if progress.wasCanceled():
                 break
 
         cap.release()
