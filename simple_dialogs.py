@@ -11,7 +11,7 @@ LinearGradientDialogResult = namedtuple("colordialogresult",
                                         "duration steps phase_red phase_green phase_blue central_value value_range")
 ColorTransitionDialogResult = namedtuple("colortransitionresult",
                                          "function num_frames duration value saturation")
-TickerDialogResult = namedtuple("tickerresult", "text padding duration font font_size font_color background_color")
+TickerDialogResult = namedtuple("tickerresult", ['text', 'padding', 'duration', 'font', 'font_size', 'font_color', 'background_color','sharpness'])
 EthernetDialogResult = namedtuple("ethernetresult", "host_name port")
 
 
@@ -84,5 +84,5 @@ class TickerTextDialog(QtWidgets.QDialog, Ui_TickerDialog):
     def get_values(self):
         res = TickerDialogResult(self.textEdit.text(), self.paddingSpin.value(), self.durationSpin.value(),
                                  self.fontEdit.text(), self.fontsizeSpin.value(), self.font_color,
-                                 self.background_color)
+                                 self.background_color,self.sharpnessSpin.value())
         return res

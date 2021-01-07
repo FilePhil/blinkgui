@@ -3,7 +3,8 @@ import random
 from colorgenerator import *
 from blinkconfig import *
 import numpy as np
-
+from PIL import Image, ImageFont, ImageDraw
+import pprint
 
 class Frame:
     def __init__(self, duration, tile_colors):
@@ -26,12 +27,16 @@ class Tile(QtWidgets.QGraphicsRectItem):
         self.setFlags(QtWidgets.QGraphicsItem.ItemIsSelectable)
 
     def mouseMoveEvent(self, event):
+        """ Paint the Tile on movement """
+
         if QtWidgets.QApplication.keyboardModifiers() != 0:
             return
         if event.buttons() != QtCore.Qt.NoButton:
             item = self.__grid.scene.itemAt(event.pos(),QtGui.QTransform())
             if item is None:
                 return
+
+
         if event.buttons() == QtCore.Qt.LeftButton:
             item.set_color(self.__grid.current_color)
 
@@ -462,18 +467,32 @@ class Grid(QtCore.QObject):
         except (SyntaxError, NameError) as err:
             return False, err
 
-    @staticmethod
-    def _generate_text(params):
-        from PIL import ImageFont
-        text = "%s%s%s" % (" "*params.padding, params.text, " "*params.padding)
-        font = ImageFont.truetype(params.font, params.font_size)
-        dimensions = font.getsize(text)
-        return np.array(np.array_split(list(font.getmask(text, "1")), dimensions[1])), dimensions
+    def _generate_text(self, params):
+        """ Create a GreyScale Pixel Array of a given text.
+
+            params - Named Tuple with parameters from he 'text_dialog'
+            return - Numpy-Array of Pixel & the dimensions of the Array
+        """
+        text = '%s%s%s' % (' '*params.padding, params.text, ' '*params.padding)
+        font = ImageFont.truetype(params.font,params.font_size)
+        text_dim = font.getsize(text)
+
+        img = Image.new(mode = 'L', size = text_dim, color='black')
+        draw = ImageDraw.Draw(img)
+
+        draw.text((0, 0),text, font=font,fill='white')
+
+        img_array = np.asarray(img)
+
+        return img_array, text_dim
 
     def generate_ticker_font(self, params):
+        """ Transfere a GreyScale Pixel Array into the grid. """
         array, dimensions = self._generate_text(params)
+        edge_value = int(255/params.sharpness)
         for step in range(0, max(0, dimensions[0]-self.grid_size.width+1)):
             colors = np.concatenate(array[:self.grid_size.height, step:self.grid_size.width+step])
-            col = [params.font_color if c == 255 else params.background_color for c in colors]
+            col = [params.font_color if c >= edge_value else params.background_color for c in colors]
             self.create_new_frame(duration=params.duration)
+
             self._set_tile_colors(col)

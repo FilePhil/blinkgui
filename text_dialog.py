@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'text_dialogywCEfC.ui'
+## Form generated from reading UI file 'text_dialogRkHvBd.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -17,7 +17,7 @@ class Ui_TickerDialog(object):
     def setupUi(self, TickerDialog):
         if not TickerDialog.objectName():
             TickerDialog.setObjectName(u"TickerDialog")
-        TickerDialog.resize(400, 334)
+        TickerDialog.resize(400, 378)
         self.gridLayout = QGridLayout(TickerDialog)
         self.gridLayout.setObjectName(u"gridLayout")
         self.formLayout = QFormLayout()
@@ -85,7 +85,7 @@ class Ui_TickerDialog(object):
         self.label_3 = QLabel(TickerDialog)
         self.label_3.setObjectName(u"label_3")
 
-        self.formLayout.setWidget(8, QFormLayout.LabelRole, self.label_3)
+        self.formLayout.setWidget(10, QFormLayout.LabelRole, self.label_3)
 
         self.durationSpin = QSpinBox(TickerDialog)
         self.durationSpin.setObjectName(u"durationSpin")
@@ -95,24 +95,24 @@ class Ui_TickerDialog(object):
         self.durationSpin.setMaximum(999999)
         self.durationSpin.setValue(150)
 
-        self.formLayout.setWidget(8, QFormLayout.FieldRole, self.durationSpin)
+        self.formLayout.setWidget(10, QFormLayout.FieldRole, self.durationSpin)
 
         self.label_6 = QLabel(TickerDialog)
         self.label_6.setObjectName(u"label_6")
 
-        self.formLayout.setWidget(6, QFormLayout.LabelRole, self.label_6)
+        self.formLayout.setWidget(8, QFormLayout.LabelRole, self.label_6)
 
         self.label_7 = QLabel(TickerDialog)
         self.label_7.setObjectName(u"label_7")
 
-        self.formLayout.setWidget(7, QFormLayout.LabelRole, self.label_7)
+        self.formLayout.setWidget(9, QFormLayout.LabelRole, self.label_7)
 
         self.fontColorButton = QPushButton(TickerDialog)
         self.fontColorButton.setObjectName(u"fontColorButton")
         sizePolicy.setHeightForWidth(self.fontColorButton.sizePolicy().hasHeightForWidth())
         self.fontColorButton.setSizePolicy(sizePolicy)
 
-        self.formLayout.setWidget(6, QFormLayout.FieldRole, self.fontColorButton)
+        self.formLayout.setWidget(8, QFormLayout.FieldRole, self.fontColorButton)
 
         self.backgroundColorButton = QPushButton(TickerDialog)
         self.backgroundColorButton.setObjectName(u"backgroundColorButton")
@@ -122,7 +122,24 @@ class Ui_TickerDialog(object):
         sizePolicy1.setHeightForWidth(self.backgroundColorButton.sizePolicy().hasHeightForWidth())
         self.backgroundColorButton.setSizePolicy(sizePolicy1)
 
-        self.formLayout.setWidget(7, QFormLayout.FieldRole, self.backgroundColorButton)
+        self.formLayout.setWidget(9, QFormLayout.FieldRole, self.backgroundColorButton)
+
+        self.sharpnessLabel = QLabel(TickerDialog)
+        self.sharpnessLabel.setObjectName(u"sharpnessLabel")
+
+        self.formLayout.setWidget(6, QFormLayout.LabelRole, self.sharpnessLabel)
+
+        self.sharpnessSpin = QSpinBox(TickerDialog)
+        self.sharpnessSpin.setObjectName(u"sharpnessSpin")
+        sizePolicy.setHeightForWidth(self.sharpnessSpin.sizePolicy().hasHeightForWidth())
+        self.sharpnessSpin.setSizePolicy(sizePolicy)
+        self.sharpnessSpin.setCursor(QCursor(Qt.ArrowCursor))
+        self.sharpnessSpin.setMinimum(1)
+        self.sharpnessSpin.setMaximum(100)
+        self.sharpnessSpin.setSingleStep(10)
+        self.sharpnessSpin.setValue(95)
+
+        self.formLayout.setWidget(6, QFormLayout.FieldRole, self.sharpnessSpin)
 
 
         self.gridLayout.addLayout(self.formLayout, 0, 0, 1, 1)
@@ -138,10 +155,10 @@ class Ui_TickerDialog(object):
         QWidget.setTabOrder(self.paddingSpin, self.fontEdit)
         QWidget.setTabOrder(self.fontEdit, self.openFontButton)
         QWidget.setTabOrder(self.openFontButton, self.fontsizeSpin)
-        QWidget.setTabOrder(self.fontsizeSpin, self.fontColorButton)
+        QWidget.setTabOrder(self.fontsizeSpin, self.sharpnessSpin)
+        QWidget.setTabOrder(self.sharpnessSpin, self.fontColorButton)
         QWidget.setTabOrder(self.fontColorButton, self.backgroundColorButton)
         QWidget.setTabOrder(self.backgroundColorButton, self.durationSpin)
-        QWidget.setTabOrder(self.durationSpin, self.buttonBox)
 
         self.retranslateUi(TickerDialog)
         self.buttonBox.accepted.connect(TickerDialog.accept)
@@ -162,5 +179,5 @@ class Ui_TickerDialog(object):
         self.label_7.setText(QCoreApplication.translate("TickerDialog", u"Background color:", None))
         self.fontColorButton.setText(QCoreApplication.translate("TickerDialog", u"Choose color", None))
         self.backgroundColorButton.setText(QCoreApplication.translate("TickerDialog", u"Choose color", None))
+        self.sharpnessLabel.setText(QCoreApplication.translate("TickerDialog", u"Sharpness (%):", None))
     # retranslateUi
-

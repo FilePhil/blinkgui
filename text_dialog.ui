@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>256</height>
+    <height>378</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -90,14 +90,14 @@
        </property>
       </widget>
      </item>
-     <item row="8" column="0">
+     <item row="10" column="0">
       <widget class="QLabel" name="label_3">
        <property name="text">
         <string>Frame duration (ms):</string>
        </property>
       </widget>
      </item>
-     <item row="8" column="1">
+     <item row="10" column="1">
       <widget class="QSpinBox" name="durationSpin">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -116,21 +116,21 @@
        </property>
       </widget>
      </item>
-     <item row="6" column="0">
+     <item row="8" column="0">
       <widget class="QLabel" name="label_6">
        <property name="text">
         <string>Font color:</string>
        </property>
       </widget>
      </item>
-     <item row="7" column="0">
+     <item row="9" column="0">
       <widget class="QLabel" name="label_7">
        <property name="text">
         <string>Background color:</string>
        </property>
       </widget>
      </item>
-     <item row="6" column="1">
+     <item row="8" column="1">
       <widget class="QPushButton" name="fontColorButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -143,7 +143,7 @@
        </property>
       </widget>
      </item>
-     <item row="7" column="1">
+     <item row="9" column="1">
       <widget class="QPushButton" name="backgroundColorButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
@@ -153,6 +153,38 @@
        </property>
        <property name="text">
         <string>Choose color</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="0">
+      <widget class="QLabel" name="sharpnessLabel">
+       <property name="text">
+        <string>Sharpness (%):</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="1">
+      <widget class="QSpinBox" name="sharpnessSpin">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="cursor">
+        <cursorShape>ArrowCursor</cursorShape>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>100</number>
+       </property>
+       <property name="singleStep">
+        <number>10</number>
+       </property>
+       <property name="value">
+        <number>95</number>
        </property>
       </widget>
      </item>
@@ -176,10 +208,10 @@
   <tabstop>fontEdit</tabstop>
   <tabstop>openFontButton</tabstop>
   <tabstop>fontsizeSpin</tabstop>
+  <tabstop>sharpnessSpin</tabstop>
   <tabstop>fontColorButton</tabstop>
   <tabstop>backgroundColorButton</tabstop>
   <tabstop>durationSpin</tabstop>
-  <tabstop>buttonBox</tabstop>
  </tabstops>
  <resources/>
  <connections>
@@ -190,8 +222,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>252</x>
-     <y>251</y>
+     <x>258</x>
+     <y>327</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>
@@ -206,8 +238,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>320</x>
-     <y>251</y>
+     <x>326</x>
+     <y>327</y>
     </hint>
     <hint type="destinationlabel">
      <x>286</x>
