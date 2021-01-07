@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'video_dialogfmFqaW.ui'
+## Form generated from reading UI file 'video_dialogAQkyHB.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -17,9 +17,16 @@ class Ui_VideoDialog(object):
     def setupUi(self, VideoDialog):
         if not VideoDialog.objectName():
             VideoDialog.setObjectName(u"VideoDialog")
-        VideoDialog.resize(400, 166)
+        VideoDialog.resize(400, 128)
         self.gridLayout = QGridLayout(VideoDialog)
         self.gridLayout.setObjectName(u"gridLayout")
+        self.buttonBox = QDialogButtonBox(VideoDialog)
+        self.buttonBox.setObjectName(u"buttonBox")
+        self.buttonBox.setOrientation(Qt.Horizontal)
+        self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel|QDialogButtonBox.Ok)
+
+        self.gridLayout.addWidget(self.buttonBox, 2, 0, 1, 1)
+
         self.formLayout = QFormLayout()
         self.formLayout.setObjectName(u"formLayout")
         self.formLayout.setFieldGrowthPolicy(QFormLayout.ExpandingFieldsGrow)
@@ -43,54 +50,28 @@ class Ui_VideoDialog(object):
 
         self.formLayout.setLayout(0, QFormLayout.FieldRole, self.horizontalLayout)
 
-        self.sharpnessLabel = QLabel(VideoDialog)
-        self.sharpnessLabel.setObjectName(u"sharpnessLabel")
-
-        self.formLayout.setWidget(1, QFormLayout.LabelRole, self.sharpnessLabel)
-
-        self.sharpnessSpin = QSpinBox(VideoDialog)
-        self.sharpnessSpin.setObjectName(u"sharpnessSpin")
-        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.sharpnessSpin.sizePolicy().hasHeightForWidth())
-        self.sharpnessSpin.setSizePolicy(sizePolicy)
-        self.sharpnessSpin.setCursor(QCursor(Qt.ArrowCursor))
-        self.sharpnessSpin.setMinimum(1)
-        self.sharpnessSpin.setMaximum(100)
-        self.sharpnessSpin.setSingleStep(10)
-        self.sharpnessSpin.setValue(95)
-
-        self.formLayout.setWidget(1, QFormLayout.FieldRole, self.sharpnessSpin)
-
         self.label_3 = QLabel(VideoDialog)
         self.label_3.setObjectName(u"label_3")
 
-        self.formLayout.setWidget(2, QFormLayout.LabelRole, self.label_3)
+        self.formLayout.setWidget(1, QFormLayout.LabelRole, self.label_3)
 
         self.durationSpin = QSpinBox(VideoDialog)
         self.durationSpin.setObjectName(u"durationSpin")
+        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.durationSpin.sizePolicy().hasHeightForWidth())
         self.durationSpin.setSizePolicy(sizePolicy)
         self.durationSpin.setMinimum(1)
         self.durationSpin.setMaximum(999999)
         self.durationSpin.setValue(42)
 
-        self.formLayout.setWidget(2, QFormLayout.FieldRole, self.durationSpin)
+        self.formLayout.setWidget(1, QFormLayout.FieldRole, self.durationSpin)
 
 
         self.gridLayout.addLayout(self.formLayout, 0, 0, 1, 1)
 
-        self.buttonBox = QDialogButtonBox(VideoDialog)
-        self.buttonBox.setObjectName(u"buttonBox")
-        self.buttonBox.setOrientation(Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel|QDialogButtonBox.Ok)
-
-        self.gridLayout.addWidget(self.buttonBox, 1, 0, 1, 1)
-
         QWidget.setTabOrder(self.videoFile, self.openVideoButton)
-        QWidget.setTabOrder(self.openVideoButton, self.sharpnessSpin)
-        QWidget.setTabOrder(self.sharpnessSpin, self.durationSpin)
 
         self.retranslateUi(VideoDialog)
         self.buttonBox.accepted.connect(VideoDialog.accept)
@@ -103,7 +84,6 @@ class Ui_VideoDialog(object):
         VideoDialog.setWindowTitle(QCoreApplication.translate("VideoDialog", u"Convert Video", None))
         self.label_2.setText(QCoreApplication.translate("VideoDialog", u"Video:", None))
         self.openVideoButton.setText(QCoreApplication.translate("VideoDialog", u"Browse", None))
-        self.sharpnessLabel.setText(QCoreApplication.translate("VideoDialog", u"Sharpness (%):", None))
         self.label_3.setText(QCoreApplication.translate("VideoDialog", u"Frame duration (ms):", None))
     # retranslateUi
 

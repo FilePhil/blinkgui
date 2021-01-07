@@ -15,7 +15,7 @@ ColorTransitionDialogResult = namedtuple("colortransitionresult",
 TickerDialogResult = namedtuple("tickerresult", ["text", "padding", "duration", "font", "font_size", "font_color", "background_color","sharpness"])
 EthernetDialogResult = namedtuple("ethernetresult", "host_name port")
 VideoDialogResult = namedtuple("videoresult",
-                                         ["video_file", "sharpness", "duration"])
+                                         ["video_file", "duration"])
 
 class EthernetDialog(QtWidgets.QDialog, Ui_EthernetDialog):
     def __init__(self, parent=None):
@@ -104,6 +104,5 @@ class VideoDialog(QtWidgets.QDialog, Ui_VideoDialog):
         self.videoFile.setText(filename[0])
 
     def get_values(self):
-        res = VideoDialogResult(self.videoFile.text(), self.sharpnessSpin.value(),
-                                 self.durationSpin.value())
+        res = VideoDialogResult(self.videoFile.text(),self.durationSpin.value())
         return res
