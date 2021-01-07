@@ -393,6 +393,7 @@ class BlinkGui(QtWidgets.QMainWindow, Ui_MainWindow):
         self._connect_slot(self.actionGenerate_color_gradient.triggered, self._generate_color_gradient)
         self._connect_slot(self.actionGenerate_function.triggered, self._generate_function)
         self._connect_slot(self.actionGenerate_ticker_font.triggered, self._generate_ticker_font)
+        self._connect_slot(self.actionVideo_Converter.triggered, self._convert_video)
         self._connect_slot(self.actionGo_to_frame.triggered, self._go_to_frame)
         self._connect_slot(self.actionZoom_in.triggered, lambda: self._zoom(1))
         self._connect_slot(self.actionZoom_out.triggered, lambda: self._zoom(-1))
@@ -465,6 +466,14 @@ class BlinkGui(QtWidgets.QMainWindow, Ui_MainWindow):
         dialog = TickerTextDialog(self)
         if dialog.exec_() == QtWidgets.QDialog.Accepted:
             self.__grid.generate_ticker_font(dialog.get_values())
+            self.update_frame_controls()
+
+    def _convert_video(self):
+        from simple_dialogs import VideoDialog
+        dialog = VideoDialog(self)
+        if dialog.exec_() == QtWidgets.QDialog.Accepted:
+            dialog.get_values()
+            self.__grid.convert_video(dialog.get_values())
             self.update_frame_controls()
 
     def _copy_or_cut(self, cut):

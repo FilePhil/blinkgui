@@ -63,7 +63,7 @@
       <item>
        <layout class="QVBoxLayout" name="verticalLayout_4">
         <property name="spacing">
-         <number>-1</number>
+         <number>6</number>
         </property>
         <property name="sizeConstraint">
          <enum>QLayout::SetDefaultConstraint</enum>
@@ -239,7 +239,7 @@
      <x>0</x>
      <y>0</y>
      <width>953</width>
-     <height>24</height>
+     <height>30</height>
     </rect>
    </property>
    <property name="defaultUp">
@@ -378,6 +378,7 @@
     <addaction name="actionGenerate_color_gradient"/>
     <addaction name="actionGenerate_function"/>
     <addaction name="actionGenerate_ticker_font"/>
+    <addaction name="actionVideo_Converter"/>
    </widget>
    <widget class="QMenu" name="menuInfo">
     <property name="title">
@@ -1396,6 +1397,14 @@
    </property>
    <property name="text">
     <string>Ethernet</string>
+   </property>
+  </action>
+  <action name="actionVideo_Converter">
+   <property name="icon">
+    <iconset theme="video"/>
+   </property>
+   <property name="text">
+    <string>Video Converter</string>
    </property>
   </action>
  </widget>

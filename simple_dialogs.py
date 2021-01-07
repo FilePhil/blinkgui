@@ -3,6 +3,7 @@ from lg_dialog import Ui_LinearGradientDialog
 from color_transition_dialog import Ui_ColorTransitionDialog
 from ethernet_dialog import Ui_EthernetDialog
 from text_dialog import Ui_TickerDialog
+from video_dialog import Ui_VideoDialog
 from blinkconfig import *
 
 tr = lambda string: QtCore.QCoreApplication.translate("GUI", string)
@@ -10,10 +11,11 @@ tr = lambda string: QtCore.QCoreApplication.translate("GUI", string)
 LinearGradientDialogResult = namedtuple("colordialogresult",
                                         "duration steps phase_red phase_green phase_blue central_value value_range")
 ColorTransitionDialogResult = namedtuple("colortransitionresult",
-                                         "function num_frames duration value saturation")
-TickerDialogResult = namedtuple("tickerresult", ['text', 'padding', 'duration', 'font', 'font_size', 'font_color', 'background_color','sharpness'])
+                                         ["function", "num_frames", "duration", "value", "saturation"])
+TickerDialogResult = namedtuple("tickerresult", ["text", "padding", "duration", "font", "font_size", "font_color", "background_color","sharpness"])
 EthernetDialogResult = namedtuple("ethernetresult", "host_name port")
-
+VideoDialogResult = namedtuple("videoresult",
+                                         ["video_file", "sharpness", "duration"])
 
 class EthernetDialog(QtWidgets.QDialog, Ui_EthernetDialog):
     def __init__(self, parent=None):
@@ -85,4 +87,23 @@ class TickerTextDialog(QtWidgets.QDialog, Ui_TickerDialog):
         res = TickerDialogResult(self.textEdit.text(), self.paddingSpin.value(), self.durationSpin.value(),
                                  self.fontEdit.text(), self.fontsizeSpin.value(), self.font_color,
                                  self.background_color,self.sharpnessSpin.value())
+        return res
+
+
+class VideoDialog(QtWidgets.QDialog, Ui_VideoDialog):
+    def __init__(self, parent=None):
+        QtWidgets.QDialog.__init__(self, parent)
+        self.setupUi(self)
+        self.openVideoButton.clicked.connect(self.openVideo_button_clicked)
+
+
+    def openVideo_button_clicked(self):
+        filename = QtWidgets.QFileDialog.getOpenFileName(self, tr("Open Video"), "~", '*.mp4,*.avi')
+        if filename[0] == "":
+            return
+        self.videoFile.setText(filename[0])
+
+    def get_values(self):
+        res = VideoDialogResult(self.videoFile.text(), self.sharpnessSpin.value(),
+                                 self.durationSpin.value())
         return res

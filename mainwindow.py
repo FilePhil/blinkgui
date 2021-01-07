@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainwindowbaZSAn.ui'
+## Form generated from reading UI file 'mainwindowakNwWn.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -294,6 +294,10 @@ class Ui_MainWindow(object):
         icon47 = QIcon()
         icon47.addFile(u":/icons/network-wired.png", QSize(), QIcon.Normal, QIcon.Off)
         self.actionConnectEthernet.setIcon(icon47)
+        self.actionVideo_Converter = QAction(MainWindow)
+        self.actionVideo_Converter.setObjectName(u"actionVideo_Converter")
+        icon48 = QIcon(QIcon.fromTheme(u"video"))
+        self.actionVideo_Converter.setIcon(icon48)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         sizePolicy.setHeightForWidth(self.centralwidget.sizePolicy().hasHeightForWidth())
@@ -398,9 +402,9 @@ class Ui_MainWindow(object):
         self.menuPlayer.setObjectName(u"menuPlayer")
         self.menuConnect_to_device = QMenu(self.menuPlayer)
         self.menuConnect_to_device.setObjectName(u"menuConnect_to_device")
-        icon48 = QIcon()
-        icon48.addFile(u":/icons/network-connect.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.menuConnect_to_device.setIcon(icon48)
+        icon49 = QIcon()
+        icon49.addFile(u":/icons/network-connect.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.menuConnect_to_device.setIcon(icon49)
         self.menuGenerate = QMenu(self.menuBar)
         self.menuGenerate.setObjectName(u"menuGenerate")
         self.menuInfo = QMenu(self.menuBar)
@@ -690,6 +694,7 @@ class Ui_MainWindow(object):
         self.menuGenerate.addAction(self.actionGenerate_color_gradient)
         self.menuGenerate.addAction(self.actionGenerate_function)
         self.menuGenerate.addAction(self.actionGenerate_ticker_font)
+        self.menuGenerate.addAction(self.actionVideo_Converter)
         self.menuInfo.addAction(self.actionAbout)
         self.menuInfo.addAction(self.actionAbout_Qt)
 
@@ -862,6 +867,7 @@ class Ui_MainWindow(object):
         self.actionAbout_Qt.setText(QCoreApplication.translate("MainWindow", u"About Qt", None))
         self.actionAbout.setText(QCoreApplication.translate("MainWindow", u"Blink", None))
         self.actionConnectEthernet.setText(QCoreApplication.translate("MainWindow", u"Ethernet", None))
+        self.actionVideo_Converter.setText(QCoreApplication.translate("MainWindow", u"Video Converter", None))
 #if QT_CONFIG(statustip)
         self.graphicsView.setStatusTip("")
 #endif // QT_CONFIG(statustip)
