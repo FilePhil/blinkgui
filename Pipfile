@@ -9,6 +9,8 @@ numpy = "*"
 lxml = "*"
 PySide2 = "*"
 pillow = "*"
+opencv-python = "*"
+opencv-contrib-python = "*"
 
 [dev-packages]
 

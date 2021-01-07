@@ -43,5 +43,3 @@ if __name__ == "__main__":
     player = AVRPlayer()
     player.load_frames(fra, Size(width, height))
     player.play(True)
-
-
