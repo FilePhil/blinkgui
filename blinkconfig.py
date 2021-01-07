@@ -5,10 +5,10 @@ VERSION = "1.0.8"
 AUTHOR = "Christoph Hirtz"
 MAIL = "christoph.hirtz@online.de"
 
-Moves = namedtuple("moves", "left up right down")
-Pos = namedtuple("pos", "x y")
-FrameInfo = namedtuple("frame", "frame_number frame")
-Size = namedtuple("size", "width height")
+Moves = namedtuple("moves", ['left', 'up', 'right', 'down'])
+Pos = namedtuple("pos", ['x', 'y'])
+FrameInfo = namedtuple("frame", ['frame_number', 'frame'])
+Size = namedtuple("size", ['width', 'height'])
 
 HEADER_FIELDS = ["title", "description", "creator", "author", "email", "loop"]
 RO_FIELDS = ["bits", "channels"]
@@ -18,7 +18,6 @@ FILE_FILTER = "Blinkenlights Markup (*.bml) (*.bml);;All files (*.*)"
 EXPORT_FILTER = "Images (*.png) (*.png)"
 IMPORT_FILTER = "Images (*.png) (*.png)"
 FONT_FILTER = "TrueType Fonts (*.ttf) (*.ttf)"
-
 default_values = {"grid_size": "10, 10",
                 "tile_color": "0, 0, 0",
                 "frame_duration": "100",
@@ -72,4 +71,3 @@ try:
 
 except ImportError:
     pass
-
