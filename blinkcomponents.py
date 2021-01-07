@@ -498,3 +498,37 @@ class Grid(QtCore.QObject):
             self.create_new_frame(duration=params.duration)
 
             self._set_tile_colors(col)
+
+    def convert_video(self,params):
+        """ Take a Vidofile and create a series of frames """
+        import  cv2 # Import on the file head crashes the Application
+
+        cap = cv2.VideoCapture(params.video_file)
+
+        while(cap.isOpened()):
+            # Take each frame
+            _, frame = cap.read()
+
+            if frame is None:
+                break
+
+            # Change the colorspace to RGB
+            img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+            # Change the size of the image to the size of the frame
+            img = cv2.resize(img, self.grid_size)
+
+
+            # Convert into a 1D list
+            color_list =img.reshape(len(self.tiles), 3).tolist()
+
+            # Create the frame
+            self.create_new_frame(duration=params.duration)
+            self._set_tile_colors(color_list)
+
+            # Press esc to end the process
+            k = cv2.waitKey(5) & 0xFF
+            if k == 27:
+                break
+
+        cap.release()
