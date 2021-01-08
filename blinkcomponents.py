@@ -4,7 +4,7 @@ import random
 from colorgenerator import *
 from blinkconfig import *
 import numpy as np
-import PIL
+from PIL import Image, ImageDraw, ImageFont
 
 
 
@@ -476,11 +476,11 @@ class Grid(QtCore.QObject):
             return - Numpy-Array of Pixel & the dimensions of the Array
         """
         text = '%s%s%s' % (' '*params.padding, params.text, ' '*params.padding)
-        font = PIL.Image.truetype(params.font,params.font_size)
+        font = ImageFont.truetype(params.font,params.font_size)
         text_dim = font.getsize(text)
 
-        img = PIL.Image.new(mode = 'L', size = text_dim, color='black')
-        draw = PIL.PIL.ImageDraw.Draw(img)
+        img = Image.new(mode = 'L', size = text_dim, color='black')
+        draw = ImageDraw.Draw(img)
 
         draw.text((0, 0),text, font=font,fill='white')
 
