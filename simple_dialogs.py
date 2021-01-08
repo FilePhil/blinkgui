@@ -98,7 +98,7 @@ class VideoDialog(QtWidgets.QDialog, Ui_VideoDialog):
 
 
     def openVideo_button_clicked(self):
-        filename = QtWidgets.QFileDialog.getOpenFileName(self, tr("Open Video"), "~", '*.mp4,*.avi')
+        filename = QtWidgets.QFileDialog.getOpenFileName(self, tr("Open Video"), "~", '*')
         if filename[0] == "":
             return
         self.videoFile.setText(filename[0])
